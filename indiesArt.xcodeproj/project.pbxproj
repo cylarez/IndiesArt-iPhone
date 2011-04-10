@@ -1,0 +1,301 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		726BF651135252D10046AC92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726BF650135252D10046AC92 /* UIKit.framework */; };
+		726BF653135252D10046AC92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726BF652135252D10046AC92 /* Foundation.framework */; };
+		726BF655135252D10046AC92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726BF654135252D10046AC92 /* CoreGraphics.framework */; };
+		726BF65B135252D10046AC92 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 726BF659135252D10046AC92 /* InfoPlist.strings */; };
+		726BF65E135252D10046AC92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF65D135252D10046AC92 /* main.m */; };
+		726BF661135252D10046AC92 /* indiesArtAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF660135252D10046AC92 /* indiesArtAppDelegate.m */; };
+		726BF664135252D10046AC92 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 726BF662135252D10046AC92 /* MainWindow.xib */; };
+		726BF667135252D10046AC92 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF666135252D10046AC92 /* FirstViewController.m */; };
+		726BF66A135252D10046AC92 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF669135252D10046AC92 /* SecondViewController.m */; };
+		726BF66D135252D10046AC92 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 726BF66B135252D10046AC92 /* FirstView.xib */; };
+		726BF670135252D10046AC92 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 726BF66E135252D10046AC92 /* SecondView.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		726BF64C135252D10046AC92 /* indiesArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = indiesArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		726BF650135252D10046AC92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		726BF652135252D10046AC92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		726BF654135252D10046AC92 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		726BF658135252D10046AC92 /* indiesArt-Info.plist */ = {isa = PBXFileReference; path = "indiesArt-Info.plist"; sourceTree = "<group>"; };
+		726BF65A135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		726BF65C135252D10046AC92 /* indiesArt-Prefix.pch */ = {isa = PBXFileReference; path = "indiesArt-Prefix.pch"; sourceTree = "<group>"; };
+		726BF65D135252D10046AC92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		726BF65F135252D10046AC92 /* indiesArtAppDelegate.h */ = {isa = PBXFileReference; path = indiesArtAppDelegate.h; sourceTree = "<group>"; };
+		726BF660135252D10046AC92 /* indiesArtAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = indiesArtAppDelegate.m; sourceTree = "<group>"; };
+		726BF663135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		726BF665135252D10046AC92 /* FirstViewController.h */ = {isa = PBXFileReference; path = FirstViewController.h; sourceTree = "<group>"; };
+		726BF666135252D10046AC92 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		726BF668135252D10046AC92 /* SecondViewController.h */ = {isa = PBXFileReference; path = SecondViewController.h; sourceTree = "<group>"; };
+		726BF669135252D10046AC92 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		726BF66C135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
+		726BF66F135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		726BF649135252D10046AC92 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				726BF651135252D10046AC92 /* UIKit.framework in Frameworks */,
+				726BF653135252D10046AC92 /* Foundation.framework in Frameworks */,
+				726BF655135252D10046AC92 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		726BF641135252D10046AC92 = {
+			isa = PBXGroup;
+			children = (
+				726BF656135252D10046AC92 /* indiesArt */,
+				726BF64F135252D10046AC92 /* Frameworks */,
+				726BF64D135252D10046AC92 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		726BF64D135252D10046AC92 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				726BF64C135252D10046AC92 /* indiesArt.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		726BF64F135252D10046AC92 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				726BF650135252D10046AC92 /* UIKit.framework */,
+				726BF652135252D10046AC92 /* Foundation.framework */,
+				726BF654135252D10046AC92 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		726BF656135252D10046AC92 /* indiesArt */ = {
+			isa = PBXGroup;
+			children = (
+				726BF65F135252D10046AC92 /* indiesArtAppDelegate.h */,
+				726BF660135252D10046AC92 /* indiesArtAppDelegate.m */,
+				726BF662135252D10046AC92 /* MainWindow.xib */,
+				726BF665135252D10046AC92 /* FirstViewController.h */,
+				726BF666135252D10046AC92 /* FirstViewController.m */,
+				726BF668135252D10046AC92 /* SecondViewController.h */,
+				726BF669135252D10046AC92 /* SecondViewController.m */,
+				726BF66B135252D10046AC92 /* FirstView.xib */,
+				726BF66E135252D10046AC92 /* SecondView.xib */,
+				726BF657135252D10046AC92 /* Supporting Files */,
+			);
+			path = indiesArt;
+			sourceTree = "<group>";
+		};
+		726BF657135252D10046AC92 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				726BF658135252D10046AC92 /* indiesArt-Info.plist */,
+				726BF659135252D10046AC92 /* InfoPlist.strings */,
+				726BF65C135252D10046AC92 /* indiesArt-Prefix.pch */,
+				726BF65D135252D10046AC92 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		726BF64B135252D10046AC92 /* indiesArt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 726BF673135252D10046AC92 /* Build configuration list for PBXNativeTarget "indiesArt" */;
+			buildPhases = (
+				726BF648135252D10046AC92 /* Sources */,
+				726BF649135252D10046AC92 /* Frameworks */,
+				726BF64A135252D10046AC92 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = indiesArt;
+			productName = indiesArt;
+			productReference = 726BF64C135252D10046AC92 /* indiesArt.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		726BF643135252D10046AC92 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 726BF646135252D10046AC92 /* Build configuration list for PBXProject "indiesArt" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 726BF641135252D10046AC92;
+			productRefGroup = 726BF64D135252D10046AC92 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				726BF64B135252D10046AC92 /* indiesArt */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		726BF64A135252D10046AC92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				726BF65B135252D10046AC92 /* InfoPlist.strings in Resources */,
+				726BF664135252D10046AC92 /* MainWindow.xib in Resources */,
+				726BF66D135252D10046AC92 /* FirstView.xib in Resources */,
+				726BF670135252D10046AC92 /* SecondView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		726BF648135252D10046AC92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				726BF65E135252D10046AC92 /* main.m in Sources */,
+				726BF661135252D10046AC92 /* indiesArtAppDelegate.m in Sources */,
+				726BF667135252D10046AC92 /* FirstViewController.m in Sources */,
+				726BF66A135252D10046AC92 /* SecondViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		726BF659135252D10046AC92 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				726BF65A135252D10046AC92 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		726BF662135252D10046AC92 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				726BF663135252D10046AC92 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		726BF66B135252D10046AC92 /* FirstView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				726BF66C135252D10046AC92 /* en */,
+			);
+			name = FirstView.xib;
+			sourceTree = "<group>";
+		};
+		726BF66E135252D10046AC92 /* SecondView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				726BF66F135252D10046AC92 /* en */,
+			);
+			name = SecondView.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		726BF671135252D10046AC92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		726BF672135252D10046AC92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		726BF674135252D10046AC92 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "indiesArt/indiesArt-Prefix.pch";
+				INFOPLIST_FILE = "indiesArt/indiesArt-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		726BF675135252D10046AC92 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "indiesArt/indiesArt-Prefix.pch";
+				INFOPLIST_FILE = "indiesArt/indiesArt-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		726BF646135252D10046AC92 /* Build configuration list for PBXProject "indiesArt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				726BF671135252D10046AC92 /* Debug */,
+				726BF672135252D10046AC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		726BF673135252D10046AC92 /* Build configuration list for PBXNativeTarget "indiesArt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				726BF674135252D10046AC92 /* Debug */,
+				726BF675135252D10046AC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 726BF643135252D10046AC92 /* Project object */;
+}

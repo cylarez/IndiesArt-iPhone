@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7245ECC51353F8A700A00EB9 /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7245ECC11353F8A700A00EB9 /* image1.jpg */; };
+		7245ECC61353F8A700A00EB9 /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7245ECC21353F8A700A00EB9 /* image2.jpg */; };
+		7245ECC71353F8A700A00EB9 /* image3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7245ECC31353F8A700A00EB9 /* image3.jpg */; };
+		7245ECC81353F8A700A00EB9 /* image4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7245ECC41353F8A700A00EB9 /* image4.jpg */; };
+		7245ECDE1354174600A00EB9 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245ECDC1354174500A00EB9 /* HomeViewController.m */; };
+		7245ECDF1354174600A00EB9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7245ECDD1354174500A00EB9 /* HomeViewController.xib */; };
+		7245ECE313541AFB00A00EB9 /* SlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245ECE213541AFB00A00EB9 /* SlideCell.m */; };
+		7245ECE713541B4D00A00EB9 /* SlideCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7245ECE613541B4C00A00EB9 /* SlideCell.xib */; };
 		726BF651135252D10046AC92 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726BF650135252D10046AC92 /* UIKit.framework */; };
 		726BF653135252D10046AC92 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726BF652135252D10046AC92 /* Foundation.framework */; };
 		726BF655135252D10046AC92 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 726BF654135252D10046AC92 /* CoreGraphics.framework */; };
@@ -14,30 +22,45 @@
 		726BF65E135252D10046AC92 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF65D135252D10046AC92 /* main.m */; };
 		726BF661135252D10046AC92 /* indiesArtAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF660135252D10046AC92 /* indiesArtAppDelegate.m */; };
 		726BF664135252D10046AC92 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 726BF662135252D10046AC92 /* MainWindow.xib */; };
-		726BF667135252D10046AC92 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF666135252D10046AC92 /* FirstViewController.m */; };
 		726BF66A135252D10046AC92 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 726BF669135252D10046AC92 /* SecondViewController.m */; };
-		726BF66D135252D10046AC92 /* FirstView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 726BF66B135252D10046AC92 /* FirstView.xib */; };
 		726BF670135252D10046AC92 /* SecondView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 726BF66E135252D10046AC92 /* SecondView.xib */; };
+		72B468111353CE4200C28892 /* house.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468101353CE4200C28892 /* house.png */; };
+		72B468131353CE5800C28892 /* house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468121353CE5800C28892 /* house@2x.png */; };
+		72B468151353CEC200C28892 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468141353CEC200C28892 /* 112-group.png */; };
+		72B468171353CF2B00C28892 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468161353CF2B00C28892 /* 05-shuffle.png */; };
+		72B468191353D0D500C28892 /* 152-rolodex.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468181353D0D500C28892 /* 152-rolodex.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7245ECC11353F8A700A00EB9 /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
+		7245ECC21353F8A700A00EB9 /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
+		7245ECC31353F8A700A00EB9 /* image3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image3.jpg; sourceTree = "<group>"; };
+		7245ECC41353F8A700A00EB9 /* image4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image4.jpg; sourceTree = "<group>"; };
+		7245ECDB1354174500A00EB9 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		7245ECDC1354174500A00EB9 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		7245ECDD1354174500A00EB9 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		7245ECE113541AFB00A00EB9 /* SlideCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideCell.h; sourceTree = "<group>"; };
+		7245ECE213541AFB00A00EB9 /* SlideCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideCell.m; sourceTree = "<group>"; };
+		7245ECE613541B4C00A00EB9 /* SlideCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideCell.xib; sourceTree = "<group>"; };
 		726BF64C135252D10046AC92 /* indiesArt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = indiesArt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		726BF650135252D10046AC92 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		726BF652135252D10046AC92 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		726BF654135252D10046AC92 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		726BF658135252D10046AC92 /* indiesArt-Info.plist */ = {isa = PBXFileReference; path = "indiesArt-Info.plist"; sourceTree = "<group>"; };
+		726BF658135252D10046AC92 /* indiesArt-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "indiesArt-Info.plist"; sourceTree = "<group>"; };
 		726BF65A135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		726BF65C135252D10046AC92 /* indiesArt-Prefix.pch */ = {isa = PBXFileReference; path = "indiesArt-Prefix.pch"; sourceTree = "<group>"; };
+		726BF65C135252D10046AC92 /* indiesArt-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "indiesArt-Prefix.pch"; sourceTree = "<group>"; };
 		726BF65D135252D10046AC92 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		726BF65F135252D10046AC92 /* indiesArtAppDelegate.h */ = {isa = PBXFileReference; path = indiesArtAppDelegate.h; sourceTree = "<group>"; };
+		726BF65F135252D10046AC92 /* indiesArtAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = indiesArtAppDelegate.h; sourceTree = "<group>"; };
 		726BF660135252D10046AC92 /* indiesArtAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = indiesArtAppDelegate.m; sourceTree = "<group>"; };
 		726BF663135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
-		726BF665135252D10046AC92 /* FirstViewController.h */ = {isa = PBXFileReference; path = FirstViewController.h; sourceTree = "<group>"; };
-		726BF666135252D10046AC92 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		726BF668135252D10046AC92 /* SecondViewController.h */ = {isa = PBXFileReference; path = SecondViewController.h; sourceTree = "<group>"; };
+		726BF668135252D10046AC92 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		726BF669135252D10046AC92 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		726BF66C135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstView.xib; sourceTree = "<group>"; };
 		726BF66F135252D10046AC92 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondView.xib; sourceTree = "<group>"; };
+		72B468101353CE4200C28892 /* house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = house.png; sourceTree = "<group>"; };
+		72B468121353CE5800C28892 /* house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house@2x.png"; sourceTree = "<group>"; };
+		72B468141353CEC200C28892 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
+		72B468161353CF2B00C28892 /* 05-shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle.png"; sourceTree = "<group>"; };
+		72B468181353D0D500C28892 /* 152-rolodex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "152-rolodex.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7245ECE013541ADE00A00EB9 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				7245ECE113541AFB00A00EB9 /* SlideCell.h */,
+				7245ECE213541AFB00A00EB9 /* SlideCell.m */,
+			);
+			name = Class;
+			sourceTree = "<group>";
+		};
 		726BF641135252D10046AC92 = {
 			isa = PBXGroup;
 			children = (
@@ -84,15 +116,13 @@
 		726BF656135252D10046AC92 /* indiesArt */ = {
 			isa = PBXGroup;
 			children = (
+				7245ECE013541ADE00A00EB9 /* Class */,
+				7245ECDB1354174500A00EB9 /* HomeViewController.h */,
+				7245ECDC1354174500A00EB9 /* HomeViewController.m */,
 				726BF65F135252D10046AC92 /* indiesArtAppDelegate.h */,
 				726BF660135252D10046AC92 /* indiesArtAppDelegate.m */,
-				726BF662135252D10046AC92 /* MainWindow.xib */,
-				726BF665135252D10046AC92 /* FirstViewController.h */,
-				726BF666135252D10046AC92 /* FirstViewController.m */,
 				726BF668135252D10046AC92 /* SecondViewController.h */,
 				726BF669135252D10046AC92 /* SecondViewController.m */,
-				726BF66B135252D10046AC92 /* FirstView.xib */,
-				726BF66E135252D10046AC92 /* SecondView.xib */,
 				726BF657135252D10046AC92 /* Supporting Files */,
 			);
 			path = indiesArt;
@@ -101,12 +131,41 @@
 		726BF657135252D10046AC92 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				72B4680D1353A96F00C28892 /* Images */,
+				72D44220135253F400AB92A0 /* NIB */,
 				726BF658135252D10046AC92 /* indiesArt-Info.plist */,
 				726BF659135252D10046AC92 /* InfoPlist.strings */,
 				726BF65C135252D10046AC92 /* indiesArt-Prefix.pch */,
 				726BF65D135252D10046AC92 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72B4680D1353A96F00C28892 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7245ECC11353F8A700A00EB9 /* image1.jpg */,
+				7245ECC21353F8A700A00EB9 /* image2.jpg */,
+				7245ECC31353F8A700A00EB9 /* image3.jpg */,
+				7245ECC41353F8A700A00EB9 /* image4.jpg */,
+				72B468181353D0D500C28892 /* 152-rolodex.png */,
+				72B468161353CF2B00C28892 /* 05-shuffle.png */,
+				72B468141353CEC200C28892 /* 112-group.png */,
+				72B468121353CE5800C28892 /* house@2x.png */,
+				72B468101353CE4200C28892 /* house.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		72D44220135253F400AB92A0 /* NIB */ = {
+			isa = PBXGroup;
+			children = (
+				726BF662135252D10046AC92 /* MainWindow.xib */,
+				7245ECDD1354174500A00EB9 /* HomeViewController.xib */,
+				726BF66E135252D10046AC92 /* SecondView.xib */,
+				7245ECE613541B4C00A00EB9 /* SlideCell.xib */,
+			);
+			name = NIB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,8 +217,18 @@
 			files = (
 				726BF65B135252D10046AC92 /* InfoPlist.strings in Resources */,
 				726BF664135252D10046AC92 /* MainWindow.xib in Resources */,
-				726BF66D135252D10046AC92 /* FirstView.xib in Resources */,
 				726BF670135252D10046AC92 /* SecondView.xib in Resources */,
+				72B468111353CE4200C28892 /* house.png in Resources */,
+				72B468131353CE5800C28892 /* house@2x.png in Resources */,
+				72B468151353CEC200C28892 /* 112-group.png in Resources */,
+				72B468171353CF2B00C28892 /* 05-shuffle.png in Resources */,
+				72B468191353D0D500C28892 /* 152-rolodex.png in Resources */,
+				7245ECC51353F8A700A00EB9 /* image1.jpg in Resources */,
+				7245ECC61353F8A700A00EB9 /* image2.jpg in Resources */,
+				7245ECC71353F8A700A00EB9 /* image3.jpg in Resources */,
+				7245ECC81353F8A700A00EB9 /* image4.jpg in Resources */,
+				7245ECDF1354174600A00EB9 /* HomeViewController.xib in Resources */,
+				7245ECE713541B4D00A00EB9 /* SlideCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,8 +241,9 @@
 			files = (
 				726BF65E135252D10046AC92 /* main.m in Sources */,
 				726BF661135252D10046AC92 /* indiesArtAppDelegate.m in Sources */,
-				726BF667135252D10046AC92 /* FirstViewController.m in Sources */,
 				726BF66A135252D10046AC92 /* SecondViewController.m in Sources */,
+				7245ECDE1354174600A00EB9 /* HomeViewController.m in Sources */,
+				7245ECE313541AFB00A00EB9 /* SlideCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,14 +264,6 @@
 				726BF663135252D10046AC92 /* en */,
 			);
 			name = MainWindow.xib;
-			sourceTree = "<group>";
-		};
-		726BF66B135252D10046AC92 /* FirstView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				726BF66C135252D10046AC92 /* en */,
-			);
-			name = FirstView.xib;
 			sourceTree = "<group>";
 		};
 		726BF66E135252D10046AC92 /* SecondView.xib */ = {
@@ -294,6 +356,7 @@
 				726BF675135252D10046AC92 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

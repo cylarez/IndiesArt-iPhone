@@ -12,12 +12,12 @@
 @implementation HomeViewController
 
 
-@synthesize scrollView, pageControl;
+@synthesize scrollView, pageControl, artists, submissions;
 
 
 
 #pragma mark -
-#pragma mark The Guts
+#pragma mark The Home Scroller
 - (void)setupPage
 {
 	scrollView.delegate = self;
@@ -63,8 +63,6 @@
 	[scrollView setContentSize:CGSizeMake(cx, [scrollView bounds].size.height)];
 }
 
-#pragma mark -
-#pragma mark UIScrollViewDelegate stuff
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {
     if (pageControlIsChangingPage) {
@@ -84,8 +82,6 @@
     pageControlIsChangingPage = NO;
 }
 
-#pragma mark -
-#pragma mark PageControl stuff
 - (IBAction)changePage:(id)sender 
 {
 	/*
@@ -103,6 +99,7 @@
     pageControlIsChangingPage = YES;
 }
 
+#pragma mark - Basic
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -131,7 +128,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     NSLog(@"LOAD");
+    
+    appDelegate = [[[UIApplication sharedApplication] delegate] retain];
+    self.artists = [appDelegate.feed valueForKey:@"artists"];
+    self.submissions = [appDelegate.feed valueForKey:@"submissions"];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -177,20 +178,24 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
-    return 10;
+    
+    if (section == 0) {
+        return 1;
+    } else {
+        return 5;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0 && indexPath.row == 0) {
 
         static NSString *CellIdentifier = @"SlideCell";
         
@@ -204,30 +209,135 @@
         
         // Configure the cell...
         [self setupPage];
-        return cell;
         
+        return cell;
     }
     
-    static NSString *CellIdentifier = @"Cell";
-    
+    static NSString *CellIdentifier = @"ImageCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
     
-    // Configure the cell...
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc]
+                 initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
+                autorelease];
+    
+        
+        UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] 
+                                             initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+        
+        // Spacer is a 1x1 transparent png
+        UIImage *spacer = [UIImage imageNamed:@"spacer"];
+        
+        UIGraphicsBeginImageContext(spinner.frame.size);
+        
+        [spacer drawInRect:CGRectMake(0,0,spinner.frame.size.width,spinner.frame.size.height)];
+        UIImage* resizedSpacer = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        cell.imageView.image = resizedSpacer;
+        [cell.imageView addSubview:spinner];
+        [spinner startAnimating];
+        
+        
+        CGRect frame;
+        frame.size.width=40; frame.size.height=40; frame.origin.x=0; frame.origin.y=0;
+        AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
+        
+        NSDictionary *artist;
+        if (indexPath.section == 1) {
+            artist		=	[artists objectAtIndex:indexPath.row];
+        } else {
+            artist		=	[submissions objectAtIndex:indexPath.row];
+        }
+        
+        NSString *projectImage		=	[artist valueForKey:@"image"];        
+        NSURL *url					=	[NSURL URLWithString: projectImage];
+        [asyncImage loadImageFromURL:url];
+        
+        cell.textLabel.text			=	[NSString stringWithFormat:@" %@", [artist valueForKey:@"name"]];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [cell.contentView addSubview:asyncImage];
+        
+    }     
+
+    
+    
+
+//    static NSString *CellIdentifier = @"Cell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+//        
+//        NSDictionary *artist;
+//        
+//        if (indexPath.section == 1) {
+//            artist		=	[artists objectAtIndex:indexPath.row];
+//        } else {
+//            artist		=	[submissions objectAtIndex:indexPath.row];
+//        }
+//        
+//        NSString *projectImage		=	[artist valueForKey:@"image"];        
+//        NSURL *url					=	[NSURL URLWithString: projectImage];
+//        NSData *data				=	[NSData dataWithContentsOfURL:url];
+//        UIImage *img				=	[[UIImage alloc] initWithData:data];
+//
+//        cell.imageView.image		=	img;
+//        cell.textLabel.text			=	[artist valueForKey:@"name"];
+//    }
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        
+    if (indexPath.section == 0 && indexPath.row == 0) {
         return 190;
     }
     return 40;
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return @"Main Current Artists";
+    } else if (section == 1) {
+        return @"Last Artists";
+    } else {
+        return @"Last Submissions";
+    }
+}
+
+//- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
+//{
+//    if (! section) {
+//        
+//        return nil;
+//    }
+//    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)] autorelease];
+//    
+//    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"section-header.png"]];;
+//    
+//	UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, -5, tableView.bounds.size.width - 10, 30)] autorelease];
+//	
+//	//NSArray *sectionSelected		=	[self.projects objectAtIndex:section];
+//	//label.text	=	[sectionSelected valueForKey:@"name"];
+//    
+//    NSString *text = @"";
+//    
+//    if (section == 1) {
+//        text    =   @"Last Artists";
+//    } else {
+//        text    =   @"Last Submissions";
+//    }
+//    
+//    label.text = text;
+//    label.font = [UIFont boldSystemFontOfSize:16];
+//	label.textColor = [UIColor colorWithRed :158 green:158 blue:158 alpha:1];
+//	label.backgroundColor = [UIColor clearColor];
+//	[headerView addSubview:label];
+//	
+//	return headerView;
+//}
 
 /*
 // Override to support conditional editing of the table view.
@@ -272,14 +382,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    NSArray *data = indexPath.section == 1 ? artists : submissions;
+    
+    NSDictionary *artist   =   [data objectAtIndex:[indexPath row]];
+    
+    ArtistDetailViewController *viewController	=	[[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
+	
+    id artist_id = [artist valueForKey:@"id"];
+    viewController.artist_id= artist_id;
+    
+	[self.navigationController pushViewController:viewController animated:YES];
+    
+	[viewController release];
+	viewController = nil;
+
 }
 
 @end

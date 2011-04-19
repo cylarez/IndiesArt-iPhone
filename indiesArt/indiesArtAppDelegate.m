@@ -7,11 +7,12 @@
 //
 
 #import "indiesArtAppDelegate.h"
+#import "SBJSON.h"
 
 @implementation indiesArtAppDelegate
 
 
-@synthesize window=_window;
+@synthesize window=_window, feed;
 
 @synthesize tabBarController=_tabBarController;
 
@@ -21,6 +22,9 @@
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
+    
+    self.feed = [self downloadData:JSON_URL];
+    
     return YES;
 }
 
@@ -83,5 +87,44 @@
 {
 }
 */
+
+- (NSString *)stringWithUrl:(NSURL *)url
+{
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url
+												cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+											timeoutInterval:30];
+	NSURLResponse *response;
+	NSError *error;
+	
+	// Make synchronous request
+	NSData *urlData = [NSURLConnection sendSynchronousRequest:urlRequest
+											returningResponse:&response
+														error:&error];
+	
+ 	// Construct a String around the Data from the response
+    NSString *str = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+	
+    [str autorelease];
+    return str;
+}
+
+- (id)objectWithUrl:(NSURL *)url
+{	
+	SBJsonParser *parser = [SBJsonParser new];
+    [parser autorelease];
+	NSString *jsonString = [self stringWithUrl:url];
+    
+	return [parser objectWithString:jsonString];
+}
+
+- (NSDictionary *)downloadData:(NSString*)url 
+{
+	id result = [self objectWithUrl:[NSURL URLWithString:url]];
+	NSDictionary *f = (NSDictionary *)result;
+    
+	return f;
+}
+
+
 
 @end

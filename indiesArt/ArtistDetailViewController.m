@@ -16,10 +16,9 @@
 -(void)loadImages
 {
     appDelegate = [[[UIApplication sharedApplication] delegate] retain];
-    NSString *url = [NSString stringWithFormat:@"%@/%@", ARTIST_URL, artist_id];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
     self.artist = [appDelegate downloadData: url];
     NSArray *images = [self.artist valueForKey:@"images"]; 
-    NSLog(@"Images length %i", [images count]);
     
     int imageHeight = 103;
     int imageWidth = 103;
@@ -28,7 +27,8 @@
     int x = border;
     int y = border;
     int c = 1;
-    
+    int index = 0;
+
     for (NSDictionary *i in images) {
         if (c > 3) {
             y += imageHeight;
@@ -36,52 +36,23 @@
             c = 1;
             scrollViewHeight += imageHeight;
         }
-        NSURL *url = [NSURL URLWithString: [i valueForKey:@"url_200x200"]];
+
         CGRect frame = CGRectMake(x, y, imageWidth - border, imageHeight - border);
         
-        AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
-        asyncImage.withBorder = TRUE;
-        
-        asyncImage.tag = 999;
-        [asyncImage loadImageFromURL:url];
+        ImageCollection * asyncImage = [[[ImageCollection alloc] initWithFrame:frame] autorelease];
+        [asyncImage loadImageFromURL:[i valueForKey:@"url_200x200"]];
+        asyncImage.userInteractionEnabled = TRUE;
+        asyncImage.images = images;
+        asyncImage.index = index;
+        index++;
+        asyncImage.imageData = i;
+        asyncImage.navigationController = self.navigationController;
         [self.view addSubview:asyncImage];
         x += imageWidth;
         c++;
     }
     
     [scrollView setContentSize:CGSizeMake(300, scrollViewHeight + border)];
-}
-
-//-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-//	
-//    UITouch *touch = [touches anyObject];
-//	
-//    if ([touch view] == UIImageView)
-//    {
-//		NSLog(@"TOUCH!!");
-//    }
-//}
-
--(IBAction)viewImage:(id) sender
-{
-    CollectionViewController *viewController	=	[[CollectionViewController alloc] initWithNibName:@"CollectionViewController" bundle:[NSBundle mainBundle]];
-	
-//    NSURL *url = [NSURL URLWithString: [image valueForKey:@"url_200x200"]];
-//    CGRect frame = CGRectMake(x, y, imageWidth - border, imageHeight - border);
-//    
-//    AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
-//    asyncImage.withBorder = TRUE;
-//    
-//    asyncImage.tag = 999;
-//    [asyncImage loadImageFromURL:url];
-//    [self.view addSubview:asyncImage];
-    
-
-    
-	[self.navigationController pushViewController:viewController animated:YES];
-    
-	[viewController release];
-	viewController = nil;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#define ARTIST_URL  @"http://indiesart.local/mobile/artist"
 #import "indiesArtAppDelegate.h"
-#import "asyncImageView.h"
+#import "ImageCollection.h"
 #import "CollectionViewController.h"
 
 @interface ArtistDetailViewController : UIViewController {
@@ -25,6 +24,5 @@
 
 -(void)loadImages;
 
--(IBAction)viewImage:(id)sender;
 
 @end

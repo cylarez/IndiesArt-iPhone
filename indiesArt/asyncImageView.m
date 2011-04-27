@@ -18,7 +18,7 @@
 
 @implementation AsyncImageView
 
-@synthesize imageView, withBorder;
+@synthesize imageView, imageData;
 
 - (void)dealloc {
 	[connection cancel]; //in case the URL is still downloading
@@ -27,12 +27,16 @@
     [super dealloc];
 }
 
-
-- (void)loadImageFromURL:(NSURL*)url {
+- (void)loadImageFromURL:(NSString*)url {
+    
+    // Deactivate touch 
+    self.userInteractionEnabled = FALSE;
+    
 	if (connection!=nil) { [connection release]; } //in case we are downloading a 2nd image
 	if (data!=nil) { [data release]; }
 	
-	NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSURL *_url = [NSURL URLWithString: url];
+	NSURLRequest* request = [NSURLRequest requestWithURL:_url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
 	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; //notice how delegate set to self object
 	//TODO error handling, what if connection is nil?
 }
@@ -49,31 +53,20 @@
 	//so self data now has the complete image 
 	[connection release];
 	connection=nil;
-	if ([[self subviews] count]>0) {
+	if ([[self subviews] count] > 0) {
 		//then this must be another image, the old one is still in subviews
 		[[[self subviews] objectAtIndex:0] removeFromSuperview]; //so remove it (releases it also)
 	}
 	
 	//make an image view for the image
 	imageView = [[[UIImageView alloc] initWithImage:[UIImage imageWithData:data]] autorelease];
-	//make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed.
+	//make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed
 	imageView.contentMode = UIViewContentModeScaleAspectFit;
 	imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth || UIViewAutoresizingFlexibleHeight );
     
-    if (self.withBorder) {
+    [self displayImage];
+    
 
-        [imageView.layer setBorderColor: [[UIColor whiteColor] CGColor]];
-        
-        imageView.userInteractionEnabled = TRUE;
-        
-        [imageView.layer setBorderWidth: 4.0];
-    }
-    
-	[self addSubview:imageView];
-	imageView.frame = self.bounds;
-	[imageView setNeedsLayout];
-	[self setNeedsLayout];
-    
 	[data release]; //don't need this any more, its in the UIImageView now
 	data=nil;
 }
@@ -82,6 +75,21 @@
 - (UIImage*) image {
 	UIImageView* iv = [[self subviews] objectAtIndex:0];
 	return [iv image];
+}
+
+- (void)displayImage
+{
+    imageView.alpha = 0;
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
+    imageView.alpha = 1;
+    [UIView commitAnimations];
+    
+	[self addSubview:imageView];
+	imageView.frame = self.bounds;
+	[imageView setNeedsLayout];
+	[self setNeedsLayout];
 }
 
 @end

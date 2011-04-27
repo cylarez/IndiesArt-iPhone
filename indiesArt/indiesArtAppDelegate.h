@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#define JSON_URL @"http://indiesart.local/mobile/main"
+#define INDIE_URL @"http://dev.indiesart.com"
+#define ARTIST_URL  @"mobile/artist"
 
 @interface indiesArtAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
     NSDictionary *feed;

@@ -23,7 +23,7 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
-    self.feed = [self downloadData:JSON_URL];
+    self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
     
     return YES;
 }

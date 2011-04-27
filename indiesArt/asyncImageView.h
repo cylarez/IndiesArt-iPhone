@@ -19,13 +19,16 @@
 	//but where is the UIImage reference? We keep it in self.subviews - no need to re-code what we have in the parent class
 	
     UIImageView *imageView;
-    BOOL withBorder;
+
+    NSDictionary *imageData;
 }
 
 @property(nonatomic, retain) UIImageView *imageView; 
-@property(nonatomic) BOOL withBorder; 
+@property(nonatomic, retain) NSDictionary *imageData; 
 
-- (void)loadImageFromURL:(NSURL*)url;
-- (UIImage*) image;
+- (void)loadImageFromURL:(NSString*)url;
+- (UIImage*)image;
+
+- (void) displayImage;
 
 @end

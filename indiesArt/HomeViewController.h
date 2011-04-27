@@ -14,11 +14,13 @@
 @interface HomeViewController : UITableViewController <UIScrollViewDelegate> {
 	IBOutlet UIScrollView* scrollView;
 	IBOutlet UIPageControl* pageControl;
-	indiesArtAppDelegate* appDelegate;
     BOOL pageControlIsChangingPage;
+    
+	indiesArtAppDelegate* appDelegate;
     
     NSArray* artists;
     NSArray* submissions;
+    NSArray* slides;
 }
 
 @property (nonatomic, retain) UIView *scrollView;
@@ -26,7 +28,9 @@
 
 @property (nonatomic, retain) NSArray* artists;
 @property (nonatomic, retain) NSArray* submissions;
+@property (nonatomic, retain) NSArray* slides;
 
 - (IBAction)changePage:(id)sender;
 - (void)setupPage;
+
 @end

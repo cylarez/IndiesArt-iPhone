@@ -12,7 +12,7 @@
 @implementation HomeViewController
 
 
-@synthesize scrollView, pageControl, artists, submissions;
+@synthesize scrollView, pageControl, artists, submissions, slides;
 
 
 
@@ -30,36 +30,30 @@
 	scrollView.scrollEnabled = YES;
 	scrollView.pagingEnabled = YES;
 	
-	NSUInteger nimages = 0;
 	CGFloat cx = 0;
-	for (; ; nimages++) {
-		NSString *imageName = [NSString stringWithFormat:@"image%d.jpg", (nimages + 1)];
-		UIImage *image = [UIImage imageNamed:imageName];
-		if (image == nil) {
-			break;
-		}
-		UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-		
+    int height = 168;
+    int width = 300;
+    
+	for (NSString *imageName in slides) {
+        CGRect frame;
+        frame.size.width=width; frame.size.height=height; frame.origin.x=0; frame.origin.y=0;
+        AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
         
-        int height = 168;
-        int width = 300;
-        
-        
-		CGRect rect = imageView.frame;
+        [asyncImage loadImageFromURL:imageName];
+
+		CGRect rect = asyncImage.frame;
 		rect.size.height = height;
 		rect.size.width = width;
 		rect.origin.x = ((scrollView.frame.size.width - width) / 2) + cx;
-		rect.origin.y = ((scrollView.frame.size.height - height) / 2);
-        
-		imageView.frame = rect;
-        
-		[scrollView addSubview:imageView];
-		[imageView release];
+		rect.origin.y = ((scrollView.frame.size.height - height) / 2);        
+		asyncImage.frame = rect;
+
+		[scrollView addSubview:asyncImage];
         
 		cx += scrollView.frame.size.width;
 	}
 	
-	self.pageControl.numberOfPages = nimages;
+	self.pageControl.numberOfPages = [slides count];
 	[scrollView setContentSize:CGSizeMake(cx, [scrollView bounds].size.height)];
 }
 
@@ -132,6 +126,7 @@
     appDelegate = [[[UIApplication sharedApplication] delegate] retain];
     self.artists = [appDelegate.feed valueForKey:@"artists"];
     self.submissions = [appDelegate.feed valueForKey:@"submissions"];
+    self.slides = [appDelegate.feed valueForKey:@"slides"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -249,10 +244,8 @@
         } else {
             artist		=	[submissions objectAtIndex:indexPath.row];
         }
-        
-        NSString *projectImage		=	[artist valueForKey:@"image"];        
-        NSURL *url					=	[NSURL URLWithString: projectImage];
-        [asyncImage loadImageFromURL:url];
+
+        [asyncImage loadImageFromURL:[artist valueForKey:@"image"]];
         
         cell.textLabel.text			=	[NSString stringWithFormat:@" %@", [artist valueForKey:@"name"]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

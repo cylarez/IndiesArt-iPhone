@@ -138,10 +138,7 @@
     AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
     asyncImage.tag = 999;
     NSDictionary *artist = [artists objectAtIndex:indexPath.row];
-    
-    NSString *projectImage		=	[artist valueForKey:@"image"];        
-    NSURL *url					=	[NSURL URLWithString: projectImage];
-    [asyncImage loadImageFromURL:url];
+    [asyncImage loadImageFromURL:[artist valueForKey:@"image"]];
     
     cell.textLabel.text			=	[NSString stringWithFormat:@" %@", [artist valueForKey:@"name"]];
     [cell.contentView addSubview:asyncImage];

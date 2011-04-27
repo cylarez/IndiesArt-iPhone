@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		723C178D1365E9BF0087A5F9 /* ImageCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 723C178C1365E9BF0087A5F9 /* ImageCollection.m */; };
+		723C1790136615D50087A5F9 /* ImageDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 723C178F136615D50087A5F9 /* ImageDetail.m */; };
 		7245ECDE1354174600A00EB9 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245ECDC1354174500A00EB9 /* HomeViewController.m */; };
 		7245ECDF1354174600A00EB9 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7245ECDD1354174500A00EB9 /* HomeViewController.xib */; };
 		7245ECE313541AFB00A00EB9 /* SlideCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7245ECE213541AFB00A00EB9 /* SlideCell.m */; };
@@ -68,6 +70,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		723C178B1365E9BF0087A5F9 /* ImageCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollection.h; sourceTree = "<group>"; };
+		723C178C1365E9BF0087A5F9 /* ImageCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollection.m; sourceTree = "<group>"; };
+		723C178E136615D50087A5F9 /* ImageDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetail.h; sourceTree = "<group>"; };
+		723C178F136615D50087A5F9 /* ImageDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetail.m; sourceTree = "<group>"; };
 		7245ECDB1354174500A00EB9 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		7245ECDC1354174500A00EB9 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		7245ECDD1354174500A00EB9 /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
@@ -165,6 +171,10 @@
 				7245ECE213541AFB00A00EB9 /* SlideCell.m */,
 				72E647DA135A555600070CFD /* asyncImageView.h */,
 				72E647DB135A555600070CFD /* asyncImageView.m */,
+				723C178B1365E9BF0087A5F9 /* ImageCollection.h */,
+				723C178C1365E9BF0087A5F9 /* ImageCollection.m */,
+				723C178E136615D50087A5F9 /* ImageDetail.h */,
+				723C178F136615D50087A5F9 /* ImageDetail.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -465,6 +475,8 @@
 				72E647E6135A657700070CFD /* ArtistsViewController.m in Sources */,
 				72E647EB135A765200070CFD /* ArtistDetailViewController.m in Sources */,
 				7267C9D0135B9D26009E7D61 /* CollectionViewController.m in Sources */,
+				723C178D1365E9BF0087A5F9 /* ImageCollection.m in Sources */,
+				723C1790136615D50087A5F9 /* ImageDetail.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,13 +14,12 @@
 @synthesize navigationController;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	
-    //UITouch *touch = [touches anyObject];
-	
-    NSLog(@"TOUCH!!");   
-    
     [navigationController setNavigationBarHidden:(navigationController.navigationBarHidden ? NO : YES) animated:YES];
-    
+}
+
+- (int) getSpinnerStyle
+{
+    return UIActivityIndicatorViewStyleWhiteLarge;
 }
 
 

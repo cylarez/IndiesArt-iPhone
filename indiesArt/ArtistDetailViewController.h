@@ -18,7 +18,7 @@
     IBOutlet UIScrollView* scrollView;
 }
 
-@property (nonatomic, retain) NSDictionary *artist;
+@property (nonatomic, copy) NSDictionary *artist;
 @property (nonatomic, retain) NSString *artist_id;
 @property (nonatomic, retain) UIView *scrollView;
 

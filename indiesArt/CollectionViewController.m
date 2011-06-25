@@ -102,27 +102,24 @@
     frame.origin.x = width * index;
     frame.origin.y = 0;
     
-    ImageDetail* asyncImage = [[[ImageDetail alloc] initWithFrame:frame] autorelease];
+    
     NSDictionary *image = [self.images objectAtIndex:index];
     
     NSString *url = [image valueForKey:@"url"];
+    ImageDetail *asyncImage;
     
-    if (url != FALSE) {
-       
-        NSLog(@"image index %i", index);
-        
+    if (! [image valueForKey:@"asyncImage"]) {
+        asyncImage = [[[ImageDetail alloc] initWithFrame:frame] autorelease];
         [asyncImage loadImageFromURL:url];
         asyncImage.userInteractionEnabled = TRUE;
-        
         asyncImage.navigationController = self.navigationController;
-        
-        [scrollView addSubview:asyncImage];
-        [image setValue:FALSE forKey:@"url"];
+        [image setValue:asyncImage forKey:@"asyncImage"];
         
     } else {
-        NSLog(@"Loaded!!");
-        //[asyncImage displayImage];
+        asyncImage =  [image valueForKey:@"asyncImage"];
     }
+    
+    [scrollView addSubview:asyncImage];
     
     if (! recursive) {
         return;

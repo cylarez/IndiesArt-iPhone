@@ -28,7 +28,7 @@
 
 - (void)loadImageFromURL:(NSString*)url;
 - (UIImage*)image;
-
+- (int) getSpinnerStyle;
 - (void) displayImage;
 
 @end

@@ -23,7 +23,7 @@
 
 @property(nonatomic, retain) UIScrollView *scrollView;
 @property (nonatomic, retain) UIPageControl* pageControl;
-@property (nonatomic, copy)  NSArray *images;
+@property (nonatomic, retain)  NSArray *images;
 @property (nonatomic, retain)  NSString *mainImageUrl;
 @property (nonatomic, retain) ImageDetail *currentImage;
 

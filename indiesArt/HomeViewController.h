@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "indiesArtAppDelegate.h"
 #import "asyncImageView.h"
+#import "ImageSlide.h"
 #import "ArtistDetailViewController.h"
 
 @interface HomeViewController : UITableViewController <UIScrollViewDelegate> {

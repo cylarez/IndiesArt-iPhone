@@ -37,7 +37,7 @@
 	for (NSString *imageName in slides) {
         CGRect frame;
         frame.size.width=width; frame.size.height=height; frame.origin.x=0; frame.origin.y=0;
-        AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
+        ImageSlide* asyncImage = [[[ImageSlide alloc] initWithFrame:frame] autorelease];
         
         [asyncImage loadImageFromURL:imageName];
 

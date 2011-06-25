@@ -105,42 +105,28 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc]
-                 initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-                autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
         
-        // Set the loading spinner
-        UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] 
-                                             initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-        
-        // Spacer is a 1x1 transparent png
-        UIImage *spacer = [UIImage imageNamed:@"spacer"];
-        
-        UIGraphicsBeginImageContext(spinner.frame.size);
-        
-        [spacer drawInRect:CGRectMake(0,0,spinner.frame.size.width,spinner.frame.size.height)];
-        UIImage* resizedSpacer = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        cell.imageView.image = resizedSpacer;
-        [cell.imageView addSubview:spinner];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        [spinner startAnimating];
+
         
     } else {
-        AsyncImageView* oldImage = (AsyncImageView*)
-        [cell.contentView viewWithTag:999];
+        AsyncImageView* oldImage = (AsyncImageView*)[cell.contentView viewWithTag:999];
         [oldImage removeFromSuperview];
     }
 
     CGRect frame;
-    frame.size.width=40; frame.size.height=40; frame.origin.x=0; frame.origin.y=0;
+    frame.size.width=44; frame.size.height=44; frame.origin.x=7; frame.origin.y=7;
     AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
     asyncImage.tag = 999;
     NSDictionary *artist = [artists objectAtIndex:indexPath.row];
     [asyncImage loadImageFromURL:[artist valueForKey:@"image"]];
     
-    cell.textLabel.text			=	[NSString stringWithFormat:@" %@", [artist valueForKey:@"name"]];
+    cell.imageView.image = asyncImage.imageView.image;
+    
+    cell.textLabel.text =   [artist valueForKey:@"name"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@" %@ images", [artist valueForKey:@"image_number"]];
+    
     [cell.contentView addSubview:asyncImage];
     
     return cell;
@@ -148,7 +134,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 40;
+    return 60;
 }
 
 

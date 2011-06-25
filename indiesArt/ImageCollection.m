@@ -17,20 +17,18 @@
 {
     CollectionViewController *viewController	=	[[CollectionViewController alloc] initWithNibName:@"CollectionViewController" bundle:[NSBundle mainBundle]];
     
-	NSArray *imagesCopy = [images copy];
-    viewController.images = imagesCopy;
-    [imagesCopy release];
-    
-    for (NSDictionary *img in images) {
-        NSLog(@"URL : %@", [img valueForKey:@"url"]);
-    }
-    
+    viewController.images = images;
     viewController.mainImageUrl = [self.imageData valueForKey:@"url"];
     viewController.hidesBottomBarWhenPushed = YES;
+    
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationDuration:1];
+//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
+//    self.frame = viewController.view.frame;
+//    [self addSubview:viewController.view];
+    
 	[self.navigationController pushViewController:viewController animated:YES];
-    
-    NSLog(@" index %i", self.index);
-    
     [viewController setupPage: self.index];
     
 	[viewController release];
@@ -45,11 +43,9 @@
     [imageView.layer setBorderColor: [[UIColor whiteColor] CGColor]];
     [imageView.layer setBorderWidth: 4.0];
 
-    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration: 2];
     imageView.alpha = 1;
-    
     
 	[self addSubview:imageView];
 	imageView.frame = self.bounds;
@@ -57,6 +53,7 @@
 	[self setNeedsLayout];
     [UIView commitAnimations];
 }
+
 
 
 @end

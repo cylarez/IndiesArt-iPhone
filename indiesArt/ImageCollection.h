@@ -17,7 +17,7 @@
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;
-@property(nonatomic, copy) NSArray *images;
+@property(nonatomic, retain) NSArray *images;
 @property(nonatomic) int index;
 
 @end

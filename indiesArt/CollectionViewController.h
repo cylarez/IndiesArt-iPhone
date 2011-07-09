@@ -8,27 +8,29 @@
 
 #import <UIKit/UIKit.h>
 #import "ImageDetail.h"
+@class ImageDetail;
 #import "indiesArtAppDelegate.h"
 
 @interface CollectionViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
     IBOutlet UIScrollView *scrollView;
-    IBOutlet UIPageControl* pageControl;
     indiesArtAppDelegate* appDelegate;
-    
+    NSDictionary *artist;
     NSString *mainImageUrl;
     NSArray *images;
-    ImageDetail *currentImage;
+    IBOutlet ImageDetail *currentImage;
+
 }
 
 
 @property(nonatomic, retain) UIScrollView *scrollView;
-@property (nonatomic, retain) UIPageControl* pageControl;
 @property (nonatomic, retain)  NSArray *images;
+@property (nonatomic, retain)  NSDictionary *artist;
 @property (nonatomic, retain)  NSString *mainImageUrl;
 @property (nonatomic, retain) ImageDetail *currentImage;
 
 - (void)setupPage:(int)index;
 - (void)loadImage:(int)index recursive:(BOOL) recursive;
 - (void)imageSaved;
+
 
 @end

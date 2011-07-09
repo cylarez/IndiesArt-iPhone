@@ -20,14 +20,7 @@
     viewController.images = images;
     viewController.mainImageUrl = [self.imageData valueForKey:@"url"];
     viewController.hidesBottomBarWhenPushed = YES;
-    
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:1];
-//    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self cache:YES];
-//    self.frame = viewController.view.frame;
-//    [self addSubview:viewController.view];
-    
+    viewController.artist = [self.imageData valueForKey:@"artist"];
 	[self.navigationController pushViewController:viewController animated:YES];
     [viewController setupPage: self.index];
     

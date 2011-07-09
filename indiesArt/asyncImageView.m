@@ -30,7 +30,7 @@
 - (void)loadImageFromURL:(NSString*)url {
     
     // Deactivate touch 
-    self.userInteractionEnabled = FALSE;
+    self.userInteractionEnabled = TRUE;
     
 	if (connection!=nil) { [connection release]; } //in case we are downloading a 2nd image
 	if (data!=nil) { [data release]; }
@@ -100,8 +100,6 @@
     
 	[self addSubview:imageView];
 	imageView.frame = self.bounds;
-	//[imageView setNeedsLayout];
-	//[self setNeedsLayout];
 }
 
 @end

@@ -11,7 +11,7 @@
 
 @implementation CollectionViewController
 
-@synthesize scrollView, pageControl, images, mainImageUrl, currentImage;
+@synthesize scrollView, images, mainImageUrl, currentImage, artist;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -20,16 +20,6 @@
         // Custom initialization
     }
     return self;
-}
-
--(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-	
-    //UITouch *touch = [touches anyObject];
-	
-    NSLog(@"TOUCH controller!!");
-        
-    [self.navigationController setNavigationBarHidden:(self.navigationController.navigationBarHidden ? NO : YES) animated:YES];
-    
 }
 
 - (void)setupPage:(int)index
@@ -51,7 +41,6 @@
     // Set the scroller to the appropriate image
     [scrollView setContentOffset:CGPointMake(index * 320, 0) animated:NO];
     
-	self.pageControl.numberOfPages = [images count];
 	[scrollView setContentSize:CGSizeMake(size, [scrollView bounds].size.height)];
     
     // Add button
@@ -110,9 +99,23 @@
     
     if (! [image valueForKey:@"asyncImage"]) {
         asyncImage = [[[ImageDetail alloc] initWithFrame:frame] autorelease];
-        [asyncImage loadImageFromURL:url];
+        
         asyncImage.userInteractionEnabled = TRUE;
+        asyncImage.multipleTouchEnabled = TRUE;
         asyncImage.navigationController = self.navigationController;
+        
+        // Create image info
+        UILabel *myLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 480, 320, 76)];
+        myLabel.backgroundColor = [UIColor blackColor];
+        myLabel.textColor = [UIColor whiteColor];
+        myLabel.lineBreakMode = UILineBreakModeWordWrap;
+        myLabel.numberOfLines = 2;
+        myLabel.alpha = 0.7;
+        myLabel.text = [NSString stringWithFormat:@"%@ %@", [artist valueForKey:@"name"], [image valueForKey:@"name"]];
+        
+        asyncImage.imageLabel = myLabel;
+        [asyncImage loadImageFromURL:url];
+        
         [image setValue:asyncImage forKey:@"asyncImage"];
         
     } else {
@@ -137,6 +140,11 @@
         [self loadImage: prevImageIndex recursive:FALSE];
     }
 
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)_scrollView
+{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView

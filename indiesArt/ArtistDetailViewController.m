@@ -45,6 +45,7 @@
         asyncImage.images = [images copy];
         asyncImage.index = index;
         index++;
+        [i setValue:artist forKey:@"artist"];
         asyncImage.imageData = i;
         asyncImage.navigationController = self.navigationController;
         [self.view addSubview:asyncImage];

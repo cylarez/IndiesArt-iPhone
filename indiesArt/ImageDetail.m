@@ -11,7 +11,7 @@
 
 @implementation ImageDetail
 
-@synthesize navigationController, imageLabel;
+@synthesize navigationController, imageLabel, image, fbButton, imageInfoView;
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -19,10 +19,10 @@
     // Animate the image info
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration: 0.3];
-    int y = navigationController.navigationBarHidden ? 384 : 480;
-    CGRect frame = imageLabel.frame;
+    int y = navigationController.navigationBarHidden ? 360 : 480;
+    CGRect frame = imageInfoView.frame;
     frame.origin.y = y;
-    imageLabel.frame=frame;    
+    imageInfoView.frame=frame;  
     [UIView commitAnimations];
 
     // Show/Hide the navigation bar
@@ -32,7 +32,11 @@
 - (void)displayImage
 {
     [super displayImage];
-    [self addSubview:imageLabel];
+    imageInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 120)];
+    [self addSubview:imageInfoView];
+    
+    [imageInfoView addSubview:imageLabel];
+    [imageInfoView addSubview:fbButton];
 }
 
 - (int) getSpinnerStyle

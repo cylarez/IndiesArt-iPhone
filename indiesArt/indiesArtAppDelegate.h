@@ -7,17 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-#define INDIE_URL @"http://dev.indiesart.com"
-#define ARTIST_URL  @"mobile/artist"
+#import "FBConnect.h"
 
-@interface indiesArtAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
+
+#define INDIE_URL @"http://cylarez:expression@dev.indiesart.com"
+#define ARTIST_URL  @"mobile/artist"
+#define APP_ID @"139707482707461"
+
+@interface indiesArtAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, FBRequestDelegate, FBDialogDelegate, FBSessionDelegate> {
     NSDictionary *feed;
+    Facebook *facebook;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @property (nonatomic, retain) NSDictionary *feed;
+@property (nonatomic, retain) Facebook *facebook;
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
 
 - (NSDictionary*)downloadData:(NSString*)url;
 

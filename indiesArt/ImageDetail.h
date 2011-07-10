@@ -14,10 +14,15 @@
     
     UINavigationController *navigationController;
     UILabel *imageLabel;
-
+    NSDictionary *image;
+    UIButton *fbButton;
+    UIView *imageInfoView;
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;
 @property(nonatomic, retain) UILabel *imageLabel;
+@property(nonatomic, retain) NSDictionary *image;
+@property(nonatomic, retain) UIButton *fbButton;
+@property(nonatomic, retain) UIView *imageInfoView;
 
 @end

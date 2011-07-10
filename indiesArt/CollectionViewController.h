@@ -11,13 +11,13 @@
 @class ImageDetail;
 #import "indiesArtAppDelegate.h"
 
-@interface CollectionViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate> {
+@interface CollectionViewController : UIViewController <UIScrollViewDelegate, UIActionSheetDelegate, FBDialogDelegate> {
     IBOutlet UIScrollView *scrollView;
     indiesArtAppDelegate* appDelegate;
     NSDictionary *artist;
     NSString *mainImageUrl;
     IBOutlet ImageDetail *currentImage;
-
+    UIButton *fbButton;
 }
 
 
@@ -29,6 +29,7 @@
 - (void)setupPage:(int)index;
 - (void)loadImage:(int)index recursive:(BOOL) recursive;
 - (void)imageSaved;
+- (void)shareImage;
 
 
 @end

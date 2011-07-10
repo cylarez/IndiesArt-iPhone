@@ -7,14 +7,21 @@
 //
 
 #import "indiesArtAppDelegate.h"
-#import "SBJSON.h"
+#import "JSON/SBJSON.h"
+
 
 @implementation indiesArtAppDelegate
 
 
-@synthesize window=_window, feed;
+@synthesize window=_window, feed, facebook;
 
 @synthesize tabBarController=_tabBarController;
+
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [facebook handleOpenURL:url];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -23,7 +30,14 @@
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
+    // Download indiesArt data
     self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
+    
+    // Init FB Connect
+    facebook = [[Facebook alloc] initWithAppId:APP_ID];
+    NSArray *permissions = [[NSArray arrayWithObjects:
+                                   @"read_stream", @"publish_stream", @"offline_access",nil] retain];
+    [facebook authorize:permissions delegate:self];
     
     return YES;
 }

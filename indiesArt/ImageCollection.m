@@ -17,11 +17,15 @@
 {
     CollectionViewController *viewController	=	[[CollectionViewController alloc] initWithNibName:@"CollectionViewController" bundle:[NSBundle mainBundle]];
     
-    viewController.images = images;
+
     viewController.mainImageUrl = [self.imageData valueForKey:@"url"];
     viewController.hidesBottomBarWhenPushed = YES;
     viewController.artist = [self.imageData valueForKey:@"artist"];
 	[self.navigationController pushViewController:viewController animated:YES];
+    
+    
+    
+    
     [viewController setupPage: self.index];
     
 	[viewController release];

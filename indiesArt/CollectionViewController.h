@@ -16,14 +16,12 @@
     indiesArtAppDelegate* appDelegate;
     NSDictionary *artist;
     NSString *mainImageUrl;
-    NSArray *images;
     IBOutlet ImageDetail *currentImage;
 
 }
 
 
 @property(nonatomic, retain) UIScrollView *scrollView;
-@property (nonatomic, retain)  NSArray *images;
 @property (nonatomic, retain)  NSDictionary *artist;
 @property (nonatomic, retain)  NSString *mainImageUrl;
 @property (nonatomic, retain) ImageDetail *currentImage;

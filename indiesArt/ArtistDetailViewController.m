@@ -42,7 +42,6 @@
         ImageCollection * asyncImage = [[[ImageCollection alloc] initWithFrame:frame] autorelease];
         [asyncImage loadImageFromURL:[i valueForKey:@"url_200x200"]];
         asyncImage.userInteractionEnabled = TRUE;
-        asyncImage.images = [images copy];
         asyncImage.index = index;
         index++;
         [i setValue:artist forKey:@"artist"];
@@ -52,7 +51,6 @@
         x += imageWidth;
         c++;
     }
-    [images release];
     
     [scrollView setContentSize:CGSizeMake(300, scrollViewHeight + border)];
 }

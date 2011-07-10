@@ -11,7 +11,7 @@
 
 @implementation CollectionViewController
 
-@synthesize scrollView, images, mainImageUrl, currentImage, artist;
+@synthesize scrollView, mainImageUrl, currentImage, artist;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +36,7 @@
 	
     // Call the image
     [self loadImage:index recursive:TRUE];
-    int size = [images count] * 320;
+    int size = [[artist valueForKey:@"images"] count] * 320;
     
     // Set the scroller to the appropriate image
     [scrollView setContentOffset:CGPointMake(index * 320, 0) animated:NO];
@@ -92,7 +92,9 @@
     frame.origin.y = 0;
     
     
-    NSDictionary *image = [self.images objectAtIndex:index];
+    NSArray *images = [artist valueForKey:@"images"];
+    
+    NSDictionary *image = [images objectAtIndex:index];
     
     NSString *url = [image valueForKey:@"url"];
     ImageDetail *asyncImage;
@@ -133,7 +135,7 @@
     int nextImageIndex = index + 1;
     int prevImageIndex = index - 1;
     
-    if (nextImageIndex < [self.images count]) {
+    if (nextImageIndex < [[artist valueForKey:@"images"] count]) {
          [self loadImage: nextImageIndex recursive:FALSE];
     }
     if (prevImageIndex >= 0) {

@@ -120,28 +120,8 @@
         asyncImage.userInteractionEnabled = TRUE;
         asyncImage.multipleTouchEnabled = TRUE;
         asyncImage.navigationController = self.navigationController;
-        
-        // Create image info
-        UILabel *myLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 70)];
-        
-        myLabel.textColor = [UIColor whiteColor];
-        myLabel.lineBreakMode = UILineBreakModeWordWrap;
-        myLabel.numberOfLines = 2;
-        myLabel.backgroundColor = [UIColor blackColor];
-        myLabel.alpha = 0.7;
-        myLabel.text = [NSString stringWithFormat:@"%@ %@", [artist valueForKey:@"name"], [image valueForKey:@"name"]];
-        
-        // Create FB button
-        fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [fbButton addTarget:self action:@selector(shareImage) forControlEvents:UIControlEventTouchDown];
-        fbButton.frame = CGRectMake(5, 60, 87, 30);
-        [fbButton setImage:[UIImage imageNamed:@"facebook_button.png"] forState:UIControlStateNormal];
-        
-        
-
-        asyncImage.fbButton = fbButton;
+        asyncImage.controller = self;
         asyncImage.image = image;
-        asyncImage.imageLabel = myLabel;
         [asyncImage loadImageFromURL:url];
         
         [image setValue:asyncImage forKey:@"asyncImage"];

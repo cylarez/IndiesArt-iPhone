@@ -8,21 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import "asyncImageView.h"
-
+#import "CollectionViewController.h"
+@class CollectionViewController;
 
 @interface ImageDetail : AsyncImageView {
     
     UINavigationController *navigationController;
-    UILabel *imageLabel;
     NSDictionary *image;
-    UIButton *fbButton;
     UIView *imageInfoView;
+    CollectionViewController *controller;
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;
-@property(nonatomic, retain) UILabel *imageLabel;
 @property(nonatomic, retain) NSDictionary *image;
-@property(nonatomic, retain) UIButton *fbButton;
 @property(nonatomic, retain) UIView *imageInfoView;
+@property(nonatomic, retain) CollectionViewController *controller;
 
 @end

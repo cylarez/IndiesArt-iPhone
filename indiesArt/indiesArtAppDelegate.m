@@ -28,16 +28,13 @@
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
+
     [self.window makeKeyAndVisible];
     
     // Download indiesArt data
     self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
     
-    // Init FB Connect
     facebook = [[Facebook alloc] initWithAppId:APP_ID];
-    NSArray *permissions = [[NSArray arrayWithObjects:
-                                   @"read_stream", @"publish_stream", @"offline_access",nil] retain];
-    [facebook authorize:permissions delegate:self];
     
     return YES;
 }

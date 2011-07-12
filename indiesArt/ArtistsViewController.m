@@ -11,8 +11,6 @@
 
 @implementation ArtistsViewController
 
-@synthesize artists;
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -74,9 +72,14 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
+- (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
+    
+	if (selectedIndexPath) {
+		UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:selectedIndexPath];
+		UIActivityIndicatorView *activityView = (UIActivityIndicatorView *) cell.accessoryView;
+		[activityView stopAnimating];
+	}
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -106,28 +109,23 @@
     
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-        
+        [cell setAccessoryView:[self getCellArrow]];
     } else {
         AsyncImageView* oldImage = (AsyncImageView*)[cell.contentView viewWithTag:999];
         [oldImage removeFromSuperview];
     }
 
-    CGRect frame;
-    frame.size.width=44; frame.size.height=44; frame.origin.x=7; frame.origin.y=7;
+    CGRect frame = CGRectMake(7, 7, 44, 44);
     AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
     asyncImage.tag = 999;
     NSDictionary *artist = [artists objectAtIndex:indexPath.row];
     [asyncImage loadImageFromURL:[artist valueForKey:@"image"]];
     
     cell.imageView.image = asyncImage.imageView.image;
-    
     cell.textLabel.text =   [artist valueForKey:@"name"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@" %@ images", [artist valueForKey:@"image_number"]];
-    
     [cell.contentView addSubview:asyncImage];
+    
     
     return cell;
 }
@@ -184,17 +182,30 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *artist   =   [artists objectAtIndex:[indexPath row]];
     
-    ArtistDetailViewController *viewController	=	[[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
-	
-    id artist_id = [artist valueForKey:@"id"];
-    viewController.artist_id= artist_id;
-    
-	[self.navigationController pushViewController:viewController animated:YES];
-    
-	[viewController release];
-	viewController = nil;
+    // Set the loading activity
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [activityView startAnimating];
+	[cell setAccessoryView:activityView];
+	[activityView release];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    selectedIndexPath = indexPath;
+    [self performSelector:@selector(loadArtist) withObject:nil afterDelay:0];
 }
+
+//-(void)loadArtist
+//{
+//    NSDictionary *artist   =   [artists objectAtIndex:[selectedIndexPath row]];
+//
+//    ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
+//    viewController.artist_id= [artist valueForKey:@"id"];
+//	[self.navigationController pushViewController:viewController animated:YES];
+//    
+//    [cell setAccessoryView:[self getCellArrow]];
+//    
+//	[viewController release];
+//	viewController = nil;
+//}
 
 @end

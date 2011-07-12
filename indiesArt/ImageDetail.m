@@ -33,13 +33,53 @@
     [controller shareImage];
 }
 
+- (void)shareImageTwitter
+{
+    TwitterRushViewController *viewController	=	[[TwitterRushViewController alloc] initWithNibName:@"TwitterRushViewController" bundle:[NSBundle mainBundle]];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", INDIE_URL, [image valueForKey:@"url_page"]];
+    MKBitlyHelper *bitlyHelper = [[MKBitlyHelper alloc] initWithLoginName:BIT_LOGIN andAPIKey:BIT_KEY];
+    NSString *shortUrl = [bitlyHelper shortenURL:url];
+    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [controller.artist valueForKey:@"name"], shortUrl];
+
+    [bitlyHelper release];
+    
+	[self.navigationController pushViewController:viewController animated:YES];
+    viewController.tweetTextField.text = tweet;
+    [viewController release];
+}
+
+- (void)viewArtist
+{   
+    activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(31,2.5,25,25)];
+    activityView.activityIndicatorViewStyle =  UIActivityIndicatorViewStyleWhite;
+    [activityView startAnimating];
+
+    
+    [artistButton addSubview:activityView]; 
+    [self performSelector:@selector(_viewArtist) withObject:nil afterDelay:0];
+}
+
+- (void)_viewArtist
+{
+    ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
+    viewController.artist_id= [controller.artist valueForKey:@"_id"];
+	[self.controller.navigationController pushViewController:viewController animated:YES];
+    [activityView stopAnimating];
+    
+    [activityView release];
+    activityView = nil;
+	[viewController release];
+	viewController = nil;
+}
+
 - (void)displayImage
 {
     [super displayImage];
-    imageInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 480, 320, 120)];
+    imageInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 360, 320, 120)];
     
     // Create image info
-    UILabel *imageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, 320, 70)];
+    UILabel *imageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 110)];
     imageLabel.textColor = [UIColor whiteColor];
     imageLabel.lineBreakMode = UILineBreakModeWordWrap;
     imageLabel.numberOfLines = 2;
@@ -50,19 +90,31 @@
     // Create FB button
     UIButton *fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [fbButton addTarget:self action:@selector(shareImage) forControlEvents:UIControlEventTouchDown];
-    fbButton.frame = CGRectMake(10, 0, 87, 30);
+    fbButton.frame = CGRectMake(15, 5, 87, 30);
     [fbButton setImage:[UIImage imageNamed:@"facebook_button.png"] forState:UIControlStateNormal];
     
     // Create Twitter button
     UIButton *twButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [twButton addTarget:self action:@selector(shareImageTwitter) forControlEvents:UIControlEventTouchDown];
-    twButton.frame = CGRectMake(107, 0, 87, 30);
+    twButton.frame = CGRectMake(117, 5, 87, 30);
     [twButton setImage:[UIImage imageNamed:@"twitter_button.png"] forState:UIControlStateNormal];
     
     [self addSubview:imageInfoView];
     [imageInfoView addSubview:imageLabel];
+    
+    if ([controller.artist valueForKey:@"_id"]) {
+        artistButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [artistButton addTarget:self action:@selector(viewArtist) forControlEvents:UIControlEventTouchDown];
+        artistButton.frame = CGRectMake(219, 5, 87, 30);
+        [artistButton setImage:[UIImage imageNamed:@"artist_button.png"] forState:UIControlStateNormal];
+        [imageInfoView addSubview:artistButton];
+    }
+    
+    
+    
     [imageInfoView addSubview:twButton];
     [imageInfoView addSubview:fbButton];
+    [imageLabel release];
 }
 
 - (int) getSpinnerStyle

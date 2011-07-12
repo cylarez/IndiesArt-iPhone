@@ -11,7 +11,7 @@
 
 @implementation CollectionViewController
 
-@synthesize scrollView, mainImageUrl, currentImage, artist;
+@synthesize scrollView, mainImageUrl, currentImage, artist, facebook;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -77,16 +77,34 @@
     }
 }
 
+- (void)fbDidLogin
+{
+	NSLog(@"fb login");
+    [self shareImage];
+}
+
 - (void)shareImage
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@", @"http://www.indiesart.com", [currentImage.image valueForKey:@"url_page"]];
-    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                   APP_ID, @"app_id",
-                                   url, @"link",
-                                   @"I love this image found on indiesArt!",  @"message",
-                                   nil];
+    if ([facebook isSessionValid]) {
+        NSString *url = [NSString stringWithFormat:@"%@%@", @"http://www.indiesart.com", [currentImage.image valueForKey:@"url_page"]];
+        NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                       APP_ID, @"app_id",
+                                       url, @"link",
+                                       @"I love this image found on indiesArt!",  @"message",
+                                       nil];
 
-    [appDelegate.facebook dialog:@"feed" andParams:params andDelegate:self];
+        [facebook dialog:@"feed" andParams:params andDelegate:self];
+    } else {
+        [self launchFacebook];
+    }
+}
+
+-(void)launchFacebook
+{
+    // Init FB Connect
+    NSArray *permissions = [[NSArray arrayWithObjects:@"read_stream", @"publish_stream", @"offline_access",nil] retain];
+    [facebook authorize:permissions delegate:self];
+    [permissions release];
 }
 
 - (void)imageSaved
@@ -152,7 +170,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)_scrollView
@@ -172,8 +190,13 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	NSLog(@"appear!");
 }
 
 - (void)dealloc
@@ -194,7 +217,7 @@
 - (void)viewDidLoad
 {
     appDelegate = [[[UIApplication sharedApplication] delegate] retain];
-
+    facebook = appDelegate.facebook;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 }

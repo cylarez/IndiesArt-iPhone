@@ -10,6 +10,8 @@
 #import "asyncImageView.h"
 #import "CollectionViewController.h"
 @class CollectionViewController;
+#import "MKBitlyHelper.h"
+#import "TwitterRushViewController.h"
 
 @interface ImageDetail : AsyncImageView {
     
@@ -17,6 +19,8 @@
     NSDictionary *image;
     UIView *imageInfoView;
     CollectionViewController *controller;
+    UIButton *artistButton;
+    UIActivityIndicatorView *activityView;
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;

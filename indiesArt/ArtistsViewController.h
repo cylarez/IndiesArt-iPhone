@@ -6,16 +6,10 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "indiesArtAppDelegate.h"
-#import "asyncImageView.h"
-#import "ArtistDetailViewController.h"
+#import "IndiesArtViewController.h"
 
-@interface ArtistsViewController : UITableViewController {
-    indiesArtAppDelegate* appDelegate;
-    NSArray* artists;
+@interface ArtistsViewController : IndiesArtViewController {
+
 }
-
-@property (nonatomic, retain) NSArray *artists;
 
 @end

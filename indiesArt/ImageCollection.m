@@ -16,16 +16,15 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     CollectionViewController *viewController	=	[[CollectionViewController alloc] initWithNibName:@"CollectionViewController" bundle:[NSBundle mainBundle]];
-    
-
     viewController.mainImageUrl = [self.imageData valueForKey:@"url"];
     viewController.hidesBottomBarWhenPushed = YES;
-    viewController.artist = [self.imageData valueForKey:@"artist"];
+    
+    viewController.artist = [self.imageData valueForKey:@"_artist"];
+    if ([imageData valueForKey:@"artist"]) {
+        [viewController.artist setValue:[[imageData valueForKey:@"artist"] valueForKey:@"name"] forKey:@"name"];
+        [viewController.artist setValue:[[imageData valueForKey:@"artist"] valueForKey:@"id"] forKey:@"_id"];
+    }
 	[self.navigationController pushViewController:viewController animated:YES];
-    
-    
-    
-    
     [viewController setupPage: self.index];
     
 	[viewController release];

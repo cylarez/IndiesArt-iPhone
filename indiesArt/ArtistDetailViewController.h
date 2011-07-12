@@ -8,19 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "indiesArtAppDelegate.h"
+@class indiesArtAppDelegate;
 #import "ImageCollection.h"
-#import "CollectionViewController.h"
 
 @interface ArtistDetailViewController : UIViewController {
     NSDictionary* artist;
     NSString* artist_id;
     indiesArtAppDelegate* appDelegate;
     IBOutlet UIScrollView* scrollView;
+    NSArray *images;
 }
 
 @property (nonatomic, copy) NSDictionary *artist;
 @property (nonatomic, retain) NSString *artist_id;
 @property (nonatomic, retain) UIView *scrollView;
+
 
 -(void)loadImages;
 

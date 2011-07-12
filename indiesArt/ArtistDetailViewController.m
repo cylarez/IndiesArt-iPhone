@@ -14,12 +14,7 @@
 @synthesize artist, artist_id, scrollView;
 
 -(void)loadImages
-{
-    appDelegate = [[[UIApplication sharedApplication] delegate] retain];
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
-    self.artist = [appDelegate downloadData: url];
-    NSArray *images = [self.artist valueForKey:@"images"]; 
-    
+{    
     int imageHeight = 103;
     int imageWidth = 103;
     int scrollViewHeight = imageHeight;
@@ -44,7 +39,8 @@
         asyncImage.userInteractionEnabled = TRUE;
         asyncImage.index = index;
         index++;
-        [i setValue:artist forKey:@"artist"];
+        [i setValue:artist forKey:@"_artist"];
+
         asyncImage.imageData = i;
         asyncImage.navigationController = self.navigationController;
         [self.view addSubview:asyncImage];
@@ -83,9 +79,13 @@
 {
     [super viewDidLoad];
     
+    appDelegate = [[[UIApplication sharedApplication] delegate] retain];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
+    self.artist = [appDelegate downloadData: url];
+    images = [self.artist valueForKey:@"images"]; 
+    
     [self loadImages];
-    // Do any additional setup after loading the view from its nib.
-     NSLog(@"Artist Id : %@", artist_id);
+    
 }
 
 - (void)viewDidUnload

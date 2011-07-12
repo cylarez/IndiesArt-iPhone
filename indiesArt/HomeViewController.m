@@ -7,12 +7,11 @@
 //
 
 #import "HomeViewController.h"
-#import "SlideCell.h"
 
 @implementation HomeViewController
 
 
-@synthesize scrollView, pageControl, artists, submissions, slides;
+@synthesize scrollView, pageControl, slides;
 
 
 
@@ -34,12 +33,13 @@
     int height = 168;
     int width = 300;
     
-	for (NSString *imageName in slides) {
+	for (NSDictionary *slide in slides) {
         CGRect frame;
         frame.size.width=width; frame.size.height=height; frame.origin.x=0; frame.origin.y=0;
         ImageSlide* asyncImage = [[[ImageSlide alloc] initWithFrame:frame] autorelease];
-        
-        [asyncImage loadImageFromURL:imageName];
+        asyncImage.controller = self;
+        asyncImage.image = slide;
+        [asyncImage loadImageFromURL:[slide valueForKey:@"url"]];
 
 		CGRect rect = asyncImage.frame;
 		rect.size.height = height;
@@ -60,6 +60,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
 {
     if (pageControlIsChangingPage) {
+        return;
+    }
+    
+    if (_scrollView != scrollView) {
         return;
     }
     
@@ -187,6 +191,7 @@
     }
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -200,10 +205,11 @@
             NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"SlideCell" owner:self options:nil];
             // Grab a pointer to the first object (presumably the custom cell, as that's all the XIB should contain).
             cell = [topLevelObjects objectAtIndex:0];
+            // Configure the cell...
+            [self setupPage];
         }
         
-        // Configure the cell...
-        [self setupPage];
+       
         
         return cell;
     }
@@ -212,14 +218,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc]
-                 initWithFrame:CGRectZero reuseIdentifier:CellIdentifier]
-                autorelease];
-    
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
         
         UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] 
                                              initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-        
+
+        [cell setAccessoryView:[super getCellArrow]];
         // Spacer is a 1x1 transparent png
         UIImage *spacer = [UIImage imageNamed:@"spacer"];
         
@@ -375,20 +379,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *data = indexPath.section == 1 ? artists : submissions;
+    selectedIndexPath = indexPath;
     
-    NSDictionary *artist   =   [data objectAtIndex:[indexPath row]];
+    // Set the loading activity
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activityView startAnimating];
+	[cell setAccessoryView:activityView];
+	[activityView release];
     
-    ArtistDetailViewController *viewController	=	[[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
-	
-    id artist_id = [artist valueForKey:@"id"];
-    viewController.artist_id= artist_id;
+    //[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
     
-	[self.navigationController pushViewController:viewController animated:YES];
-    
-	[viewController release];
-	viewController = nil;
-
+     [self performSelector:@selector(loadArtist) withObject:nil afterDelay:0];
 }
+
+
 
 @end

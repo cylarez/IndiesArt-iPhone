@@ -84,8 +84,6 @@
 		72B468151353CEC200C28892 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468141353CEC200C28892 /* 112-group.png */; };
 		72B468171353CF2B00C28892 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468161353CF2B00C28892 /* 05-shuffle.png */; };
 		72B468191353D0D500C28892 /* 152-rolodex.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468181353D0D500C28892 /* 152-rolodex.png */; };
-		72D0664913CC87BB0056596C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 72D0664613CC87BB0056596C /* SVProgressHUD.bundle */; };
-		72D0664A13CC87BB0056596C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 72D0664813CC87BB0056596C /* SVProgressHUD.m */; };
 		72E647DC135A555600070CFD /* asyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E647DB135A555600070CFD /* asyncImageView.m */; };
 		72E647E6135A657700070CFD /* ArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E647E4135A657600070CFD /* ArtistsViewController.m */; };
 		72E647E7135A657700070CFD /* ArtistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E647E5135A657700070CFD /* ArtistsViewController.xib */; };
@@ -254,9 +252,6 @@
 		72B468141353CEC200C28892 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		72B468161353CF2B00C28892 /* 05-shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle.png"; sourceTree = "<group>"; };
 		72B468181353D0D500C28892 /* 152-rolodex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "152-rolodex.png"; sourceTree = "<group>"; };
-		72D0664613CC87BB0056596C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
-		72D0664713CC87BB0056596C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		72D0664813CC87BB0056596C /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		72E647DA135A555600070CFD /* asyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asyncImageView.h; sourceTree = "<group>"; };
 		72E647DB135A555600070CFD /* asyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = asyncImageView.m; sourceTree = "<group>"; };
 		72E647E3135A657600070CFD /* ArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistsViewController.h; sourceTree = "<group>"; };
@@ -391,7 +386,6 @@
 			children = (
 				72881DCE13C934EF007BEB36 /* src */,
 				7203702D13CA2D4400D62B32 /* Twitter+OAuth */,
-				72D0664513CC87BB0056596C /* SVProgressHUD */,
 				7203702B13CA2BD100D62B32 /* libxml2.dylib */,
 				72965DB813CCA9780057F2DF /* MBProgressHUD.h */,
 				72965DB913CCA9780057F2DF /* MBProgressHUD.m */,
@@ -562,17 +556,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		72D0664513CC87BB0056596C /* SVProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				72D0664613CC87BB0056596C /* SVProgressHUD.bundle */,
-				72D0664713CC87BB0056596C /* SVProgressHUD.h */,
-				72D0664813CC87BB0056596C /* SVProgressHUD.m */,
-			);
-			name = SVProgressHUD;
-			path = ../../SVProgressHUD/SVProgressHUD;
-			sourceTree = "<group>";
-		};
 		72D44220135253F400AB92A0 /* NIB */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,7 +666,6 @@
 				72EEDA9B13CBAB0A00379B72 /* artist_button@2x.png in Resources */,
 				72EEDA9E13CBB5AC00379B72 /* arrow@2x.png in Resources */,
 				72EEDA9F13CBB5AC00379B72 /* arrow.png in Resources */,
-				72D0664913CC87BB0056596C /* SVProgressHUD.bundle in Resources */,
 				72965DD213CD35ED0057F2DF /* header_artists.png in Resources */,
 				72965DD313CD35ED0057F2DF /* header_artists@2x.png in Resources */,
 				72965DD413CD35ED0057F2DF /* header_submissions.png in Resources */,
@@ -744,7 +726,6 @@
 				7203708613CA404D00D62B32 /* MKBitlyHelper.m in Sources */,
 				7203709313CA7CFE00D62B32 /* IndiesArtViewController.m in Sources */,
 				7203709613CA84EC00D62B32 /* DiscoverViewController.m in Sources */,
-				72D0664A13CC87BB0056596C /* SVProgressHUD.m in Sources */,
 				72965DBA13CCA9780057F2DF /* MBProgressHUD.m in Sources */,
 				72965DF513CD6C8F0057F2DF /* AboutViewController.m in Sources */,
 			);

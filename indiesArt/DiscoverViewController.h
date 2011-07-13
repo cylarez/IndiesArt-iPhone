@@ -8,8 +8,9 @@
 
 #import "ArtistDetailViewController.h"
 
-@interface DiscoverViewController : ArtistDetailViewController {
 
+@interface DiscoverViewController : ArtistDetailViewController <MBProgressHUDDelegate> {
+    BOOL autoLoad;
 }
 
 - (IBAction)reloadData;

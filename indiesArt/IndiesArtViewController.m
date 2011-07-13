@@ -16,30 +16,57 @@
 
 -(UIImageView*)getCellArrow
 {    
-    UIImageView *disclosureView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+    UIImageView * image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
+    UIImageView *disclosureView = image;
+    [image release];
     return disclosureView;
+    
 }
+
 
 -(void)loadArtist    
 {
-    ArtistDetailViewController *viewController	=	[[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
+    [self performSelector:@selector(_loadArtist) withObject:nil afterDelay:0];
+}
+
+- (void)_loadArtist
+{
+    ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
     
-    NSArray *data = selectedIndexPath.section == 1 ? artists : submissions;
-    NSDictionary *selectedArtist =   [data objectAtIndex:selectedIndexPath.row];
+    NSArray *data = (selectedIndexPath.section == 2) ? submissions : artists;
+    
+    NSDictionary *selectedArtist = [data objectAtIndex:selectedIndexPath.row];
+    
     id artist_id = [selectedArtist valueForKey:@"id"];
     viewController.artist_id= artist_id;
     
 	[self.navigationController pushViewController:viewController animated:YES];
     
-    UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:selectedIndexPath];
-    UIActivityIndicatorView *activityView = (UIActivityIndicatorView *) cell.accessoryView;
-    [activityView stopAnimating];
-    
-    [cell setAccessoryView:[self getCellArrow]];
-    
 	[viewController release];
 	viewController = nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Set the loading activity
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    selectedIndexPath = indexPath;
+    [activityView startAnimating];
+	[cell setAccessoryView:activityView];
+	[activityView release];
+    [self performSelector:@selector(loadArtist) withObject:nil afterDelay:0];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
     
+	if (selectedIndexPath) {
+        UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:selectedIndexPath];
+        UIActivityIndicatorView *activityView = (UIActivityIndicatorView *) cell.accessoryView;
+        [activityView stopAnimating];
+        [cell setAccessoryView:[self getCellArrow]];
+	}
 }
 
 @end

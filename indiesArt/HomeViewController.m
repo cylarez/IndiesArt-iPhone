@@ -67,9 +67,6 @@
         return;
     }
     
-	/*
-	 *	We switch page at 50% across
-	 */
     CGFloat pageWidth = _scrollView.frame.size.width;
     int page = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     pageControl.currentPage = page;
@@ -127,16 +124,14 @@
 {
     [super viewDidLoad];
     
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_head.png"]];
+    self.navigationItem.titleView = imageView;
+    [imageView release];
+    
     appDelegate = [[[UIApplication sharedApplication] delegate] retain];
     self.artists = [appDelegate.feed valueForKey:@"artists"];
     self.submissions = [appDelegate.feed valueForKey:@"submissions"];
     self.slides = [appDelegate.feed valueForKey:@"slides"];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -194,7 +189,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     if (indexPath.section == 0 && indexPath.row == 0) {
 
         static NSString *CellIdentifier = @"SlideCell";
@@ -208,9 +202,6 @@
             // Configure the cell...
             [self setupPage];
         }
-        
-       
-        
         return cell;
     }
     
@@ -256,32 +247,6 @@
         [cell.contentView addSubview:asyncImage];
         
     }     
-
-    
-    
-
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-//        
-//        NSDictionary *artist;
-//        
-//        if (indexPath.section == 1) {
-//            artist		=	[artists objectAtIndex:indexPath.row];
-//        } else {
-//            artist		=	[submissions objectAtIndex:indexPath.row];
-//        }
-//        
-//        NSString *projectImage		=	[artist valueForKey:@"image"];        
-//        NSURL *url					=	[NSURL URLWithString: projectImage];
-//        NSData *data				=	[NSData dataWithContentsOfURL:url];
-//        UIImage *img				=	[[UIImage alloc] initWithData:data];
-//
-//        cell.imageView.image		=	img;
-//        cell.textLabel.text			=	[artist valueForKey:@"name"];
-//    }
     
     return cell;
 }
@@ -304,37 +269,36 @@
     }
 }
 
-//- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
-//{
-//    if (! section) {
-//        
-//        return nil;
-//    }
-//    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)] autorelease];
-//    
-//    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"section-header.png"]];;
-//    
-//	UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, -5, tableView.bounds.size.width - 10, 30)] autorelease];
-//	
-//	//NSArray *sectionSelected		=	[self.projects objectAtIndex:section];
-//	//label.text	=	[sectionSelected valueForKey:@"name"];
-//    
-//    NSString *text = @"";
-//    
-//    if (section == 1) {
-//        text    =   @"Last Artists";
-//    } else {
-//        text    =   @"Last Submissions";
-//    }
-//    
-//    label.text = text;
-//    label.font = [UIFont boldSystemFontOfSize:16];
-//	label.textColor = [UIColor colorWithRed :158 green:158 blue:158 alpha:1];
-//	label.backgroundColor = [UIColor clearColor];
-//	[headerView addSubview:label];
-//	
-//	return headerView;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section 
+{
+
+    UIView *headerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)] autorelease];
+    
+    
+    
+	UILabel *label = [[[UILabel alloc] initWithFrame:CGRectMake(10, -5, tableView.bounds.size.width - 10, 30)] autorelease];
+	
+	//NSArray *sectionSelected		=	[self.projects objectAtIndex:section];
+	//label.text	=	[sectionSelected valueForKey:@"name"];
+    
+    NSString *img = @"header_main.png";
+    
+    if (section == 1) {
+         img    =   @"header_artists.png";
+    } else if(section == 2) {
+        img    =   @"header_submissions.png";
+    } 
+    
+    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:img]];
+	label.backgroundColor = [UIColor clearColor];
+	[headerView addSubview:label];
+	
+	return headerView;
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -344,55 +308,5 @@
     return YES;
 }
 */
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    selectedIndexPath = indexPath;
-    
-    // Set the loading activity
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [activityView startAnimating];
-	[cell setAccessoryView:activityView];
-	[activityView release];
-    
-    //[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-    
-     [self performSelector:@selector(loadArtist) withObject:nil afterDelay:0];
-}
-
-
 
 @end

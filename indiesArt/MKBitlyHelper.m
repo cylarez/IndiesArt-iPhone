@@ -29,6 +29,8 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 															 (CFStringRef) f_longURL, 
 															 nil, (CFStringRef) @"&+", kCFStringEncodingUTF8); 
 	f_longURL = (NSString*)encodedParamCF;
+    
+
 	NSString *parameters = [NSString stringWithFormat:@"longUrl=%@", [f_longURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 	
 	NSString *finalURL = [urlWithoutParams stringByAppendingString:parameters];
@@ -41,6 +43,8 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 	NSError *error = [[[NSError alloc] init] autorelease];  
 	
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&urlResponse error:&error];	
+    
+    [req release];
 		
 	if ([urlResponse statusCode] >= 200 && [urlResponse statusCode] < 300)
 	{
@@ -66,6 +70,7 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 	}
 	else
 		return nil;
+    
 }
 
 - (NSString*) expandURL: (NSString*) f_shortURL {

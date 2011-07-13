@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
+#import "MBProgressHUD.h"
 #import "ArtistDetailViewController.h"
+
 
 #define INDIE_URL               @"http://cylarez:expression@dev.indiesart.com"
 #define ARTIST_URL              @"mobile/artist"
@@ -22,15 +24,18 @@
 @interface indiesArtAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, FBRequestDelegate, FBDialogDelegate, FBSessionDelegate> {
     NSDictionary *feed;
     Facebook *facebook;
+    NSDictionary *discoverData;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 
 @property (nonatomic, retain) NSDictionary *feed;
+@property (nonatomic, retain) NSDictionary *discoverData;
 @property (nonatomic, retain) Facebook *facebook;
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
 - (NSDictionary*)downloadData:(NSString*)url;
+- (NSDictionary*)getDiscoverData;
 
 @end

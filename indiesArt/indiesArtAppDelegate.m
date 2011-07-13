@@ -13,7 +13,7 @@
 @implementation indiesArtAppDelegate
 
 
-@synthesize window=_window, feed, facebook;
+@synthesize window=_window, feed, discoverData, facebook;
 
 @synthesize tabBarController=_tabBarController;
 
@@ -21,6 +21,11 @@
 -(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     return [facebook handleOpenURL:url];
+}
+
+- (NSDictionary*)getDiscoverData
+{
+    return [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/discover"]];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -33,6 +38,7 @@
     
     // Download indiesArt data
     self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
+    self.discoverData = [self getDiscoverData];
     
     facebook = [[Facebook alloc] initWithAppId:APP_ID];
     

@@ -28,34 +28,21 @@
     [navigationController setNavigationBarHidden:(navigationController.navigationBarHidden ? NO : YES) animated:YES];
 }
 
-- (void)shareImage
+- (void)shareImageFacebook
 {
-    [controller shareImage];
+    [controller shareImageFacebook];
 }
 
 - (void)shareImageTwitter
 {
-    TwitterRushViewController *viewController	=	[[TwitterRushViewController alloc] initWithNibName:@"TwitterRushViewController" bundle:[NSBundle mainBundle]];
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@", INDIE_URL, [image valueForKey:@"url_page"]];
-    MKBitlyHelper *bitlyHelper = [[MKBitlyHelper alloc] initWithLoginName:BIT_LOGIN andAPIKey:BIT_KEY];
-    NSString *shortUrl = [bitlyHelper shortenURL:url];
-    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [controller.artist valueForKey:@"name"], shortUrl];
-
-    [bitlyHelper release];
-    
-	[self.navigationController pushViewController:viewController animated:YES];
-    viewController.tweetTextField.text = tweet;
-    [viewController release];
+    [controller shareImageTwitter];
 }
 
 - (void)viewArtist
 {   
     activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(31,2.5,25,25)];
     activityView.activityIndicatorViewStyle =  UIActivityIndicatorViewStyleWhite;
-    [activityView startAnimating];
-
-    
+    [activityView startAnimating];    
     [artistButton addSubview:activityView]; 
     [self performSelector:@selector(_viewArtist) withObject:nil afterDelay:0];
 }
@@ -66,7 +53,6 @@
     viewController.artist_id= [controller.artist valueForKey:@"_id"];
 	[self.controller.navigationController pushViewController:viewController animated:YES];
     [activityView stopAnimating];
-    
     [activityView release];
     activityView = nil;
 	[viewController release];
@@ -80,16 +66,19 @@
     
     // Create image info
     UILabel *imageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 110)];
-    imageLabel.textColor = [UIColor whiteColor];
-    imageLabel.lineBreakMode = UILineBreakModeWordWrap;
-    imageLabel.numberOfLines = 2;
     imageLabel.backgroundColor = [UIColor blackColor];
     imageLabel.alpha = 0.7;
-    imageLabel.text = [NSString stringWithFormat:@"%@ %@", [controller.artist valueForKey:@"name"], [image valueForKey:@"name"]];
+    
+    UILabel *imageLabelText = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 110)];
+    imageLabelText.lineBreakMode = UILineBreakModeWordWrap;
+    imageLabelText.numberOfLines = 2;
+    imageLabelText.textColor = [UIColor whiteColor];
+    imageLabelText.backgroundColor = [UIColor clearColor];
+    imageLabelText.text = [NSString stringWithFormat:@"%@ %@", [controller.artist valueForKey:@"name"], [image valueForKey:@"name"]];
     
     // Create FB button
     UIButton *fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [fbButton addTarget:self action:@selector(shareImage) forControlEvents:UIControlEventTouchDown];
+    [fbButton addTarget:self action:@selector(shareImageFacebook) forControlEvents:UIControlEventTouchDown];
     fbButton.frame = CGRectMake(15, 5, 87, 30);
     [fbButton setImage:[UIImage imageNamed:@"facebook_button.png"] forState:UIControlStateNormal];
     
@@ -101,7 +90,9 @@
     
     [self addSubview:imageInfoView];
     [imageInfoView addSubview:imageLabel];
+    [imageInfoView addSubview:imageLabelText];
     
+    // Add button to view artist (if from discover) 
     if ([controller.artist valueForKey:@"_id"]) {
         artistButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [artistButton addTarget:self action:@selector(viewArtist) forControlEvents:UIControlEventTouchDown];
@@ -110,11 +101,10 @@
         [imageInfoView addSubview:artistButton];
     }
     
-    
-    
     [imageInfoView addSubview:twButton];
     [imageInfoView addSubview:fbButton];
     [imageLabel release];
+    [imageLabelText release];
 }
 
 - (int) getSpinnerStyle

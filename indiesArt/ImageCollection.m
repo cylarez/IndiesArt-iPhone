@@ -11,7 +11,7 @@
 
 @implementation ImageCollection
 
-@synthesize navigationController, images, index;
+@synthesize navigationController, index;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -48,6 +48,7 @@
 	[imageView setNeedsLayout];
 	[self setNeedsLayout];
     [UIView commitAnimations];
+
 }
 
 

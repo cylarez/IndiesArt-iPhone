@@ -72,16 +72,6 @@
     [super viewWillDisappear:animated];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
-	if (selectedIndexPath) {
-		UITableViewCell  *cell = [self.tableView cellForRowAtIndexPath:selectedIndexPath];
-		UIActivityIndicatorView *activityView = (UIActivityIndicatorView *) cell.accessoryView;
-		[activityView stopAnimating];
-	}
-}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
@@ -89,12 +79,6 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    return 1;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -136,76 +120,5 @@
 }
 
 
-
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    // Set the loading activity
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [activityView startAnimating];
-	[cell setAccessoryView:activityView];
-	[activityView release];
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    selectedIndexPath = indexPath;
-    [self performSelector:@selector(loadArtist) withObject:nil afterDelay:0];
-}
-
-//-(void)loadArtist
-//{
-//    NSDictionary *artist   =   [artists objectAtIndex:[selectedIndexPath row]];
-//
-//    ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
-//    viewController.artist_id= [artist valueForKey:@"id"];
-//	[self.navigationController pushViewController:viewController animated:YES];
-//    
-//    [cell setAccessoryView:[self getCellArrow]];
-//    
-//	[viewController release];
-//	viewController = nil;
-//}
 
 @end

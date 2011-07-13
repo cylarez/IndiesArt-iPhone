@@ -20,6 +20,7 @@
 @property (nonatomic, retain) indiesArtAppDelegate *appDelegate;
 @property (nonatomic, retain) NSArray *artists, *submissions;
 
+
 - (UIImageView*)getCellArrow;
 
 @end

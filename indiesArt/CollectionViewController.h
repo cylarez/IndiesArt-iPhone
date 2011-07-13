@@ -32,7 +32,8 @@
 - (void)setupPage:(int)index;
 - (void)loadImage:(int)index recursive:(BOOL) recursive;
 - (void)imageSaved;
-- (void)shareImage;
+- (void)shareImageFacebook;
+- (void)shareImageTwitter;
 - (void)fbDidLogin;
 - (void)launchFacebook;
 

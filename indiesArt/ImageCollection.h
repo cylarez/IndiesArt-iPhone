@@ -13,13 +13,10 @@
 
 @interface ImageCollection : AsyncImageView {
     UINavigationController * navigationController;
-    NSArray *images;
     int index;
-
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;
-@property(nonatomic, retain) NSArray *images;
 @property(nonatomic) int index;
 
 

@@ -17,6 +17,7 @@
     indiesArtAppDelegate* appDelegate;
     IBOutlet UIScrollView* scrollView;
     NSArray *images;
+    MBProgressHUD *HUD;
 }
 
 @property (nonatomic, copy) NSDictionary *artist;

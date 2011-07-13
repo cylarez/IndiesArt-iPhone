@@ -54,11 +54,11 @@
 
 -(void)viewMenu:(id)sender
 {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"A Message To Display"
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Available Actions"
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"Use as Wallpaper", @"Share", nil];
+													otherButtonTitles:@"Use as Wallpaper", @"Share on Facebook", @"Share on Twitter", nil];
 	[actionSheet showInView:[[self.navigationController view] window]];
     [actionSheet release];
     
@@ -73,17 +73,36 @@
         [self imageSaved];
     }
     if (buttonIndex == 1) {
-        [self shareImage];
+        [self shareImageFacebook];
+    }
+    if (buttonIndex == 2) {
+        [self shareImageTwitter];
     }
 }
 
 - (void)fbDidLogin
 {
 	NSLog(@"fb login");
-    [self shareImage];
+    [self shareImageFacebook];
 }
 
-- (void)shareImage
+- (void)shareImageTwitter
+{
+    TwitterRushViewController *viewController	=	[[TwitterRushViewController alloc] initWithNibName:@"TwitterRushViewController" bundle:[NSBundle mainBundle]];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", INDIE_URL, [currentImage.image valueForKey:@"url_page"]];
+    MKBitlyHelper *bitlyHelper = [[MKBitlyHelper alloc] initWithLoginName:BIT_LOGIN andAPIKey:BIT_KEY];
+    NSString *shortUrl = [bitlyHelper shortenURL:url];
+    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [artist valueForKey:@"name"], shortUrl];
+    
+    [bitlyHelper release];
+    
+	[self.navigationController pushViewController:viewController animated:YES];
+    viewController.tweetTextField.text = tweet;
+    [viewController release];
+}
+
+- (void)shareImageFacebook
 {
     if ([facebook isSessionValid]) {
         NSString *url = [NSString stringWithFormat:@"%@%@", @"http://www.indiesart.com", [currentImage.image valueForKey:@"url_page"]];
@@ -135,6 +154,12 @@
     if (! [image valueForKey:@"asyncImage"]) {
         asyncImage = [[[ImageDetail alloc] initWithFrame:frame] autorelease];
         
+        // Insert loading 
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(135,215,50,50)];
+        activityView.activityIndicatorViewStyle =  UIActivityIndicatorViewStyleWhiteLarge;
+        [activityView startAnimating];    
+        [asyncImage addSubview:activityView]; 
+        [activityView release];
         asyncImage.userInteractionEnabled = TRUE;
         asyncImage.multipleTouchEnabled = TRUE;
         asyncImage.navigationController = self.navigationController;

@@ -18,7 +18,7 @@
 {    
     UIImageView * image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
     UIImageView *disclosureView = image;
-    [image release];
+
     return disclosureView;
     
 }

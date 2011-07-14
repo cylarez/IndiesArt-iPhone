@@ -1,3 +1,9 @@
 [submodule "MBProgressHUD"]
 	path = MBProgressHUD
 	url = git://github.com/matej/MBProgressHUD.git
+[submodule "TwitterOAuth"]
+	path = TwitterOAuth
+	url = https://github.com/bengottlieb/Twitter-OAuth-iPhone.git
+[submodule "Facebook"]
+	path = Facebook
+	url = https://github.com/facebook/facebook-ios-sdk.git

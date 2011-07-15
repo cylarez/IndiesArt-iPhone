@@ -128,7 +128,8 @@
     self.navigationItem.titleView = imageView;
     [imageView release];
     
-    self.appDelegate = [[[UIApplication sharedApplication] delegate] retain];
+    self.appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
+    
     self.artists = [appDelegate.feed valueForKey:@"artists"];
     self.submissions = [appDelegate.feed valueForKey:@"submissions"];
     self.slides = [appDelegate.feed valueForKey:@"slides"];

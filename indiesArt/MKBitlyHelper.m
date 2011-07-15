@@ -32,7 +32,7 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
     
 
 	NSString *parameters = [NSString stringWithFormat:@"longUrl=%@", [f_longURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-	
+    
 	NSString *finalURL = [urlWithoutParams stringByAppendingString:parameters];
 	
 	NSURL *url = [NSURL URLWithString:finalURL];
@@ -45,7 +45,9 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&urlResponse error:&error];	
     
     [req release];
-		
+    
+    NSString *shortURL = nil;
+    
 	if ([urlResponse statusCode] >= 200 && [urlResponse statusCode] < 300)
 	{
 		SBJSON *jsonParser = [SBJSON new];
@@ -53,6 +55,7 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 		NSDictionary *dict = (NSDictionary*)[jsonParser objectWithString:jsonString];
 		[jsonString release];
 		[jsonParser release];
+        
 		
 		NSString *statusCode = [dict objectForKey:@"statusCode"];
 		
@@ -60,17 +63,15 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 		{
 			// retrieve shortURL from results
 			//NSLog([dict description]);
-			NSString *shortURL = [[[dict objectForKey:@"results"] 
+			shortURL = [[[dict objectForKey:@"results"] 
 								   objectForKey:f_longURL] 
 								  objectForKey:@"shortUrl"];
-			return shortURL;
 		}
-		else return nil;
-
 	}
-	else
-		return nil;
+
+    CFRelease (encodedParamCF);
     
+    return shortURL;
 }
 
 - (NSString*) expandURL: (NSString*) f_shortURL {
@@ -88,6 +89,8 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 	
 	NSData *data = [NSURLConnection sendSynchronousRequest:req returningResponse:&urlResponse error:&error];	
 	
+    [req release];
+    
 	if ([urlResponse statusCode] >= 200 && [urlResponse statusCode] < 300)
 	{
 		SBJSON *jsonParser = [SBJSON new];
@@ -112,12 +115,12 @@ static NSString *BITLYAPIURL = @"http://api.bit.ly/%@?version=2.0.1&login=%@&api
 			NSString *longURL = [[[dict objectForKey:@"results"] 
 								   objectForKey:shortHash] 
 								  objectForKey:@"longUrl"];
+            [urlResponse release];
 			return longURL;
 		}
-		else return nil;
 		
 	}
-	else
-		return nil;
+    [urlResponse release];
+	return nil;
 }
 @end

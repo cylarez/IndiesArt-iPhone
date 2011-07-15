@@ -16,10 +16,8 @@
 
 -(UIImageView*)getCellArrow
 {    
-    UIImageView * image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]];
-    UIImageView *disclosureView = image;
-
-    return disclosureView;
+    UIImageView *image = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow.png"]] autorelease];
+    return image;
     
 }
 

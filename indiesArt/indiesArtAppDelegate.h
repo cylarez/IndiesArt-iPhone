@@ -37,5 +37,6 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
 - (NSDictionary*)downloadData:(NSString*)url;
 - (NSDictionary*)getDiscoverData;
+- (NSString*)getShortUrl:(NSString*)url;
 
 @end

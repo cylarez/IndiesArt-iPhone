@@ -19,8 +19,10 @@
 
 @property (nonatomic, retain) indiesArtAppDelegate *appDelegate;
 @property (nonatomic, retain) NSArray *artists, *submissions;
-
+@property (nonatomic, retain) NSIndexPath *selectedIndexPath;
 
 - (UIImageView*)getCellArrow;
+- (void)_loadArtist;
+- (void)loadArtist;
 
 @end

@@ -75,7 +75,7 @@
 	
     //make sizing choices based on your needs, experiment with these. maybe not all the calls below are needed
 	imageView.contentMode = UIViewContentModeScaleAspectFit;
-	imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth || UIViewAutoresizingFlexibleHeight );
+	imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight );
     
     [self displayImage];
 

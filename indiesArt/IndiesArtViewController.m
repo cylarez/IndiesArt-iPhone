@@ -11,7 +11,7 @@
 
 @implementation IndiesArtViewController
 
-@synthesize appDelegate, artists, submissions;
+@synthesize appDelegate, artists, submissions, selectedIndexPath;
 
 
 -(UIImageView*)getCellArrow
@@ -24,14 +24,12 @@
 }
 
 
--(void)loadArtist    
-{
-    [self performSelector:@selector(_loadArtist) withObject:nil afterDelay:0];
-}
+
 
 - (void)_loadArtist
 {
     ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
+    
     
     NSArray *data = (selectedIndexPath.section == 2) ? submissions : artists;
     
@@ -44,6 +42,12 @@
     
 	[viewController release];
 	viewController = nil;
+    [data release];
+}
+
+-(void)loadArtist
+{
+    [self performSelector:@selector(_loadArtist) withObject:self afterDelay:0];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -51,11 +55,13 @@
     // Set the loading activity
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    selectedIndexPath = indexPath;
+    self.selectedIndexPath = indexPath;
+    
+    
     [activityView startAnimating];
 	[cell setAccessoryView:activityView];
 	[activityView release];
-    [self performSelector:@selector(loadArtist) withObject:nil afterDelay:0];
+    [self performSelector:@selector(loadArtist) withObject:self afterDelay:0];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

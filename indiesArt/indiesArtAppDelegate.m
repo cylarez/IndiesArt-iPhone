@@ -28,20 +28,30 @@
     return [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/discover"]];
 }
 
+- (NSString*)getShortUrl:(NSString*)url
+{
+    MKBitlyHelper *bitlyHelper = [[MKBitlyHelper alloc] initWithLoginName:BIT_LOGIN andAPIKey:BIT_KEY];
+    NSString *shortUrl = [bitlyHelper shortenURL:url];
+    [bitlyHelper release];
+    return shortUrl;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // Download indiesArt data
+    self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
+    self.discoverData = [self getDiscoverData];
+    
+    facebook = [[Facebook alloc] initWithAppId:APP_ID];
+    NSLog(@"app finished");
+    
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
     self.window.rootViewController = self.tabBarController;
 
     [self.window makeKeyAndVisible];
     
-    // Download indiesArt data
-    self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
-    self.discoverData = [self getDiscoverData];
-    
-    facebook = [[Facebook alloc] initWithAppId:APP_ID];
-    
+
     return YES;
 }
 

@@ -128,7 +128,7 @@
     self.navigationItem.titleView = imageView;
     [imageView release];
     
-    appDelegate = [[[UIApplication sharedApplication] delegate] retain];
+    self.appDelegate = [[[UIApplication sharedApplication] delegate] retain];
     self.artists = [appDelegate.feed valueForKey:@"artists"];
     self.submissions = [appDelegate.feed valueForKey:@"submissions"];
     self.slides = [appDelegate.feed valueForKey:@"slides"];
@@ -210,11 +210,16 @@
     
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-        
+        [cell setAccessoryView:[super getCellArrow]];
+    } else {
+        AsyncImageView* oldImage = (AsyncImageView*)[cell.contentView viewWithTag:999];
+        [oldImage removeFromSuperview];
+    }
+    
         UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] 
                                              initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
 
-        [cell setAccessoryView:[super getCellArrow]];
+        
         // Spacer is a 1x1 transparent png
         UIImage *spacer = [UIImage imageNamed:@"spacer"];
         
@@ -232,12 +237,13 @@
         CGRect frame;
         frame.size.width=40; frame.size.height=40; frame.origin.x=0; frame.origin.y=0;
         AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
-        
+        asyncImage.tag = 999;
+    
         NSDictionary *artist;
         if (indexPath.section == 1) {
-            artist		=	[artists objectAtIndex:indexPath.row];
+            artist		=	[self.artists objectAtIndex:indexPath.row];
         } else {
-            artist		=	[submissions objectAtIndex:indexPath.row];
+            artist		=	[self.submissions objectAtIndex:indexPath.row];
         }
 
         [asyncImage loadImageFromURL:[artist valueForKey:@"image"]];
@@ -246,7 +252,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         [cell.contentView addSubview:asyncImage];
         
-    }     
+       
     
     return cell;
 }

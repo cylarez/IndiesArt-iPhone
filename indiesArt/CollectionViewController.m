@@ -94,12 +94,8 @@
 {
     TwitterRushViewController *viewController	=	[[TwitterRushViewController alloc] initWithNibName:@"TwitterRushViewController" bundle:[NSBundle mainBundle]];
     
-    NSString *url = [NSString stringWithFormat:@"%@%@", INDIE_URL, [currentImage.image valueForKey:@"url_page"]];
-    MKBitlyHelper *bitlyHelper = [[MKBitlyHelper alloc] initWithLoginName:BIT_LOGIN andAPIKey:BIT_KEY];
-    NSString *shortUrl = [bitlyHelper shortenURL:url];
-    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [[currentImage valueForKey:@"artist"] valueForKey:@"name"], shortUrl];
-    
-    [bitlyHelper release];
+    NSString *url = [NSString stringWithFormat:@"%@%@", INDIE_URL, [currentImage.imageData valueForKey:@"url_page"]]; 
+    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [[currentImage.imageData valueForKey:@"artist"] valueForKey:@"name"], [appDelegate getShortUrl:url]];
     
 	[self.navigationController pushViewController:viewController animated:YES];
     viewController.tweetTextField.text = tweet;
@@ -109,10 +105,10 @@
 - (void)shareImageFacebook
 {
     if ([facebook isSessionValid]) {
-        NSString *url = [NSString stringWithFormat:@"%@%@", @"http://www.indiesart.com", [currentImage.image valueForKey:@"url_page"]];
+        NSString *url = [NSString stringWithFormat:@"%@%@", @"http://www.indiesart.com", [currentImage.imageData valueForKey:@"url_page"]];
         NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        APP_ID, @"app_id",
-                                       url, @"link",
+                                       [appDelegate getShortUrl:url], @"link",
                                        @"I love this image found on indiesArt!",  @"message",
                                        nil];
 

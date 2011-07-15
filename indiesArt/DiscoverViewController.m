@@ -24,7 +24,7 @@
 {
     NSDictionary *data = autoLoad ? appDelegate.discoverData : [appDelegate getDiscoverData];
     autoLoad = FALSE;
-    images = [data valueForKey:@"images"]; 
+    self.images = [data valueForKey:@"images"]; 
     artist =  data;
     [self loadImages];
 }

@@ -11,7 +11,7 @@
 
 @implementation ArtistDetailViewController
 
-@synthesize artist, artist_id, scrollView;
+@synthesize artist, artist_id, scrollView, images;
 
 -(void)loadImages
 {    
@@ -24,7 +24,7 @@
     int c = 1;
     int index = 0;
 
-    for (NSDictionary *i in images) {
+    for (NSMutableDictionary *i in images) {
         if (c > 3) {
             y += imageHeight;
             x = border;
@@ -39,8 +39,10 @@
         asyncImage.userInteractionEnabled = TRUE;
         asyncImage.index = index;
         index++;
-        [i setValue:artist forKey:@"_artist"];
-
+        if (! [i valueForKey:@"artist"]) {
+            [i setValue:artist forKey:@"artist"];
+        }
+        asyncImage.controller = self;
         asyncImage.imageData = i;
         asyncImage.navigationController = self.navigationController;
         [self.view addSubview:asyncImage];
@@ -80,9 +82,13 @@
     [super viewDidLoad];
     
     appDelegate = [[[UIApplication sharedApplication] delegate] retain];
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
-    self.artist = [appDelegate downloadData: url];
-    images = [self.artist valueForKey:@"images"]; 
+    
+    if (artist_id != nil) {
+    
+        NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
+        self.artist = [appDelegate downloadData: url];
+        images = [artist valueForKey:@"images"];
+    }
     
     [self loadImages];
     

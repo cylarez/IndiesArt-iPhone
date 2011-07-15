@@ -20,11 +20,11 @@
 	
     UIImageView *imageView;
 
-    NSDictionary *imageData;
+    NSMutableDictionary *imageData;
 }
 
 @property(nonatomic, retain) UIImageView *imageView; 
-@property(nonatomic, retain) NSDictionary *imageData; 
+@property(nonatomic, retain) NSMutableDictionary *imageData; 
 
 - (void)loadImageFromURL:(NSString*)url;
 - (UIImage*)image;

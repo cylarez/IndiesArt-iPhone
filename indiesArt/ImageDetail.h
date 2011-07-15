@@ -16,15 +16,14 @@
 @interface ImageDetail : AsyncImageView {
     
     UINavigationController *navigationController;
-    NSDictionary *image;
     UIView *imageInfoView;
     CollectionViewController *controller;
     UIButton *artistButton;
     UIActivityIndicatorView *activityView;
+    NSDictionary *artist;
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;
-@property(nonatomic, retain) NSDictionary *image;
 @property(nonatomic, retain) UIView *imageInfoView;
 @property(nonatomic, retain) CollectionViewController *controller;
 

@@ -11,7 +11,7 @@
 
 @implementation CollectionViewController
 
-@synthesize scrollView, mainImageUrl, currentImage, artist, facebook;
+@synthesize scrollView, mainImageUrl, currentImage, facebook, images, artist_id;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,7 +36,11 @@
 	
     // Call the image
     [self loadImage:index recursive:TRUE];
-    int size = [[artist valueForKey:@"images"] count] * 320;
+    int size = [images count] * 320;
+    
+    NSLog(@"%d", size);
+    
+    
     
     // Set the scroller to the appropriate image
     [scrollView setContentOffset:CGPointMake(index * 320, 0) animated:NO];
@@ -93,7 +97,7 @@
     NSString *url = [NSString stringWithFormat:@"%@%@", INDIE_URL, [currentImage.image valueForKey:@"url_page"]];
     MKBitlyHelper *bitlyHelper = [[MKBitlyHelper alloc] initWithLoginName:BIT_LOGIN andAPIKey:BIT_KEY];
     NSString *shortUrl = [bitlyHelper shortenURL:url];
-    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [artist valueForKey:@"name"], shortUrl];
+    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [[currentImage valueForKey:@"artist"] valueForKey:@"name"], shortUrl];
     
     [bitlyHelper release];
     
@@ -143,10 +147,8 @@
     frame.origin.x = width * index;
     frame.origin.y = 0;
     
-    
-    NSArray *images = [artist valueForKey:@"images"];
-    
-    NSDictionary *image = [images objectAtIndex:index];
+    NSMutableDictionary *image = [images objectAtIndex:index];
+
     
     NSString *url = [image valueForKey:@"url"];
     ImageDetail *asyncImage;
@@ -164,7 +166,7 @@
         asyncImage.multipleTouchEnabled = TRUE;
         asyncImage.navigationController = self.navigationController;
         asyncImage.controller = self;
-        asyncImage.image = image;
+        asyncImage.imageData = image;
         [asyncImage loadImageFromURL:url];
         
         [image setValue:asyncImage forKey:@"asyncImage"];
@@ -184,7 +186,7 @@
     int nextImageIndex = index + 1;
     int prevImageIndex = index - 1;
     
-    if (nextImageIndex < [[artist valueForKey:@"images"] count]) {
+    if (nextImageIndex < [images count]) {
          [self loadImage: nextImageIndex recursive:FALSE];
     }
     if (prevImageIndex >= 0) {

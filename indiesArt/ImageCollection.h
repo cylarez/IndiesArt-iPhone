@@ -14,10 +14,11 @@
 @interface ImageCollection : AsyncImageView {
     UINavigationController * navigationController;
     int index;
+    ArtistDetailViewController *controller;
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;
 @property(nonatomic) int index;
-
+@property(nonatomic, retain) ArtistDetailViewController *controller;
 
 @end

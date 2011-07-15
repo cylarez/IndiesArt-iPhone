@@ -10,7 +10,7 @@
 
 @implementation ImageDetail
 
-@synthesize navigationController, image, imageInfoView, controller;
+@synthesize navigationController, imageInfoView, controller;
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -50,7 +50,7 @@
 - (void)_viewArtist
 {
     ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
-    viewController.artist_id= [controller.artist valueForKey:@"_id"];
+    viewController.artist_id= [[imageData valueForKey:@"artist"] valueForKey:@"id"];
 	[self.controller.navigationController pushViewController:viewController animated:YES];
     [activityView stopAnimating];
     [activityView release];
@@ -74,7 +74,7 @@
     imageLabelText.numberOfLines = 2;
     imageLabelText.textColor = [UIColor whiteColor];
     imageLabelText.backgroundColor = [UIColor clearColor];
-    imageLabelText.text = [NSString stringWithFormat:@"%@ %@", [controller.artist valueForKey:@"name"], [image valueForKey:@"name"]];
+    imageLabelText.text = [NSString stringWithFormat:@"%@ %@", [[imageData valueForKey:@"artist"] valueForKey:@"name"], [imageData valueForKey:@"name"]];
     
     // Create FB button
     UIButton *fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -93,7 +93,7 @@
     [imageInfoView addSubview:imageLabelText];
     
     // Add button to view artist (if from discover) 
-    if ([controller.artist valueForKey:@"_id"]) {
+    if (! controller.artist_id) {
         artistButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [artistButton addTarget:self action:@selector(viewArtist) forControlEvents:UIControlEventTouchDown];
         artistButton.frame = CGRectMake(219, 5, 87, 30);

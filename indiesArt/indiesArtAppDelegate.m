@@ -41,9 +41,7 @@
     // Download indiesArt data
     self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
     self.discoverData = [self getDiscoverData];
-    
     facebook = [[Facebook alloc] initWithAppId:APP_ID];
-    NSLog(@"app finished");
     
     // Override point for customization after application launch.
     // Add the tab bar controller's current view as a subview of the window
@@ -96,6 +94,9 @@
 
 - (void)dealloc
 {
+    [feed release];
+    [discoverData release];
+    [facebook release];
     [_window release];
     [_tabBarController release];
     [super dealloc];

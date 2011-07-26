@@ -21,13 +21,9 @@
     
 }
 
-
-
-
 - (void)_loadArtist
 {
     ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
-    
     
     NSArray *data = (selectedIndexPath.section == 2) ? submissions : artists;
     

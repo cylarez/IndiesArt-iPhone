@@ -16,7 +16,6 @@
 {
     [super viewDidLoad];
     autoLoad = TRUE;
-    appDelegate = [[[UIApplication sharedApplication] delegate] retain];
     [self performSelector:@selector(reloadData) withObject:nil afterDelay:0];
 }
 
@@ -26,7 +25,7 @@
     autoLoad = FALSE;
     self.images = [data valueForKey:@"images"]; 
     artist =  data;
-    [self loadImages];
+    
 }
 
 - (IBAction)reloadData
@@ -36,14 +35,15 @@
     hud.labelText = @"Loading";
         
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+
         [self _reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [self loadImages];
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         });
     });
-
     
-    [self performSelector:@selector(_reloadData) withObject:nil afterDelay:0];
+    
 }
 
 

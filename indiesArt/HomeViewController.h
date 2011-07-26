@@ -17,6 +17,7 @@
 	IBOutlet UIPageControl* pageControl;
     BOOL pageControlIsChangingPage;
     NSArray* slides;
+    MBProgressHUD *HUD;
 }
 
 @property (nonatomic, retain) UIView *scrollView;
@@ -24,6 +25,7 @@
 @property (nonatomic, retain) NSArray* slides;
 
 - (IBAction)changePage:(id)sender;
+- (IBAction)reloadData:(id)sender;
 - (void)setupPage;
 
 @end

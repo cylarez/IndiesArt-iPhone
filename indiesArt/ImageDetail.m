@@ -69,7 +69,7 @@
     imageLabel.backgroundColor = [UIColor blackColor];
     imageLabel.alpha = 0.7;
     
-    UILabel *imageLabelText = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 320, 110)];
+    UILabel *imageLabelText = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 300, 110)];
     imageLabelText.lineBreakMode = UILineBreakModeWordWrap;
     imageLabelText.numberOfLines = 2;
     imageLabelText.textColor = [UIColor whiteColor];

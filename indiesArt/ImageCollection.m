@@ -17,6 +17,9 @@
 {
     CollectionViewController *viewController	=	[[CollectionViewController alloc] initWithNibName:@"CollectionViewController" bundle:[NSBundle mainBundle]];
     viewController.mainImageUrl = [self.imageData valueForKey:@"url"];
+    
+    NSLog(@"Image url %@", [self.imageData valueForKey:@"url"]);
+    
     viewController.hidesBottomBarWhenPushed = YES;
     viewController.images = controller.images;
     viewController.artist_id = controller.artist_id;

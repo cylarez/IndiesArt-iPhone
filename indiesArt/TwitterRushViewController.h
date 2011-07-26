@@ -12,7 +12,8 @@
 { 
 	IBOutlet UITextField *tweetTextField;
 	IBOutlet UILabel *frameTweet;
-	SA_OAuthTwitterEngine				*_engine;	
+	SA_OAuthTwitterEngine				*_engine;
+    MBProgressHUD *HUD;
 }
 
 @property(nonatomic, retain) IBOutlet UITextField *tweetTextField;

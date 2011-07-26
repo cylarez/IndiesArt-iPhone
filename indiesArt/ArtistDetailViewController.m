@@ -11,7 +11,7 @@
 
 @implementation ArtistDetailViewController
 
-@synthesize artist, artist_id, scrollView, images;
+@synthesize artist, artist_id, scrollView, images, appDelegate;
 
 -(void)loadImages
 {    
@@ -23,7 +23,7 @@
     int y = border;
     int c = 1;
     int index = 0;
-
+    
     for (NSMutableDictionary *i in images) {
         if (c > 3) {
             y += imageHeight;
@@ -81,16 +81,15 @@
 {
     [super viewDidLoad];
     
-    appDelegate = [[[UIApplication sharedApplication] delegate] retain];
+    appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
     
     if (artist_id != nil) {
     
         NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
         self.artist = [appDelegate downloadData: url];
         images = [artist valueForKey:@"images"];
+        [self loadImages];
     }
-    
-    [self loadImages];
     
 }
 

@@ -42,14 +42,14 @@
 		_engine = [[SA_OAuthTwitterEngine alloc] initOAuthWithDelegate:self];
 		_engine.consumerKey    = kOAuthConsumerKey;
 		_engine.consumerSecret = kOAuthConsumerSecret;	
-	}
-	
-	UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];
-	
-	if (controller){
-		[self presentModalViewController: controller animated: YES];
-	}
-
+        UIViewController *controller = [SA_OAuthTwitterController controllerToEnterCredentialsWithTwitterEngine:_engine delegate:self];
+        
+        if (controller){
+            [self presentModalViewController: controller animated: YES];
+        }
+	} else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 	   
 - (void)viewDidUnload {	
@@ -64,6 +64,7 @@
 - (void)dealloc {
 	[_engine release];
 	[tweetTextField release];
+    [HUD release];
     [super dealloc];
 }
 
@@ -82,13 +83,34 @@
 
 //=============================================================================================================================
 #pragma mark TwitterEngineDelegate
+
+- (void)showSuccess {
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
+	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tweeted.png"]] autorelease];
+	
+    // Set custom view mode
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Tweeted!";
+	
+    [HUD show:YES];
+	[HUD hide:YES afterDelay:3];
+}
+
 - (void) requestSucceeded: (NSString *) requestIdentifier {
 	NSLog(@"Request %@ succeeded", requestIdentifier);
+    [self showSuccess];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) requestFailed: (NSString *) requestIdentifier withError: (NSError *) error {
 	NSLog(@"Request %@ failed with error: %@", requestIdentifier, error);
+}
+
+-(void) logoutFromTwitter
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"authData"]];
 }
 
 

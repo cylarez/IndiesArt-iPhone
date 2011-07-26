@@ -11,7 +11,6 @@
 #import "SlideCell.h"
 
 @interface IndiesArtViewController : UITableViewController  {
-
 	indiesArtAppDelegate* appDelegate;    
     NSIndexPath *selectedIndexPath;
     NSArray *artists, *submissions;

@@ -94,6 +94,24 @@
     pageControlIsChangingPage = YES;
 }
 
+- (IBAction)reloadData:(id)sender
+{
+
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+        [self.navigationController.view addSubview:HUD];
+        
+        HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tweeted.png"]] autorelease];
+        
+        // Set custom view mode
+        HUD.mode = MBProgressHUDModeCustomView;
+        HUD.labelText = @"Tweeted!";
+        
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:3];
+
+}
+
 #pragma mark - Basic
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -122,8 +140,6 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo_head.png"]];
     self.navigationItem.titleView = imageView;
     [imageView release];
@@ -133,11 +149,15 @@
     self.artists = [appDelegate.feed valueForKey:@"artists"];
     self.submissions = [appDelegate.feed valueForKey:@"submissions"];
     self.slides = [appDelegate.feed valueForKey:@"slides"];
+    
+    [super viewDidLoad];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+
+    [slides release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -217,41 +237,41 @@
         [oldImage removeFromSuperview];
     }
     
-        UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] 
-                                             initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+    UIActivityIndicatorView *spinner = [[[UIActivityIndicatorView alloc] 
+                                         initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
 
-        
-        // Spacer is a 1x1 transparent png
-        UIImage *spacer = [UIImage imageNamed:@"spacer"];
-        
-        UIGraphicsBeginImageContext(spinner.frame.size);
-        
-        [spacer drawInRect:CGRectMake(0,0,spinner.frame.size.width,spinner.frame.size.height)];
-        UIImage* resizedSpacer = UIGraphicsGetImageFromCurrentImageContext();
-        
-        UIGraphicsEndImageContext();
-        cell.imageView.image = resizedSpacer;
-        [cell.imageView addSubview:spinner];
-        [spinner startAnimating];
-        
-        
-        CGRect frame;
-        frame.size.width=40; frame.size.height=40; frame.origin.x=0; frame.origin.y=0;
-        AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
-        asyncImage.tag = 999;
     
-        NSDictionary *artist;
-        if (indexPath.section == 1) {
-            artist		=	[self.artists objectAtIndex:indexPath.row];
-        } else {
-            artist		=	[self.submissions objectAtIndex:indexPath.row];
-        }
+    // Spacer is a 1x1 transparent png
+    UIImage *spacer = [UIImage imageNamed:@"spacer"];
+    
+    UIGraphicsBeginImageContext(spinner.frame.size);
+    
+    [spacer drawInRect:CGRectMake(0,0,spinner.frame.size.width,spinner.frame.size.height)];
+    UIImage* resizedSpacer = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    cell.imageView.image = resizedSpacer;
+    [cell.imageView addSubview:spinner];
+    [spinner startAnimating];
+    
+    
+    CGRect frame;
+    frame.size.width=40; frame.size.height=40; frame.origin.x=0; frame.origin.y=0;
+    AsyncImageView* asyncImage = [[[AsyncImageView alloc] initWithFrame:frame] autorelease];
+    asyncImage.tag = 999;
 
-        [asyncImage loadImageFromURL:[artist valueForKey:@"image"]];
-        
-        cell.textLabel.text			=	[NSString stringWithFormat:@" %@", [artist valueForKey:@"name"]];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        [cell.contentView addSubview:asyncImage];
+    NSDictionary *artist;
+    if (indexPath.section == 1) {
+        artist		=	[self.artists objectAtIndex:indexPath.row];
+    } else {
+        artist		=	[self.submissions objectAtIndex:indexPath.row];
+    }
+
+    [asyncImage loadImageFromURL:[artist valueForKey:@"image"]];
+    
+    cell.textLabel.text			=	[NSString stringWithFormat:@" %@", [artist valueForKey:@"name"]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [cell.contentView addSubview:asyncImage];
         
        
     

@@ -21,6 +21,7 @@
     Facebook *facebook;
     NSArray *images;
     NSString *artist_id;
+    MBProgressHUD *HUD;
 }
 
 

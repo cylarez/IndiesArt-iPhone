@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSString *artist_id;
 @property (nonatomic, retain) UIView *scrollView;
 @property (nonatomic, copy) NSArray *images;
+@property (nonatomic, retain) indiesArtAppDelegate* appDelegate;
 
 -(void)loadImages;
 

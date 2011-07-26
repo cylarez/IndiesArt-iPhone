@@ -14,5 +14,6 @@
 }
 
 - (IBAction)reloadData;
+- (void)_reloadData;
 
 @end

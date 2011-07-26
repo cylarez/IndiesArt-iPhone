@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "ArtistDetailViewController.h"
 
-#define INDIE_URL               @"http://cylarez:expression@dev.indiesart.com"
+#define INDIE_URL               @"http://www.indiesart.com"
 #define ARTIST_URL              @"mobile/artist"
 #define APP_ID                  @"139707482707461"
 #define kOAuthConsumerKey       @"5HdyAAORjW6Yyzza2W8PWA"   

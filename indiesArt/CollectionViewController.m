@@ -38,7 +38,7 @@
     [self loadImage:index recursive:TRUE];
     int size = [images count] * 320;
     
-    NSLog(@"%d", size);
+    NSLog(@"Count %d", [images count]);
     
     
     
@@ -124,6 +124,20 @@
     NSArray *permissions = [[NSArray arrayWithObjects:@"read_stream", @"publish_stream", @"offline_access",nil] retain];
     [facebook authorize:permissions delegate:self];
     [permissions release];
+}
+
+- (void)dialogDidComplete:(FBDialog *)dialog {
+    
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	[self.navigationController.view addSubview:HUD];
+	HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fb-posted.png"]] autorelease];
+	
+    // Set custom view mode
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = @"Posted!";
+	
+    [HUD show:YES];
+	[HUD hide:YES afterDelay:3];
 }
 
 - (void)imageSaved
@@ -239,7 +253,7 @@
 
 - (void)viewDidLoad
 {
-    appDelegate = [[[UIApplication sharedApplication] delegate] retain];
+    appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
     facebook = appDelegate.facebook;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.

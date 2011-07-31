@@ -29,11 +29,6 @@
 
 #pragma mark ViewController Lifecycle
 
-- (void)viewDidLoad
-{
-    [frameTweet.layer setBorderColor: [[UIColor blackColor] CGColor]];
-    [frameTweet.layer setBorderWidth: 2.0];
-}
 
 - (void)viewDidAppear: (BOOL)animated {
     [self.navigationController setNavigationBarHidden:(NO) animated:YES];

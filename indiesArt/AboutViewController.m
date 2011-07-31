@@ -42,15 +42,15 @@
 {
     [super viewDidLoad];
     appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
-
-    // Do any additional setup after loading the view from its nib.
+    
+    NSString *text = appDelegate.about; 
+    textView.text = text;
     
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSString *text = [appDelegate stringWithUrl:@"http://cylarez:expression@dev.indiesart.com/mobile/about"]; 
-    textView.text = text;
+
 }
 
 - (void)viewDidUnload

@@ -7,7 +7,7 @@
 //
 
 #import "ImageCollection.h"
-
+#import "ArtistDetailViewController.h"
 
 @implementation ImageCollection
 

@@ -159,7 +159,7 @@
     self.navigationItem.titleView = imageView;
     [imageView release];
     
-    self.appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
+    self.appDelegate = (indiesArtAppDelegate*)[[UIApplication sharedApplication] delegate];
     
     [self loadData:appDelegate.feed];
     

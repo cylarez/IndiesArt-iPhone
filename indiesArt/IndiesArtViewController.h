@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "indiesArtAppDelegate.h"
 #import "SlideCell.h"
+#import "ArtistDetailViewController.h"
 
 @interface IndiesArtViewController : UITableViewController  {
 	indiesArtAppDelegate* appDelegate;    

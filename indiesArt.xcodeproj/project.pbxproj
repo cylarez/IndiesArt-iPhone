@@ -10,7 +10,6 @@
 		7203702C13CA2BD100D62B32 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7203702B13CA2BD100D62B32 /* libxml2.dylib */; };
 		7203708013CA2F4A00D62B32 /* TwitterRushViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203707E13CA2F4900D62B32 /* TwitterRushViewController.m */; };
 		7203708113CA2F4A00D62B32 /* TwitterRushViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7203707F13CA2F4A00D62B32 /* TwitterRushViewController.xib */; };
-		7203708313CA369E00D62B32 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7203708213CA369E00D62B32 /* background.jpg */; };
 		7203708613CA404D00D62B32 /* MKBitlyHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203708513CA404D00D62B32 /* MKBitlyHelper.m */; };
 		7203709013CA78AF00D62B32 /* arrow_pink.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7203708F13CA78AF00D62B32 /* arrow_pink.gif */; };
 		7203709313CA7CFE00D62B32 /* IndiesArtViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7203709213CA7CFD00D62B32 /* IndiesArtViewController.m */; };
@@ -23,7 +22,9 @@
 		720C75CA13E50473000D5BCC /* bg-indiesart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 720C75C813E50473000D5BCC /* bg-indiesart@2x.png */; };
 		720C75CD13E50858000D5BCC /* bg-indiesart-wotab.png in Resources */ = {isa = PBXBuildFile; fileRef = 720C75CB13E50858000D5BCC /* bg-indiesart-wotab.png */; };
 		720C75CE13E50858000D5BCC /* bg-indiesart-wotab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 720C75CC13E50858000D5BCC /* bg-indiesart-wotab@2x.png */; };
-		720C75D413E5298E000D5BCC /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C75D313E5298E000D5BCC /* GalleryViewController.m */; };
+		720C75D713E52E13000D5BCC /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C75D613E52E13000D5BCC /* GalleryViewController.m */; };
+		720C75DA13E53CF3000D5BCC /* bg-indiesart-tweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 720C75D813E53CF3000D5BCC /* bg-indiesart-tweet.png */; };
+		720C75DB13E53CF3000D5BCC /* bg-indiesart-tweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 720C75D913E53CF3000D5BCC /* bg-indiesart-tweet@2x.png */; };
 		723BE48F13DCD9BD00CA367C /* tab_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 723BE48D13DCD9BD00CA367C /* tab_group.png */; };
 		723BE49013DCD9BD00CA367C /* tab_group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 723BE48E13DCD9BD00CA367C /* tab_group@2x.png */; };
 		723BE49313DCDE9D00CA367C /* tab_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 723BE49113DCDE9D00CA367C /* tab_about.png */; };
@@ -132,7 +133,6 @@
 		7203707D13CA2F4900D62B32 /* TwitterRushViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterRushViewController.h; sourceTree = "<group>"; };
 		7203707E13CA2F4900D62B32 /* TwitterRushViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterRushViewController.m; sourceTree = "<group>"; };
 		7203707F13CA2F4A00D62B32 /* TwitterRushViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwitterRushViewController.xib; sourceTree = "<group>"; };
-		7203708213CA369E00D62B32 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		7203708413CA404D00D62B32 /* MKBitlyHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBitlyHelper.h; sourceTree = "<group>"; };
 		7203708513CA404D00D62B32 /* MKBitlyHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBitlyHelper.m; sourceTree = "<group>"; };
 		7203708F13CA78AF00D62B32 /* arrow_pink.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = arrow_pink.gif; sourceTree = "<group>"; };
@@ -148,8 +148,10 @@
 		720C75C813E50473000D5BCC /* bg-indiesart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart@2x.png"; sourceTree = "<group>"; };
 		720C75CB13E50858000D5BCC /* bg-indiesart-wotab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-wotab.png"; sourceTree = "<group>"; };
 		720C75CC13E50858000D5BCC /* bg-indiesart-wotab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-wotab@2x.png"; sourceTree = "<group>"; };
-		720C75D213E5298E000D5BCC /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
-		720C75D313E5298E000D5BCC /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		720C75D513E52E13000D5BCC /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		720C75D613E52E13000D5BCC /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		720C75D813E53CF3000D5BCC /* bg-indiesart-tweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-tweet.png"; sourceTree = "<group>"; };
+		720C75D913E53CF3000D5BCC /* bg-indiesart-tweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-tweet@2x.png"; sourceTree = "<group>"; };
 		723BE48D13DCD9BD00CA367C /* tab_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_group.png; sourceTree = "<group>"; };
 		723BE48E13DCD9BD00CA367C /* tab_group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_group@2x.png"; sourceTree = "<group>"; };
 		723BE49113DCDE9D00CA367C /* tab_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_about.png; sourceTree = "<group>"; };
@@ -332,6 +334,8 @@
 				7279263213CFB1F5005D9E6A /* src */,
 				7203709113CA7CFA00D62B32 /* IndiesArtViewController.h */,
 				7203709213CA7CFD00D62B32 /* IndiesArtViewController.m */,
+				720C75D513E52E13000D5BCC /* GalleryViewController.h */,
+				720C75D613E52E13000D5BCC /* GalleryViewController.m */,
 				7279266013CFB208005D9E6A /* MBProgressHUD.h */,
 				7279266113CFB208005D9E6A /* MBProgressHUD.m */,
 				7203708413CA404D00D62B32 /* MKBitlyHelper.h */,
@@ -346,8 +350,6 @@
 				723C178F136615D50087A5F9 /* ImageDetail.m */,
 				7253EEA11367EF6600859C9B /* ImageSlide.h */,
 				7253EEA21367EF6600859C9B /* ImageSlide.m */,
-				720C75D213E5298E000D5BCC /* GalleryViewController.h */,
-				720C75D313E5298E000D5BCC /* GalleryViewController.m */,
 			);
 			name = Class;
 			sourceTree = "<group>";
@@ -568,6 +570,8 @@
 		72B4680D1353A96F00C28892 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				720C75D813E53CF3000D5BCC /* bg-indiesart-tweet.png */,
+				720C75D913E53CF3000D5BCC /* bg-indiesart-tweet@2x.png */,
 				720C75CB13E50858000D5BCC /* bg-indiesart-wotab.png */,
 				720C75CC13E50858000D5BCC /* bg-indiesart-wotab@2x.png */,
 				720C75C713E50473000D5BCC /* bg-indiesart.png */,
@@ -589,7 +593,6 @@
 				7203709913CA8CDA00D62B32 /* Cloud.png */,
 				728F2AB913DB7355009007E0 /* Cloud@2x.png */,
 				7203708F13CA78AF00D62B32 /* arrow_pink.gif */,
-				7203708213CA369E00D62B32 /* background.jpg */,
 				7284393A136E13B500C3045A /* icon-114.png */,
 				72843938136E13AE00C3045A /* icon-57.png */,
 				724C40641378D95E003E9AD1 /* bg-default-50.png */,
@@ -708,7 +711,6 @@
 				7284393B136E13B500C3045A /* icon-114.png in Resources */,
 				724C40651378D95E003E9AD1 /* bg-default-50.png in Resources */,
 				7203708113CA2F4A00D62B32 /* TwitterRushViewController.xib in Resources */,
-				7203708313CA369E00D62B32 /* background.jpg in Resources */,
 				7203709013CA78AF00D62B32 /* arrow_pink.gif in Resources */,
 				7203709A13CA8CDA00D62B32 /* Cloud.png in Resources */,
 				72EEDA9213CBA08D00379B72 /* facebook_button.png in Resources */,
@@ -750,6 +752,8 @@
 				720C75CA13E50473000D5BCC /* bg-indiesart@2x.png in Resources */,
 				720C75CD13E50858000D5BCC /* bg-indiesart-wotab.png in Resources */,
 				720C75CE13E50858000D5BCC /* bg-indiesart-wotab@2x.png in Resources */,
+				720C75DA13E53CF3000D5BCC /* bg-indiesart-tweet.png in Resources */,
+				720C75DB13E53CF3000D5BCC /* bg-indiesart-tweet@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -803,7 +807,7 @@
 				7279265B13CFB1F5005D9E6A /* SBJsonParser.m in Sources */,
 				7279265C13CFB1F5005D9E6A /* SBJsonWriter.m in Sources */,
 				7279266213CFB208005D9E6A /* MBProgressHUD.m in Sources */,
-				720C75D413E5298E000D5BCC /* GalleryViewController.m in Sources */,
+				720C75D713E52E13000D5BCC /* GalleryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,7 +837,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sylvain NICOLLE (RGP226E82J)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
@@ -846,6 +850,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D326304-47D5-44FA-9350-2A9EF0FA0C71";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -854,6 +859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sylvain NICOLLE (RGP226E82J)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
@@ -865,6 +871,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "2D326304-47D5-44FA-9350-2A9EF0FA0C71";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -873,6 +880,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -882,7 +890,9 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TwitterOAuth/Twitter+OAuth/Libraries & Headers\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -891,6 +901,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv6,
+					"$(ARCHS_STANDARD_32_BIT)",
+				);
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "indiesArt/indiesArt-Prefix.pch";
@@ -899,8 +913,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TwitterOAuth/Twitter+OAuth/Libraries & Headers\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv6 $(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

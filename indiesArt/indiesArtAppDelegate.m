@@ -13,7 +13,7 @@
 @implementation indiesArtAppDelegate
 
 
-@synthesize window=_window, feed, discoverData, facebook;
+@synthesize window=_window, feed, discoverData, about, facebook;
 
 @synthesize tabBarController=_tabBarController;
 
@@ -44,9 +44,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [application setStatusBarHidden:FALSE];
+    
     // Download indiesArt data
     self.feed = [self getFeedData];
     self.discoverData = [self getDiscoverData];
+    self.about = [self stringWithUrl:@"http://cylarez:expression@dev.indiesart.com/mobile/about"];
     facebook = [[Facebook alloc] initWithAppId:APP_ID];
     
     // Override point for customization after application launch.

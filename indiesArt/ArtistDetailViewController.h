@@ -10,21 +10,18 @@
 #import "indiesArtAppDelegate.h"
 @class indiesArtAppDelegate;
 #import "ImageCollection.h"
+#import "GalleryViewController.h"
 
-@interface ArtistDetailViewController : UIViewController {
-    NSDictionary* artist;
+@interface ArtistDetailViewController : GalleryViewController {
     NSString* artist_id;
-    indiesArtAppDelegate* appDelegate;
     IBOutlet UIScrollView* scrollView;
     NSArray *images;
-    MBProgressHUD *HUD;
 }
 
-@property (nonatomic, copy) NSDictionary *artist;
 @property (nonatomic, retain) NSString *artist_id;
 @property (nonatomic, retain) UIView *scrollView;
 @property (nonatomic, copy) NSArray *images;
-@property (nonatomic, retain) indiesArtAppDelegate* appDelegate;
+
 
 -(void)loadImages;
 -(IBAction)reloadData;

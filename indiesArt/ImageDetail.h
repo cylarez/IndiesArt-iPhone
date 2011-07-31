@@ -10,8 +10,7 @@
 #import "asyncImageView.h"
 #import "CollectionViewController.h"
 @class CollectionViewController;
-#import "MKBitlyHelper.h"
-#import "TwitterRushViewController.h"
+#import "ArtistDetailViewController.h"
 
 @interface ImageDetail : AsyncImageView {
     

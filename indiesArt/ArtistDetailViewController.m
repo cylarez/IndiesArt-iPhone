@@ -11,7 +11,8 @@
 
 @implementation ArtistDetailViewController
 
-@synthesize artist, artist_id, scrollView, images, appDelegate;
+@synthesize artist_id, scrollView, images;
+
 
 -(void)loadImages
 {    
@@ -20,7 +21,7 @@
     int scrollViewHeight = imageHeight;
     int border = 10;
     int x = border;
-    int yBase = artist_id ? 140 : border;
+    int yBase = artist_id ? 130 : border;
     int y = yBase;
     int c = 1;
     int index = 0;
@@ -30,7 +31,7 @@
     // Add the artist name Label
     if (artist_id) {
         UIImageView *artistLabelBg = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"label-artist.png"]] autorelease];
-        UILabel *artistLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 25, 270, 25)];
+        UILabel *artistLabel = [[[UILabel alloc] initWithFrame:CGRectMake(25, 25, 270, 25)] autorelease];
         artistLabel.lineBreakMode = UILineBreakModeWordWrap;
         artistLabel.numberOfLines = 2;
         artistLabel.textColor = [UIColor blackColor];
@@ -44,19 +45,20 @@
         [artistLabelBg addSubview:artistLabel];
         
         [self.view addSubview:artistLabelBg];
+
         
         // Set Share buttons
         // Create FB button
-        UIButton *fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [fbButton addTarget:self action:@selector(shareImageFacebook) forControlEvents:UIControlEventTouchDown];
-        fbButton.frame = CGRectMake(65, 90, 87, 30);
+        fbButton.frame = CGRectMake(65, 82, 87, 30);
         [fbButton setImage:[UIImage imageNamed:@"facebook_button.png"] forState:UIControlStateNormal];
         [self.view addSubview:fbButton];
         
         // Create Twitter button
         UIButton *twButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [twButton addTarget:self action:@selector(shareImageTwitter) forControlEvents:UIControlEventTouchDown];
-        twButton.frame = CGRectMake(165, 90, 87, 30);
+        twButton.frame = CGRectMake(165, 82, 87, 30);
         [twButton setImage:[UIImage imageNamed:@"twitter_button.png"] forState:UIControlStateNormal];
         [self.view addSubview:twButton];
     }

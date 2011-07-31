@@ -10,9 +10,10 @@
 #import "indiesArtAppDelegate.h"
 
 @interface AboutViewController : UIViewController <UIWebViewDelegate> {
-    IBOutlet UIWebView *webView;
+    IBOutlet UITextView *textView;
+    indiesArtAppDelegate* appDelegate;
 }
 
-@property(nonatomic, retain) IBOutlet UIWebView *webView;
+@property(nonatomic, retain) IBOutlet UITextView *textView;
 
 @end

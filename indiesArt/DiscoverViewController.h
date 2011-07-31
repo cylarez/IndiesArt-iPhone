@@ -13,7 +13,6 @@
     BOOL autoLoad;
 }
 
-- (IBAction)reloadData;
 - (void)_reloadData;
 
 @end

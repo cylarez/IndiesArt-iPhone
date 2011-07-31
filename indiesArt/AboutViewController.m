@@ -11,7 +11,7 @@
 
 @implementation AboutViewController
 
-@synthesize webView;
+@synthesize textView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,16 +27,6 @@
     [super dealloc];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView
-{
-	MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-	hud.labelText = @"Loading";
-}
-
--(void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -51,16 +41,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
+
     // Do any additional setup after loading the view from its nib.
     
-    webView.scalesPageToFit = YES;
-	webView.delegate = self;
-    
-    NSURL *url = [NSURL URLWithString:@"http://static.indiesart.com/assets/mobile_about.html"];
-	
-	//URL Requst Object
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-	[webView loadRequest:requestObj];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSString *text = [appDelegate stringWithUrl:@"http://cylarez:expression@dev.indiesart.com/mobile/about"]; 
+    textView.text = text;
 }
 
 - (void)viewDidUnload

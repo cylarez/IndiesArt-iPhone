@@ -20,9 +20,46 @@
     int scrollViewHeight = imageHeight;
     int border = 10;
     int x = border;
-    int y = border;
+    int yBase = artist_id ? 140 : border;
+    int y = yBase;
     int c = 1;
     int index = 0;
+    
+    [[self.view subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    // Add the artist name Label
+    if (artist_id) {
+        UIImageView *artistLabelBg = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"label-artist.png"]] autorelease];
+        UILabel *artistLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 25, 270, 25)];
+        artistLabel.lineBreakMode = UILineBreakModeWordWrap;
+        artistLabel.numberOfLines = 2;
+        artistLabel.textColor = [UIColor blackColor];
+        artistLabel.backgroundColor = [UIColor clearColor];
+        artistLabel.textAlignment = UITextAlignmentCenter;
+        artistLabel.text = [artist valueForKey:@"name"];
+        artistLabel.shadowColor = [UIColor grayColor];
+        artistLabel.shadowOffset = CGSizeMake(1, 1);
+        artistLabel.font = [UIFont fontWithName:@"Impact" size:22];
+        
+        [artistLabelBg addSubview:artistLabel];
+        
+        [self.view addSubview:artistLabelBg];
+        
+        // Set Share buttons
+        // Create FB button
+        UIButton *fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [fbButton addTarget:self action:@selector(shareImageFacebook) forControlEvents:UIControlEventTouchDown];
+        fbButton.frame = CGRectMake(65, 90, 87, 30);
+        [fbButton setImage:[UIImage imageNamed:@"facebook_button.png"] forState:UIControlStateNormal];
+        [self.view addSubview:fbButton];
+        
+        // Create Twitter button
+        UIButton *twButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [twButton addTarget:self action:@selector(shareImageTwitter) forControlEvents:UIControlEventTouchDown];
+        twButton.frame = CGRectMake(165, 90, 87, 30);
+        [twButton setImage:[UIImage imageNamed:@"twitter_button.png"] forState:UIControlStateNormal];
+        [self.view addSubview:twButton];
+    }
     
     for (NSMutableDictionary *i in images) {
         if (c > 3) {
@@ -50,7 +87,7 @@
         c++;
     }
     
-    [scrollView setContentSize:CGSizeMake(300, scrollViewHeight + border)];
+    [scrollView setContentSize:CGSizeMake(300, scrollViewHeight + yBase)];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -77,20 +114,34 @@
 
 #pragma mark - View lifecycle
 
+- (void)_reloadData
+{
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
+    self.artist = [appDelegate downloadData: url];
+    self.images = [artist valueForKey:@"images"];
+}
+
+- (IBAction)reloadData
+{
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Loading";
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        [self _reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self loadImages];
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        });
+    });
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
-    
-    if (artist_id != nil) {
-    
-        NSString *url = [NSString stringWithFormat:@"%@/%@/%@", INDIE_URL, ARTIST_URL, artist_id];
-        self.artist = [appDelegate downloadData: url];
-        images = [artist valueForKey:@"images"];
-        [self loadImages];
-    }
-    
+    [self reloadData];
 }
 
 - (void)viewDidUnload

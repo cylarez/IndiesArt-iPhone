@@ -94,23 +94,38 @@
     pageControlIsChangingPage = YES;
 }
 
+- (void)loadData:(NSDictionary*)feed
+{
+    self.artists = [feed valueForKey:@"artists"];
+    self.submissions = [feed valueForKey:@"submissions"];
+    self.slides = [feed valueForKey:@"slides"];
+}
+
+- (void)_reloadData
+{
+    NSDictionary* feed  =   [appDelegate getFeedData];
+    [self loadData:feed];
+    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self setupPage];
+    [[self.tableView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]; 
+    [self.tableView reloadData];
+}
+
 - (IBAction)reloadData:(id)sender
 {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+    hud.labelText = @"Loading";
+    
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self _reloadData];
+            [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
+        });
+    });
+    
+    
+}   
 
-        
-        HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-        [self.navigationController.view addSubview:HUD];
-        
-        HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tweeted.png"]] autorelease];
-        
-        // Set custom view mode
-        HUD.mode = MBProgressHUDModeCustomView;
-        HUD.labelText = @"Tweeted!";
-        
-        [HUD show:YES];
-        [HUD hide:YES afterDelay:3];
-
-}
 
 #pragma mark - Basic
 
@@ -146,9 +161,7 @@
     
     self.appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
     
-    self.artists = [appDelegate.feed valueForKey:@"artists"];
-    self.submissions = [appDelegate.feed valueForKey:@"submissions"];
-    self.slides = [appDelegate.feed valueForKey:@"slides"];
+    [self loadData:appDelegate.feed];
     
     [super viewDidLoad];
 }
@@ -272,8 +285,6 @@
     cell.textLabel.text			=	[NSString stringWithFormat:@" %@", [artist valueForKey:@"name"]];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [cell.contentView addSubview:asyncImage];
-        
-       
     
     return cell;
 }

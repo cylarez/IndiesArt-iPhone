@@ -35,7 +35,9 @@
 @property (nonatomic, retain) Facebook *facebook;
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
+- (NSString *)stringWithUrl:(NSString *)url;
 - (NSDictionary*)downloadData:(NSString*)url;
+- (NSDictionary*)getFeedData;
 - (NSDictionary*)getDiscoverData;
 - (NSString*)getShortUrl:(NSString*)url;
 

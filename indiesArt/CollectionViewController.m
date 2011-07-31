@@ -90,12 +90,42 @@
     [self shareImageFacebook];
 }
 
+- (NSString*)getShareText:(BOOL)fromTwitter
+{
+    id submission = [[currentImage.imageData valueForKey:@"artist"] valueForKey:@"submission"];
+    BOOL isSubmission = [submission boolValue];
+    NSString *str = nil;
+    
+    if (isSubmission) {
+        str = @"I promote %@ in the indiesArt submission process!";
+    } else {
+        str = @"%@ found ";
+        str = [str stringByAppendingString:(fromTwitter ? @"via @indiesart" : @"from indiesart.com")];
+    }
+    str = [NSString stringWithFormat:str, [[currentImage.imageData valueForKey:@"artist"] valueForKey:@"name"]];
+    
+    return str;
+}
+
+- (NSString*)getImageUrl
+{
+    id submission = [[currentImage.imageData valueForKey:@"artist"] valueForKey:@"submission"];
+    NSString *url = nil;
+    
+    if (submission) {
+        url = [[currentImage.imageData valueForKey:@"artist"] valueForKey:@"url"];
+    } else {
+        url = [currentImage.imageData valueForKey:@"url_page"];
+    }
+    url = [NSString stringWithFormat:@"%@%@", INDIE_URL, url];
+    
+    return [appDelegate getShortUrl:url];
+}
+
 - (void)shareImageTwitter
 {
     TwitterRushViewController *viewController	=	[[TwitterRushViewController alloc] initWithNibName:@"TwitterRushViewController" bundle:[NSBundle mainBundle]];
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@", INDIE_URL, [currentImage.imageData valueForKey:@"url_page"]]; 
-    NSString *tweet = [NSString stringWithFormat:@"%@ %@ found via @indiesart", [[currentImage.imageData valueForKey:@"artist"] valueForKey:@"name"], [appDelegate getShortUrl:url]];
+    NSString *tweet = [NSString stringWithFormat:@"%@ %@", [self getShareText:true], [self getImageUrl]];
     
 	[self.navigationController pushViewController:viewController animated:YES];
     viewController.tweetTextField.text = tweet;
@@ -105,11 +135,10 @@
 - (void)shareImageFacebook
 {
     if ([facebook isSessionValid]) {
-        NSString *url = [NSString stringWithFormat:@"%@%@", @"http://www.indiesart.com", [currentImage.imageData valueForKey:@"url_page"]];
         NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                        APP_ID, @"app_id",
-                                       [appDelegate getShortUrl:url], @"link",
-                                       @"I love this image found on indiesArt!",  @"message",
+                                       [self getImageUrl], @"link",
+                                       [self getShareText:false], @"message",
                                        nil];
 
         [facebook dialog:@"feed" andParams:params andDelegate:self];

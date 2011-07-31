@@ -36,7 +36,7 @@
     
 	[viewController release];
 	viewController = nil;
-    [data release];
+
 }
 
 -(void)loadArtist

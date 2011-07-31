@@ -23,6 +23,11 @@
     return [facebook handleOpenURL:url];
 }
 
+- (NSDictionary*)getFeedData
+{
+    return [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
+}
+
 - (NSDictionary*)getDiscoverData
 {
     return [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/discover"]];
@@ -38,8 +43,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [application setStatusBarHidden:FALSE];
     // Download indiesArt data
-    self.feed = [self downloadData:[INDIE_URL stringByAppendingString: @"/mobile/main"]];
+    self.feed = [self getFeedData];
     self.discoverData = [self getDiscoverData];
     facebook = [[Facebook alloc] initWithAppId:APP_ID];
     
@@ -116,9 +122,9 @@
 }
 */
 
-- (NSString *)stringWithUrl:(NSURL *)url
+- (NSString *)stringWithUrl:(NSString *)url
 {
-	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url
+	NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]
 												cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 											timeoutInterval:30];
 	NSURLResponse *response;
@@ -136,7 +142,7 @@
     return str;
 }
 
-- (id)objectWithUrl:(NSURL *)url
+- (id)objectWithUrl:(NSString *)url
 {	
 	SBJsonParser *parser = [SBJsonParser new];
     [parser autorelease];
@@ -147,7 +153,7 @@
 
 - (NSDictionary *)downloadData:(NSString*)url 
 {
-	id result = [self objectWithUrl:[NSURL URLWithString:url]];
+	id result = [self objectWithUrl:url];
 	NSDictionary *f = (NSDictionary *)result;
     
 	return f;

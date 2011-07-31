@@ -27,6 +27,6 @@
 @property (nonatomic, retain) indiesArtAppDelegate* appDelegate;
 
 -(void)loadImages;
-
+-(IBAction)reloadData;
 
 @end

@@ -103,6 +103,8 @@
 		72B468131353CE5800C28892 /* house@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468121353CE5800C28892 /* house@2x.png */; };
 		72B468151353CEC200C28892 /* 112-group.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468141353CEC200C28892 /* 112-group.png */; };
 		72B468171353CF2B00C28892 /* 05-shuffle.png in Resources */ = {isa = PBXBuildFile; fileRef = 72B468161353CF2B00C28892 /* 05-shuffle.png */; };
+		72DF98CD13E625C700C59BF2 /* icon-new.png in Resources */ = {isa = PBXBuildFile; fileRef = 72DF98CC13E625C700C59BF2 /* icon-new.png */; };
+		72DF98CF13E625CA00C59BF2 /* icon-new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72DF98CE13E625CA00C59BF2 /* icon-new@2x.png */; };
 		72E647DC135A555600070CFD /* asyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E647DB135A555600070CFD /* asyncImageView.m */; };
 		72E647E6135A657700070CFD /* ArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E647E4135A657600070CFD /* ArtistsViewController.m */; };
 		72E647E7135A657700070CFD /* ArtistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E647E5135A657700070CFD /* ArtistsViewController.xib */; };
@@ -291,6 +293,8 @@
 		72B468121353CE5800C28892 /* house@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "house@2x.png"; sourceTree = "<group>"; };
 		72B468141353CEC200C28892 /* 112-group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "112-group.png"; sourceTree = "<group>"; };
 		72B468161353CF2B00C28892 /* 05-shuffle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "05-shuffle.png"; sourceTree = "<group>"; };
+		72DF98CC13E625C700C59BF2 /* icon-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-new.png"; sourceTree = "<group>"; };
+		72DF98CE13E625CA00C59BF2 /* icon-new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-new@2x.png"; sourceTree = "<group>"; };
 		72E647DA135A555600070CFD /* asyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asyncImageView.h; sourceTree = "<group>"; };
 		72E647DB135A555600070CFD /* asyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = asyncImageView.m; sourceTree = "<group>"; };
 		72E647E3135A657600070CFD /* ArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistsViewController.h; sourceTree = "<group>"; };
@@ -357,6 +361,8 @@
 		726BF641135252D10046AC92 = {
 			isa = PBXGroup;
 			children = (
+				72DF98CE13E625CA00C59BF2 /* icon-new@2x.png */,
+				72DF98CC13E625C700C59BF2 /* icon-new.png */,
 				723BE49F13DCEB2A00CA367C /* Default@2x.png */,
 				723BE49D13DCEB2300CA367C /* Default.png */,
 				726BF656135252D10046AC92 /* indiesArt */,
@@ -754,6 +760,8 @@
 				720C75CE13E50858000D5BCC /* bg-indiesart-wotab@2x.png in Resources */,
 				720C75DA13E53CF3000D5BCC /* bg-indiesart-tweet.png in Resources */,
 				720C75DB13E53CF3000D5BCC /* bg-indiesart-tweet@2x.png in Resources */,
+				72DF98CD13E625C700C59BF2 /* icon-new.png in Resources */,
+				72DF98CF13E625CA00C59BF2 /* icon-new@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,6 +845,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sylvain NICOLLE (RGP226E82J)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sylvain NICOLLE (RGP226E82J)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -850,6 +859,7 @@
 					"$(SDKROOT)/usr/include/libxml2",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PROVISIONING_PROFILE = "2D326304-47D5-44FA-9350-2A9EF0FA0C71";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D326304-47D5-44FA-9350-2A9EF0FA0C71";
 				SDKROOT = iphoneos;
 			};
@@ -860,7 +870,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Sylvain NICOLLE (RGP226E82J)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Sylvain NICOLLE (RGP226E82J)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -872,6 +882,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "2D326304-47D5-44FA-9350-2A9EF0FA0C71";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D326304-47D5-44FA-9350-2A9EF0FA0C71";
 				SDKROOT = iphoneos;
 			};
 			name = Release;
@@ -881,6 +892,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sylvain NICOLLE";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sylvain NICOLLE";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -891,7 +904,11 @@
 					"\"$(SRCROOT)/TwitterOAuth/Twitter+OAuth/Libraries & Headers\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "01B1BD2D-0BAD-477B-9DFE-DCA0767A5FF7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "01B1BD2D-0BAD-477B-9DFE-DCA0767A5FF7";
+				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -903,8 +920,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
 					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
+					armv7,
 				);
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Sylvain NICOLLE";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sylvain NICOLLE";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "indiesArt/indiesArt-Prefix.pch";
@@ -914,9 +933,12 @@
 					"\"$(SRCROOT)/TwitterOAuth/Twitter+OAuth/Libraries & Headers\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "01B1BD2D-0BAD-477B-9DFE-DCA0767A5FF7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "01B1BD2D-0BAD-477B-9DFE-DCA0767A5FF7";
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv6 $(ARCHS_STANDARD_32_BIT)";
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

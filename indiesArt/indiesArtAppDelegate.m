@@ -48,7 +48,7 @@
     // Download indiesArt data
     self.feed = [self getFeedData];
     self.discoverData = [self getDiscoverData];
-    self.about = [self stringWithUrl:@"http://cylarez:expression@dev.indiesart.com/mobile/about"];
+    self.about = [self stringWithUrl:[INDIE_URL stringByAppendingString: @"/mobile/about"]];
     facebook = [[Facebook alloc] initWithAppId:APP_ID];
     
     // Override point for customization after application launch.

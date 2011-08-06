@@ -28,6 +28,19 @@
     [navigationController setNavigationBarHidden:(navigationController.navigationBarHidden ? NO : YES) animated:YES];
 }
 
+- (void)rotateImage
+{
+    [UIView beginAnimations:@"View Flip" context:nil];
+    [UIView setAnimationDuration:0.5f];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    self.transform = CGAffineTransformIdentity;
+    self.transform =
+    CGAffineTransformMakeRotation(M_PI * (90) / 180.0);
+    self.bounds = CGRectMake(0.0f, 0.0f, 480.0f, 320.0f);
+    self.center = CGPointMake(160.0f, 240.0f);
+    [UIView commitAnimations];
+}
+
 - (void)shareImageFacebook
 {
     [controller shareImageFacebook];
@@ -51,7 +64,7 @@
 {
     ArtistDetailViewController *viewController = [[ArtistDetailViewController alloc] initWithNibName:@"ArtistDetailViewController" bundle:[NSBundle mainBundle]];
     viewController.artist_id= [[imageData valueForKey:@"artist"] valueForKey:@"id"];
-	[self.controller.navigationController pushViewController:viewController animated:YES];
+	[navigationController pushViewController:viewController animated:YES];
     [activityView stopAnimating];
     [activityView release];
     activityView = nil;

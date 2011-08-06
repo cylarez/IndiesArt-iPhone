@@ -14,6 +14,7 @@
 @interface GalleryViewController : UIViewController < FBRequestDelegate, FBDialogDelegate, FBSessionDelegate> {
     indiesArtAppDelegate* appDelegate;
     UIButton *fbButton;
+    UIButton *twButton;
     Facebook *facebook;
     MBProgressHUD *HUD;
     NSDictionary* artist;

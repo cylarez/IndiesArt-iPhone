@@ -20,7 +20,7 @@
 - (void)setupPage
 {
 	scrollView.delegate = self;
-    
+    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	[self.scrollView setBackgroundColor:[UIColor blackColor]];
 	[scrollView setCanCancelContentTouches:NO];
 	
@@ -105,7 +105,6 @@
 {
     NSDictionary* feed  =   [appDelegate getFeedData];
     [self loadData:feed];
-    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self setupPage];
     [[self.tableView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]; 
     [self.tableView reloadData];
@@ -163,7 +162,22 @@
     
     [self loadData:appDelegate.feed];
     
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    
     [super viewDidLoad];
+}
+
+-(void) detectOrientation 
+{
+    int width = 320;
+    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || 
+        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+        width = 480;
+    }  
+    scrollView.frame = CGRectMake(0, 0, 320, scrollView.frame.size.height);
+    [self setupPage];
 }
 
 - (void)viewDidUnload
@@ -193,12 +207,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark - Table view data source

@@ -22,6 +22,8 @@
     NSArray *images;
     NSString *artist_id;
     
+    int called_index;
+    
 }
 
 

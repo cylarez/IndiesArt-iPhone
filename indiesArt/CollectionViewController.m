@@ -179,9 +179,20 @@
     [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-	NSLog(@"appear!");
+- (void)viewDidAppear:(BOOL)animated {
+    
+    
+//    if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation)){
+//        [UIView beginAnimations:@"View Flip" context:nil];
+//        [UIView setAnimationDuration:0.5f];
+//        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+//        self.view.transform = CGAffineTransformIdentity;
+//        self.view.transform =
+//        CGAffineTransformMakeRotation(M_PI * (90) / 180.0);
+//        self.view.bounds = CGRectMake(0.0f, 0.0f, 480.0f, 320.0f);
+//        self.view.center = CGPointMake(160.0f, 240.0f);
+//        [UIView commitAnimations];
+//    }
 }
 
 - (void)dealloc
@@ -206,10 +217,14 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+	//we want to support all orientations
+    return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    NSLog(@"Rotate Go!");
 }
 
 @end

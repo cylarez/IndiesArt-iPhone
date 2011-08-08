@@ -82,7 +82,7 @@
     [viewController release];
 }
 
-- (void)shareImageFacebook
+-(void)shareImageFacebook
 {
     if ([facebook isSessionValid]) {
         NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -95,6 +95,41 @@
     } else {
         [self launchFacebook];
     }
+}
+
+- (void)shareImageEmail
+{
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:[self getShareText:FALSE]];
+    
+    NSString *content = [self getShareText:FALSE];
+    content = [NSString stringWithFormat:@"%@ <br/> %@%@", content, INDIE_URL,[self getUrl]]; 
+    
+    NSLog(@"%@", content);
+    
+    [controller setMessageBody:content isHTML:YES]; 
+    if (controller) [self presentModalViewController:controller animated:YES];
+    [controller release];
+}
+
+- (void)mailComposeController:(MFMailComposeViewController*)controller  
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error;
+{
+    [self dismissModalViewControllerAnimated:YES];
+    
+    if (result == MFMailComposeResultSent) {
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email-posted.png"]] autorelease];
+        
+        // Set custom view mode
+        HUD.mode = MBProgressHUDModeCustomView;
+        HUD.labelText = @"Email Sent!";
+        
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:3];
+    } 
 }
 
 -(void)launchFacebook

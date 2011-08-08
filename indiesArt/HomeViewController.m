@@ -20,7 +20,7 @@
 - (void)setupPage
 {
 	scrollView.delegate = self;
-    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
 	[self.scrollView setBackgroundColor:[UIColor blackColor]];
 	[scrollView setCanCancelContentTouches:NO];
 	
@@ -30,31 +30,21 @@
 	scrollView.pagingEnabled = YES;
 	
 	CGFloat cx = 0;
-    int height = 168;
-    int width = 300;
+
     
 	for (NSDictionary *slide in slides) {
-        CGRect frame;
-        frame.size.width=width; frame.size.height=height; frame.origin.x=0; frame.origin.y=0;
-        ImageSlide* asyncImage = [[[ImageSlide alloc] initWithFrame:frame] autorelease];
+
+        ImageSlide* asyncImage = [[[ImageSlide alloc] initWithFrame:CGRectMake(cx, 0, 320, [scrollView bounds].size.height - 10)] autorelease];
         asyncImage.controller = self;
         asyncImage.image = slide;
         [asyncImage loadImageFromURL:[slide valueForKey:@"url"]];
-
-		CGRect rect = asyncImage.frame;
-		rect.size.height = height;
-		rect.size.width = width;
-		rect.origin.x = ((scrollView.frame.size.width - width) / 2) + cx;
-		rect.origin.y = ((scrollView.frame.size.height - height) / 2);        
-		asyncImage.frame = rect;
-
 		[scrollView addSubview:asyncImage];
         
 		cx += scrollView.frame.size.width;
 	}
 	
 	self.pageControl.numberOfPages = [slides count];
-	[scrollView setContentSize:CGSizeMake(cx, [scrollView bounds].size.height)];
+	[scrollView setContentSize:CGSizeMake(cx, scrollView.frame.size.height)];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)_scrollView
@@ -105,6 +95,7 @@
 {
     NSDictionary* feed  =   [appDelegate getFeedData];
     [self loadData:feed];
+    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self setupPage];
     [[self.tableView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)]; 
     [self.tableView reloadData];
@@ -171,13 +162,23 @@
 -(void) detectOrientation 
 {
     int width = 320;
-    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
     if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || 
         ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
         width = 480;
     }  
-    scrollView.frame = CGRectMake(0, 0, 320, scrollView.frame.size.height);
-    [self setupPage];
+    scrollView.frame = CGRectMake(0, 0, width, scrollView.frame.size.height);
+    //[self setupPage];
+    
+
+	[scrollView setContentSize:CGSizeMake([slides count] * width, [scrollView bounds].size.height)];
+    int cx = 0;
+    for (ImageSlide *slide in [scrollView subviews]) {
+        if ([slide isKindOfClass:[ImageSlide class]]) {
+            slide.frame = CGRectMake(cx, 0, width, [scrollView bounds].size.height - 10);
+            cx += width;
+        }
+    }
 }
 
 - (void)viewDidUnload

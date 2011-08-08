@@ -32,9 +32,65 @@
     return [currentImage.imageData valueForKey:@"url_page"];
 }
 
+- (void)setScrollViewSize
+{
+    BOOL landscape = FALSE;
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+        landscape = TRUE;
+    }
+    int _size = landscape ? 480 : 320;
+    int size = [images count] * _size;
+    
+    NSLog(@"Called index %i", called_index);
+    NSLog(@"Called size %i", _size);
+    
+    // Set the scroller to the appropriate image
+    [scrollView setContentOffset:CGPointMake(called_index * _size, 0) animated:NO];
+	[scrollView setContentSize:CGSizeMake(size, [scrollView bounds].size.height)];
+}
+
+- (void)changeOrientation
+{
+    BOOL landscape = FALSE;
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+        landscape = TRUE;
+    }
+    int _h = 480;
+    int _w = 320;
+    int i = 0;
+    
+    for (NSMutableDictionary *image in images) {
+        if ([image valueForKey:@"asyncImage"]) {
+            ImageDetail *asyncImage =  [image valueForKey:@"asyncImage"];
+            asyncImage.frame = CGRectMake(i * (landscape ? _h : _w), 0, landscape ? _h :_w, landscape ? _w : _h);
+            
+            //            [UIView beginAnimations : @"Redraw Image" context:nil];
+            //            [UIView setAnimationDuration:1];
+            //            [UIView setAnimationBeginsFromCurrentState:FALSE];
+            //            
+            //            CGRect frame = asyncImage.frame;
+            //            frame.size.height = landscape ? _w : _h;
+            //            frame.size.width = landscape ? _h : _w;
+            //            frame.origin.x = i * (landscape ? _h : _w);
+            //            asyncImage.frame = frame;
+            
+            [UIView commitAnimations];
+            
+            
+            
+            
+            asyncImage.imageInfoView.frame = CGRectMake(0, landscape ? 200 : 360, landscape ? _h : _w, 120);
+            asyncImage.imageLabel.frame = CGRectMake(0, 0, landscape ? _h : _w, 110);
+        }
+        i++;
+    }
+    [self setScrollViewSize];
+}
+
 - (void)setupPage:(int)index
 {
 
+    called_index = index;
 	scrollView.delegate = self;
     
 	[self.scrollView setBackgroundColor:[UIColor blackColor]];
@@ -46,20 +102,12 @@
 	
     // Call the image
     [self loadImage:index recursive:TRUE];
-    int size = [images count] * 320;
     
-    NSLog(@"Count %d", [images count]);
-    
-    
-    
-    // Set the scroller to the appropriate image
-    [scrollView setContentOffset:CGPointMake(index * 320, 0) animated:NO];
-    
-	[scrollView setContentSize:CGSizeMake(size, [scrollView bounds].size.height)];
-    
+    [self setScrollViewSize];
+
     // Add button
     UIBarButtonItem *button = [[[UIBarButtonItem alloc]
-								   initWithTitle:@"Options"
+								   initWithTitle:@"Actions"
 								   style:UIBarButtonItemStyleBordered
 								   target:self
                                     action:@selector(viewMenu:)] autorelease];
@@ -72,8 +120,8 @@
                                                              delegate:self
                                                     cancelButtonTitle:@"Cancel"
 											   destructiveButtonTitle:nil
-													otherButtonTitles:@"Use as Wallpaper", @"Share on Facebook", @"Share on Twitter", nil];
-	[actionSheet showInView:[[self.navigationController view] window]];
+													otherButtonTitles:@"Use as Wallpaper", @"Share via Facebook", @"Share via Twitter", @"Share via Email", nil];
+	[actionSheet showInView:[self view]];
     [actionSheet release];
     
 }
@@ -92,13 +140,22 @@
     if (buttonIndex == 2) {
         [self shareImageTwitter];
     }
+    if (buttonIndex == 3) {
+        [self shareImageEmail];
+    }
 }
 
 - (void)loadImage:(int)index  recursive:(BOOL) recursive;
 {
-
-    int height = 480;
-    int width = 320;
+    BOOL landscape = FALSE;
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+        landscape = TRUE;
+    }
+    int _h = 480;
+    int _w = 320;
+    
+    int height = landscape ? _w : _h;
+    int width = landscape ? _h : _w;
     CGRect frame;
     frame.size.height = height;
     frame.size.width = width;
@@ -113,32 +170,23 @@
     
     if (! [image valueForKey:@"asyncImage"]) {
         asyncImage = [[[ImageDetail alloc] initWithFrame:frame] autorelease];
-        
-        // Insert loading 
-        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(135,215,50,50)];
-        activityView.activityIndicatorViewStyle =  UIActivityIndicatorViewStyleWhiteLarge;
-        [activityView startAnimating];    
-        [asyncImage addSubview:activityView]; 
-        [activityView release];
         asyncImage.userInteractionEnabled = TRUE;
         asyncImage.multipleTouchEnabled = TRUE;
-        asyncImage.navigationController = self.navigationController;
-        asyncImage.controller = self;
-        asyncImage.imageData = image;
         [asyncImage loadImageFromURL:url];
-        
         [image setValue:asyncImage forKey:@"asyncImage"];
         
     } else {
         asyncImage =  [image valueForKey:@"asyncImage"];
     }
+    asyncImage.navigationController = self.navigationController;
+    asyncImage.controller = self;
+    asyncImage.imageData = image;
     
     [scrollView addSubview:asyncImage];
     
     if (! recursive) {
         return;
     }
-    
     self.currentImage = asyncImage;
     
     int nextImageIndex = index + 1;
@@ -163,7 +211,7 @@
     CGFloat pageWidth = _scrollView.frame.size.width;
     int page = floor((_scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     
-    
+    called_index = page;
     [self loadImage:page recursive:TRUE];
     
 }
@@ -175,25 +223,11 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    [self changeOrientation];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     [super viewWillAppear:animated];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    
-    
-//    if(UIInterfaceOrientationIsLandscape(self.interfaceOrientation)){
-//        [UIView beginAnimations:@"View Flip" context:nil];
-//        [UIView setAnimationDuration:0.5f];
-//        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-//        self.view.transform = CGAffineTransformIdentity;
-//        self.view.transform =
-//        CGAffineTransformMakeRotation(M_PI * (90) / 180.0);
-//        self.view.bounds = CGRectMake(0.0f, 0.0f, 480.0f, 320.0f);
-//        self.view.center = CGPointMake(160.0f, 240.0f);
-//        [UIView commitAnimations];
-//    }
-}
 
 - (void)dealloc
 {
@@ -210,9 +244,12 @@
 
 #pragma mark - View lifecycle
 
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -224,7 +261,7 @@
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
-    NSLog(@"Rotate Go!");
+    [self changeOrientation];
 }
 
 @end

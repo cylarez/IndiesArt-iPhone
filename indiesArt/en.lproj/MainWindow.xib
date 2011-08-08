@@ -107,7 +107,7 @@
 						<object class="IBUIViewController" id="767900698">
 							<string key="IBUITitle">Discover</string>
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="997544488">
-								<string key="IBUITitle">Random Images</string>
+								<string key="IBUITitle">Discover</string>
 								<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="547027710">
 									<string key="IBUITitle">Reload</string>
 									<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -160,7 +160,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUIViewController" id="360544434">
 								<object class="IBUINavigationItem" key="IBUINavigationItem" id="319785820">
-									<string key="IBUITitle">Title</string>
+									<string key="IBUITitle">Home</string>
 									<object class="IBUIBarButtonItem" key="IBUIRightBarButtonItem" id="421936803">
 										<string key="IBUITitle">Reload</string>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

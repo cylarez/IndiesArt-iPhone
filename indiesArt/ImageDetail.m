@@ -10,15 +10,22 @@
 
 @implementation ImageDetail
 
-@synthesize navigationController, imageInfoView, controller;
+@synthesize navigationController, imageInfoView, controller, imageLabel;
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     
+    BOOL landscape = FALSE;
+    
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || 
+        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+        landscape = TRUE;
+    }
+    
     // Animate the image info
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration: 0.3];
-    int y = navigationController.navigationBarHidden ? 360 : 480;
+    int y = navigationController.navigationBarHidden ? (landscape ? 220 : 380) : 480;
     CGRect frame = imageInfoView.frame;
     frame.origin.y = y;
     imageInfoView.frame=frame;  
@@ -51,10 +58,15 @@
     [controller shareImageTwitter];
 }
 
+- (void)shareImageEmail
+{
+    [controller shareImageEmail];
+}
+
 - (void)viewArtist
 {   
-    activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(31,2.5,25,25)];
-    activityView.activityIndicatorViewStyle =  UIActivityIndicatorViewStyleWhite;
+    activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    activityView.center = controller.scrollView.center;
     [activityView startAnimating];    
     [artistButton addSubview:activityView]; 
     [self performSelector:@selector(_viewArtist) withObject:nil afterDelay:0];
@@ -72,17 +84,40 @@
 	viewController = nil;
 }
 
+- (void)loadImageFromURL:(NSString *)url
+{
+    // Insert loading 
+    activityView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0,0,50,50)];
+
+    activityView.activityIndicatorViewStyle =  [self getSpinnerStyle];
+    activityView.center = self.center;
+    [activityView startAnimating];    
+    [controller.scrollView addSubview:activityView]; 
+    [super loadImageFromURL:url];
+    
+}
+
 - (void)displayImage
 {
     [super displayImage];
-    imageInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 360, 320, 120)];
+    
+    BOOL landscape = FALSE;
+    
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || 
+        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+        landscape = TRUE;
+    }
+    
+    int width = landscape ? 480 : 320;
+    
+    imageInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, landscape ? 220 : 380, width, 100)];
     
     // Create image info
-    UILabel *imageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 110)];
+    imageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 110)];
     imageLabel.backgroundColor = [UIColor blackColor];
     imageLabel.alpha = 0.7;
     
-    UILabel *imageLabelText = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 300, 110)];
+    UILabel *imageLabelText = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, 300, 100)];
     imageLabelText.lineBreakMode = UILineBreakModeWordWrap;
     imageLabelText.numberOfLines = 2;
     imageLabelText.textColor = [UIColor whiteColor];
@@ -101,23 +136,34 @@
     twButton.frame = CGRectMake(117, 5, 87, 30);
     [twButton setImage:[UIImage imageNamed:@"twitter_button.png"] forState:UIControlStateNormal];
     
+    
+    
     [self addSubview:imageInfoView];
     [imageInfoView addSubview:imageLabel];
     [imageInfoView addSubview:imageLabelText];
     
-    // Add button to view artist (if from discover) 
+    artistButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    
+    artistButton.frame = CGRectMake(219, 5, 87, 30);
+    
+    // Add button to view artist (if from discover) OR to email
     if (! controller.artist_id) {
-        artistButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [artistButton addTarget:self action:@selector(viewArtist) forControlEvents:UIControlEventTouchDown];
-        artistButton.frame = CGRectMake(219, 5, 87, 30);
         [artistButton setImage:[UIImage imageNamed:@"artist_button.png"] forState:UIControlStateNormal];
-        [imageInfoView addSubview:artistButton];
+    } else {
+        [artistButton addTarget:self action:@selector(shareImageEmail) forControlEvents:UIControlEventTouchDown];
+        [artistButton setImage:[UIImage imageNamed:@"email_button.png"] forState:UIControlStateNormal];
     }
+    [imageInfoView addSubview:artistButton];
     
     [imageInfoView addSubview:twButton];
     [imageInfoView addSubview:fbButton];
     [imageLabel release];
     [imageLabelText release];
+    
+    NSLog(@"Stop animating");
+    [activityView stopAnimating];
+
 }
 
 - (int) getSpinnerStyle

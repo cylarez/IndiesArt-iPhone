@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "indiesArtAppDelegate.h"
+#import <MessageUI/MessageUI.h>
 
-@interface AboutViewController : UIViewController <UIWebViewDelegate> {
+@interface AboutViewController : UIViewController <MFMailComposeViewControllerDelegate> {
     IBOutlet UITextView *textView;
     indiesArtAppDelegate* appDelegate;
+    MBProgressHUD *HUD;
+    IBOutlet UIScrollView *scrollView;
 }
 
 @property(nonatomic, retain) IBOutlet UITextView *textView;

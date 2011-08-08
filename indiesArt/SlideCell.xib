@@ -65,12 +65,11 @@
 							</object>
 							<object class="IBUIPageControl" id="1066944127">
 								<reference key="NSNextResponder" ref="91421658"/>
-								<int key="NSvFlags">1316</int>
+								<int key="NSvFlags">1322</int>
 								<object class="NSPSMatrix" key="NSFrameMatrix"/>
-								<string key="NSFrame">{{141, 165}, {38, 36}}</string>
+								<string key="NSFrame">{{142, 167}, {38, 36}}</string>
 								<reference key="NSSuperview" ref="91421658"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>

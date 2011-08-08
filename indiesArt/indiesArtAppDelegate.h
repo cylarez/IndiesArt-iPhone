@@ -12,13 +12,13 @@
 #import "MKBitlyHelper.h"
 #import "asyncImageView.h"
 
-#define INDIE_URL               @"http://www.indiesart.com"
-#define ARTIST_URL              @"mobile/artist"
-#define APP_ID                  @"139707482707461"
-#define kOAuthConsumerKey       @"5HdyAAORjW6Yyzza2W8PWA"   
-#define kOAuthConsumerSecret    @"t8mtNrE7ZePd5xkgIQ4F7iezPbjxSwcbtUrWGqGZk"
-#define BIT_LOGIN               @"cylarez"
-#define BIT_KEY                 @"R_2bbf1d1814692eec736d83f7d756c3fb"
+#define INDIE_URL               @""
+#define ARTIST_URL              @""
+#define APP_ID                  @""
+#define kOAuthConsumerKey       @""   
+#define kOAuthConsumerSecret    @""
+#define BIT_LOGIN               @""
+#define BIT_KEY                 @""
 
 
 

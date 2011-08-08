@@ -15,7 +15,9 @@
 @interface ArtistDetailViewController : GalleryViewController {
     NSString* artist_id;
     IBOutlet UIScrollView* scrollView;
+    IBOutlet UILabel *artistLabel;
     NSArray *images;
+    IBOutlet UIView *artistPanel;
 }
 
 @property (nonatomic, retain) NSString *artist_id;
@@ -23,7 +25,8 @@
 @property (nonatomic, copy) NSArray *images;
 
 
--(void)loadImages;
+-(void)loadImages:(BOOL)just_orientation;
 -(IBAction)reloadData;
+
 
 @end

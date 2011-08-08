@@ -10,11 +10,13 @@
 #import "indiesArtAppDelegate.h"
 @class indiesArtAppDelegate;
 #import "TwitterRushViewController.h"
+#import <MessageUI/MessageUI.h>
 
-@interface GalleryViewController : UIViewController < FBRequestDelegate, FBDialogDelegate, FBSessionDelegate> {
+@interface GalleryViewController : UIViewController < FBRequestDelegate, FBDialogDelegate, FBSessionDelegate, MFMailComposeViewControllerDelegate> {
     indiesArtAppDelegate* appDelegate;
     UIButton *fbButton;
     UIButton *twButton;
+    UIButton *emailButton;
     Facebook *facebook;
     MBProgressHUD *HUD;
     NSDictionary* artist;
@@ -24,8 +26,10 @@
 @property (nonatomic, retain) Facebook *facebook;
 
 - (void)imageSaved;
-- (void)shareImageFacebook;
-- (void)shareImageTwitter;
+- (IBAction)shareImageTwitter;
+- (IBAction)shareImageFacebook;
+- (IBAction)shareImageEmail;
+
 - (void)fbDidLogin;
 - (void)launchFacebook;
 

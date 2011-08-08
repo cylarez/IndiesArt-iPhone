@@ -20,10 +20,12 @@
     UIButton *artistButton;
     UIActivityIndicatorView *activityView;
     NSDictionary *artist;
+    UILabel *imageLabel;
 }
 
 @property(nonatomic, retain) UINavigationController *navigationController;
 @property(nonatomic, retain) UIView *imageInfoView;
+@property(nonatomic, retain) UILabel *imageLabel;
 @property(nonatomic, retain) CollectionViewController *controller;
 
 @end

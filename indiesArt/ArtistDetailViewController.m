@@ -14,64 +14,23 @@
 @synthesize artist_id, scrollView, images;
 
 
--(void)loadImages
+-(void)loadImages:(BOOL)just_orientation
 {        
     BOOL landscape = FALSE;
     
     if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || 
         ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
-        //landscape = TRUE;
+        landscape = TRUE;
     }
     
     int imageHeight = 103;
     int imageWidth = 103;
     int border = 10;
     int x = border;
-    int yBase = artist_id ? 130 : border;
+    int yBase = artist_id ? 140 : border;
     int y = yBase;
     int c = 1;
     int index = 0;
-    
-    [[self.view subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    // Add the artist name Label
-    if (artist_id) {
-        UIImageView *artistLabelBg = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"label-artist.png"]] autorelease];
-        int l_border = landscape ? 82 : 0;
-        if (landscape) {
-            artistLabelBg.frame = CGRectMake(l_border, 0, artistLabelBg.frame.size.width, artistLabelBg.frame.size.height);
-        }
-        UILabel *artistLabel = [[[UILabel alloc] initWithFrame:CGRectMake(25, 25, 270, 25)] autorelease];
-        artistLabel.lineBreakMode = UILineBreakModeWordWrap;
-        artistLabel.numberOfLines = 2;
-        artistLabel.textColor = [UIColor blackColor];
-        artistLabel.backgroundColor = [UIColor clearColor];
-        artistLabel.textAlignment = UITextAlignmentCenter;
-        artistLabel.text = [artist valueForKey:@"name"];
-        artistLabel.shadowColor = [UIColor grayColor];
-        artistLabel.shadowOffset = CGSizeMake(1, 1);
-        artistLabel.font = [UIFont fontWithName:@"Impact" size:22];
-        
-        [artistLabelBg addSubview:artistLabel];
-        
-        [self.view addSubview:artistLabelBg];
-
-        
-        // Set Share buttons
-        // Create FB button
-        fbButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [fbButton addTarget:self action:@selector(shareImageFacebook) forControlEvents:UIControlEventTouchDown];
-        fbButton.frame = CGRectMake(l_border + 65, 82, 87, 30);
-        [fbButton setImage:[UIImage imageNamed:@"facebook_button.png"] forState:UIControlStateNormal];
-        [self.view addSubview:fbButton];
-        
-        // Create Twitter button
-        twButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        [twButton addTarget:self action:@selector(shareImageTwitter) forControlEvents:UIControlEventTouchDown];
-        twButton.frame = CGRectMake(l_border + 165, 82, 87, 30);
-        [twButton setImage:[UIImage imageNamed:@"twitter_button.png"] forState:UIControlStateNormal];
-        [self.view addSubview:twButton];
-    }
     
     int numImageRow = landscape ? 4 : 3;
     if (landscape) {
@@ -82,44 +41,50 @@
         imageHeight -= border;
     }
     
+    if (! just_orientation) {
+        if (artist_id) {
+            artistLabel.text = [artist valueForKey:@"name"];
+        }
+        for (ImageCollection *image in [scrollView subviews]) {
+            if ([image isKindOfClass:[ImageCollection class]]) {
+                [image removeFromSuperview];
+            }
+        }
+    }
+
     for (NSMutableDictionary *i in images) {
         if (c > numImageRow) {
             y += imageHeight + border;
             x = border;
             c = 1;
         }
-        
         CGRect frame = CGRectMake(x, y, imageWidth , imageHeight );
         
-        ImageCollection * asyncImage = [[[ImageCollection alloc] initWithFrame:frame] autorelease];
-        [asyncImage loadImageFromURL:[i valueForKey:@"url_200x200"]];
-        asyncImage.userInteractionEnabled = TRUE;
-        asyncImage.index = index;
-        index++;
-        if (! [i valueForKey:@"artist"]) {
-            [i setValue:artist forKey:@"artist"];
+        if (just_orientation) {
+            ImageCollection * asyncImage = (ImageCollection*) [i valueForKey:@"view"];
+            asyncImage.frame = frame;
+        } else {
+            ImageCollection * asyncImage = [[[ImageCollection alloc] initWithFrame:frame] autorelease];
+            [asyncImage loadImageFromURL:[i valueForKey:@"url_200x200"]];
+            asyncImage.userInteractionEnabled = TRUE;
+            asyncImage.index = index;
+            
+            if (! [i valueForKey:@"artist"]) {
+                [i setValue:artist forKey:@"artist"];
+            }
+            asyncImage.controller = self;
+            asyncImage.imageData = i;
+            asyncImage.navigationController = self.navigationController;
+            [i setValue:asyncImage forKey:@"view"];
+            [self.view addSubview:asyncImage];
         }
-        asyncImage.controller = self;
-        asyncImage.imageData = i;
-        asyncImage.navigationController = self.navigationController;
-        [self.view addSubview:asyncImage];
+        
+        index++;
         x += imageWidth + border;
         c++;
     }
-    
     [scrollView setContentSize:CGSizeMake(300, y + (imageHeight + border))];
-}
-
--(void) detectOrientation {
     
-    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || 
-        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
-        scrollView.frame = CGRectMake(0, 0, 480, scrollView.frame.size.height);
-    } else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait) {
-        scrollView.frame = CGRectMake(0, 0, 320, scrollView.frame.size.height);
-    }   
-    [self loadImages];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -161,7 +126,7 @@
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [self _reloadData];
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self loadImages];
+            [self loadImages:FALSE];
             [MBProgressHUD hideHUDForView:self.navigationController.view animated:YES];
         });
     });
@@ -169,16 +134,20 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
-//    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
     
+    if (! artist_id) {
+        artistPanel.hidden = YES;
+    }
+    
+    [super viewDidLoad];
+    artistLabel.font = [UIFont fontWithName:@"Impact" size:22];
+    appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
     [self reloadData];
 }
 
 - (void)viewDidUnload
 {
+    [[scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [scrollView release];
     scrollView = nil;
     [super viewDidUnload];
@@ -190,6 +159,30 @@
 {
     // Return YES for supported orientations
     return YES;
+}
+
+-(void)changeOrientation
+{
+    int scroll_width = 320;
+    
+    if (([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) || 
+        ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)) {
+        scroll_width = 480;
+    } 
+    
+    scrollView.frame = CGRectMake(0, 0, scroll_width, scrollView.frame.size.height);
+    [self loadImages:TRUE];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [self changeOrientation];
+    [super viewWillAppear:animated];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self changeOrientation];
 }
 
 @end

@@ -23,6 +23,11 @@
 		720C75CD13E50858000D5BCC /* bg-indiesart-wotab.png in Resources */ = {isa = PBXBuildFile; fileRef = 720C75CB13E50858000D5BCC /* bg-indiesart-wotab.png */; };
 		720C75CE13E50858000D5BCC /* bg-indiesart-wotab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 720C75CC13E50858000D5BCC /* bg-indiesart-wotab@2x.png */; };
 		720C75D713E52E13000D5BCC /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 720C75D613E52E13000D5BCC /* GalleryViewController.m */; };
+		7218A0DC13EDD511004B7A1F /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7218A0DA13EDD4F7004B7A1F /* MessageUI.framework */; };
+		7218A0DF13EDE0DA004B7A1F /* email-posted.png in Resources */ = {isa = PBXBuildFile; fileRef = 7218A0DD13EDE0DA004B7A1F /* email-posted.png */; };
+		7218A0E013EDE0DA004B7A1F /* email-posted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7218A0DE13EDE0DA004B7A1F /* email-posted@2x.png */; };
+		7218A0E313EDE7BF004B7A1F /* email_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 7218A0E113EDE7BF004B7A1F /* email_button.png */; };
+		7218A0E413EDE7BF004B7A1F /* email_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7218A0E213EDE7BF004B7A1F /* email_button@2x.png */; };
 		723BE48F13DCD9BD00CA367C /* tab_group.png in Resources */ = {isa = PBXBuildFile; fileRef = 723BE48D13DCD9BD00CA367C /* tab_group.png */; };
 		723BE49013DCD9BD00CA367C /* tab_group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 723BE48E13DCD9BD00CA367C /* tab_group@2x.png */; };
 		723BE49313DCDE9D00CA367C /* tab_about.png in Resources */ = {isa = PBXBuildFile; fileRef = 723BE49113DCDE9D00CA367C /* tab_about.png */; };
@@ -93,8 +98,6 @@
 		7279266213CFB208005D9E6A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7279266113CFB208005D9E6A /* MBProgressHUD.m */; };
 		72843939136E13AE00C3045A /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 72843938136E13AE00C3045A /* icon-57.png */; };
 		7284393B136E13B500C3045A /* icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = 7284393A136E13B500C3045A /* icon-114.png */; };
-		728C4CB613EAF18A00E13955 /* bg-indiesart-tweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 728C4CB413EAF18800E13955 /* bg-indiesart-tweet.png */; };
-		728C4CB713EAF18A00E13955 /* bg-indiesart-tweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 728C4CB513EAF18900E13955 /* bg-indiesart-tweet@2x.png */; };
 		728F2ABA13DB7355009007E0 /* Cloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 728F2AB913DB7355009007E0 /* Cloud@2x.png */; };
 		72965DF013CD6BF80057F2DF /* logo_head@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72965DEE13CD6BF80057F2DF /* logo_head@2x.png */; };
 		72965DF113CD6BF80057F2DF /* logo_head.png in Resources */ = {isa = PBXBuildFile; fileRef = 72965DEF13CD6BF80057F2DF /* logo_head.png */; };
@@ -112,6 +115,12 @@
 		72E647E7135A657700070CFD /* ArtistsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E647E5135A657700070CFD /* ArtistsViewController.xib */; };
 		72E647EB135A765200070CFD /* ArtistDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E647E9135A765200070CFD /* ArtistDetailViewController.m */; };
 		72E647EC135A765200070CFD /* ArtistDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72E647EA135A765200070CFD /* ArtistDetailViewController.xib */; };
+		72ED6A1113EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 72ED6A0F13EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape.png */; };
+		72ED6A1213EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72ED6A1013EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape@2x.png */; };
+		72ED6A1513EE6E9C00F99BE9 /* label-artist-full.png in Resources */ = {isa = PBXBuildFile; fileRef = 72ED6A1313EE6E9C00F99BE9 /* label-artist-full.png */; };
+		72ED6A1613EE6E9C00F99BE9 /* label-artist-full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72ED6A1413EE6E9C00F99BE9 /* label-artist-full@2x.png */; };
+		72ED6A1913EF476100F99BE9 /* bg-indiesart-tweet.png in Resources */ = {isa = PBXBuildFile; fileRef = 72ED6A1713EF475F00F99BE9 /* bg-indiesart-tweet.png */; };
+		72ED6A1A13EF476100F99BE9 /* bg-indiesart-tweet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72ED6A1813EF476000F99BE9 /* bg-indiesart-tweet@2x.png */; };
 		72EEDA9213CBA08D00379B72 /* facebook_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 72EEDA9013CBA08D00379B72 /* facebook_button.png */; };
 		72EEDA9313CBA08D00379B72 /* facebook_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 72EEDA9113CBA08D00379B72 /* facebook_button@2x.png */; };
 		72EEDA9613CBA0E300379B72 /* twitter_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 72EEDA9413CBA0E300379B72 /* twitter_button.png */; };
@@ -154,6 +163,11 @@
 		720C75CC13E50858000D5BCC /* bg-indiesart-wotab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-wotab@2x.png"; sourceTree = "<group>"; };
 		720C75D513E52E13000D5BCC /* GalleryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
 		720C75D613E52E13000D5BCC /* GalleryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
+		7218A0DA13EDD4F7004B7A1F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		7218A0DD13EDE0DA004B7A1F /* email-posted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-posted.png"; sourceTree = "<group>"; };
+		7218A0DE13EDE0DA004B7A1F /* email-posted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email-posted@2x.png"; sourceTree = "<group>"; };
+		7218A0E113EDE7BF004B7A1F /* email_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email_button.png; sourceTree = "<group>"; };
+		7218A0E213EDE7BF004B7A1F /* email_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email_button@2x.png"; sourceTree = "<group>"; };
 		723BE48D13DCD9BD00CA367C /* tab_group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_group.png; sourceTree = "<group>"; };
 		723BE48E13DCD9BD00CA367C /* tab_group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab_group@2x.png"; sourceTree = "<group>"; };
 		723BE49113DCDE9D00CA367C /* tab_about.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_about.png; sourceTree = "<group>"; };
@@ -284,8 +298,6 @@
 		7279266113CFB208005D9E6A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 		72843938136E13AE00C3045A /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-57.png"; path = "../icon-57.png"; sourceTree = "<group>"; };
 		7284393A136E13B500C3045A /* icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-114.png"; path = "../icon-114.png"; sourceTree = "<group>"; };
-		728C4CB413EAF18800E13955 /* bg-indiesart-tweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-tweet.png"; sourceTree = "<group>"; };
-		728C4CB513EAF18900E13955 /* bg-indiesart-tweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-tweet@2x.png"; sourceTree = "<group>"; };
 		728F2AB913DB7355009007E0 /* Cloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cloud@2x.png"; sourceTree = "<group>"; };
 		72965DEE13CD6BF80057F2DF /* logo_head@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_head@2x.png"; sourceTree = "<group>"; };
 		72965DEF13CD6BF80057F2DF /* logo_head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_head.png; sourceTree = "<group>"; };
@@ -308,6 +320,12 @@
 		72E647E8135A765200070CFD /* ArtistDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistDetailViewController.h; sourceTree = "<group>"; };
 		72E647E9135A765200070CFD /* ArtistDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistDetailViewController.m; sourceTree = "<group>"; };
 		72E647EA135A765200070CFD /* ArtistDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArtistDetailViewController.xib; sourceTree = "<group>"; };
+		72ED6A0F13EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-wotab-landscape.png"; sourceTree = "<group>"; };
+		72ED6A1013EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-wotab-landscape@2x.png"; sourceTree = "<group>"; };
+		72ED6A1313EE6E9C00F99BE9 /* label-artist-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label-artist-full.png"; sourceTree = "<group>"; };
+		72ED6A1413EE6E9C00F99BE9 /* label-artist-full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "label-artist-full@2x.png"; sourceTree = "<group>"; };
+		72ED6A1713EF475F00F99BE9 /* bg-indiesart-tweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-tweet.png"; sourceTree = "<group>"; };
+		72ED6A1813EF476000F99BE9 /* bg-indiesart-tweet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg-indiesart-tweet@2x.png"; sourceTree = "<group>"; };
 		72EEDA9013CBA08D00379B72 /* facebook_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_button.png; sourceTree = "<group>"; };
 		72EEDA9113CBA08D00379B72 /* facebook_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook_button@2x.png"; sourceTree = "<group>"; };
 		72EEDA9413CBA0E300379B72 /* twitter_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = twitter_button.png; sourceTree = "<group>"; };
@@ -328,6 +346,7 @@
 				726BF651135252D10046AC92 /* UIKit.framework in Frameworks */,
 				726BF653135252D10046AC92 /* Foundation.framework in Frameworks */,
 				726BF655135252D10046AC92 /* CoreGraphics.framework in Frameworks */,
+				7218A0DC13EDD511004B7A1F /* MessageUI.framework in Frameworks */,
 				7279261F13CFB1E9005D9E6A /* libOAuth.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +408,7 @@
 		726BF64F135252D10046AC92 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7218A0DA13EDD4F7004B7A1F /* MessageUI.framework */,
 				7267C9CB135B8C0F009E7D61 /* QuartzCore.framework */,
 				726BF650135252D10046AC92 /* UIKit.framework */,
 				726BF652135252D10046AC92 /* Foundation.framework */,
@@ -583,14 +603,20 @@
 		72B4680D1353A96F00C28892 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				728C4CB413EAF18800E13955 /* bg-indiesart-tweet.png */,
-				728C4CB513EAF18900E13955 /* bg-indiesart-tweet@2x.png */,
 				720C75CB13E50858000D5BCC /* bg-indiesart-wotab.png */,
 				720C75CC13E50858000D5BCC /* bg-indiesart-wotab@2x.png */,
+				72ED6A0F13EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape.png */,
+				72ED6A1013EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape@2x.png */,
 				720C75C713E50473000D5BCC /* bg-indiesart.png */,
 				720C75C813E50473000D5BCC /* bg-indiesart@2x.png */,
+				72ED6A1713EF475F00F99BE9 /* bg-indiesart-tweet.png */,
+				72ED6A1813EF476000F99BE9 /* bg-indiesart-tweet@2x.png */,
 				720C75BD13E4A0D6000D5BCC /* label-artist.png */,
 				720C75BE13E4A0D6000D5BCC /* label-artist@2x.png */,
+				72ED6A1313EE6E9C00F99BE9 /* label-artist-full.png */,
+				72ED6A1413EE6E9C00F99BE9 /* label-artist-full@2x.png */,
+				7218A0DD13EDE0DA004B7A1F /* email-posted.png */,
+				7218A0DE13EDE0DA004B7A1F /* email-posted@2x.png */,
 				723BE4B113DF82F900CA367C /* fb-posted.png */,
 				723BE4B213DF82FA00CA367C /* fb-posted@2x.png */,
 				723BE4A913DF7CBC00CA367C /* tweeted.png */,
@@ -603,6 +629,8 @@
 				72EEDA9513CBA0E300379B72 /* twitter_button@2x.png */,
 				72EEDA9013CBA08D00379B72 /* facebook_button.png */,
 				72EEDA9113CBA08D00379B72 /* facebook_button@2x.png */,
+				7218A0E113EDE7BF004B7A1F /* email_button.png */,
+				7218A0E213EDE7BF004B7A1F /* email_button@2x.png */,
 				7203709913CA8CDA00D62B32 /* Cloud.png */,
 				728F2AB913DB7355009007E0 /* Cloud@2x.png */,
 				7203708F13CA78AF00D62B32 /* arrow_pink.gif */,
@@ -640,8 +668,8 @@
 				72E647EA135A765200070CFD /* ArtistDetailViewController.xib */,
 				7267C9CF135B9D26009E7D61 /* CollectionViewController.xib */,
 				7203707F13CA2F4A00D62B32 /* TwitterRushViewController.xib */,
-				7245ECE613541B4C00A00EB9 /* SlideCell.xib */,
 				72965DF413CD6C8F0057F2DF /* AboutViewController.xib */,
+				7245ECE613541B4C00A00EB9 /* SlideCell.xib */,
 			);
 			name = NIB;
 			sourceTree = "<group>";
@@ -762,8 +790,6 @@
 				720C75CE13E50858000D5BCC /* bg-indiesart-wotab@2x.png in Resources */,
 				72DF98CD13E625C700C59BF2 /* icon-new.png in Resources */,
 				72DF98CF13E625CA00C59BF2 /* icon-new@2x.png in Resources */,
-				728C4CB613EAF18A00E13955 /* bg-indiesart-tweet.png in Resources */,
-				728C4CB713EAF18A00E13955 /* bg-indiesart-tweet@2x.png in Resources */,
 				726013FD13EBA2260026965A /* header-test.png in Resources */,
 				7260140813EBA45B0026965A /* header_artists.png in Resources */,
 				7260140913EBA45B0026965A /* header_artists@2x.png in Resources */,
@@ -771,6 +797,16 @@
 				7260140B13EBA45B0026965A /* header_main@2x.png in Resources */,
 				7260140C13EBA45B0026965A /* header_submissions.png in Resources */,
 				7260140D13EBA45B0026965A /* header_submissions@2x.png in Resources */,
+				7218A0DF13EDE0DA004B7A1F /* email-posted.png in Resources */,
+				7218A0E013EDE0DA004B7A1F /* email-posted@2x.png in Resources */,
+				7218A0E313EDE7BF004B7A1F /* email_button.png in Resources */,
+				7218A0E413EDE7BF004B7A1F /* email_button@2x.png in Resources */,
+				72ED6A1113EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape.png in Resources */,
+				72ED6A1213EE2EAD00F99BE9 /* bg-indiesart-wotab-landscape@2x.png in Resources */,
+				72ED6A1513EE6E9C00F99BE9 /* label-artist-full.png in Resources */,
+				72ED6A1613EE6E9C00F99BE9 /* label-artist-full@2x.png in Resources */,
+				72ED6A1913EF476100F99BE9 /* bg-indiesart-tweet.png in Resources */,
+				72ED6A1A13EF476100F99BE9 /* bg-indiesart-tweet@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

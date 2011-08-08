@@ -38,16 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     appDelegate = [[[UIApplication sharedApplication] delegate] retain];
-    
-    self.artists = [appDelegate.feed valueForKey:@"artists"];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -64,6 +55,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    self.artists = [appDelegate.feed valueForKey:@"artists"];
+    [self.tableView reloadData];
     [super viewDidAppear:animated];
 }
 

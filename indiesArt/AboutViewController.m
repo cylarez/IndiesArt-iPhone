@@ -42,15 +42,40 @@
 {
     [super viewDidLoad];
     appDelegate = (indiesArtAppDelegate*)[[[UIApplication sharedApplication] delegate] retain];
-    
     NSString *text = appDelegate.about; 
     textView.text = text;
-    
+    [scrollView setContentSize:CGSizeMake(320, 490)];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (IBAction) loadEmailView
 {
+    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+    controller.mailComposeDelegate = self;
+    [controller setSubject:@"Contact Us"];
+    [controller setToRecipients:[NSArray arrayWithObject:@"info@indiesart.com"]];   
+    if (controller) [self presentModalViewController:controller animated:YES];
+    [controller release];
+}
 
+- (void)mailComposeController:(MFMailComposeViewController*)controller  
+          didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error;
+{
+    [self dismissModalViewControllerAnimated:YES];
+    
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+        
+        HUD = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:HUD];
+        HUD.customView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"email-posted.png"]] autorelease];
+        
+        // Set custom view mode
+        HUD.mode = MBProgressHUDModeCustomView;
+        HUD.labelText = @"Email Sent!";
+        
+        [HUD show:YES];
+        [HUD hide:YES afterDelay:3];
+    } 
 }
 
 - (void)viewDidUnload
@@ -63,7 +88,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 @end

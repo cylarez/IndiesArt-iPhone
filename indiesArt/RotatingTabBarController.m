@@ -12,7 +12,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Always returning YES means the view will rotate to accomodate any orientation.
-    return NO;
+    return YES;
 }
 
 @end

@@ -39,13 +39,6 @@
 	NSURLRequest* request = [NSURLRequest requestWithURL:_url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
 	connection = [[NSURLConnection alloc] initWithRequest:request delegate:self]; //notice how delegate set to self object
 	//TODO error handling, what if connection is nil?
-    
-    
-    UIImage *bg = [UIImage imageNamed:@"bg-default-50.png"];
-    
-    imageView = [[[UIImageView alloc] initWithImage:bg] autorelease];
-    
-    //[self addSubview:imageView];
 }
 
 - (int) getSpinnerStyle
